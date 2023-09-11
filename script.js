@@ -60,6 +60,28 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const classicsElement = document.getElementById("sale");
+
+    classicsElement.addEventListener("click", function() {
+        
+        window.location.href = "/sale.html";
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    const classicsElement = document.getElementById("review");
+
+    classicsElement.addEventListener("click", function() {
+        
+        window.location.href = "/reviews.html";
+    });
+});
+
+
 
 
 

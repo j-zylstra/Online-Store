@@ -1,0 +1,154 @@
+
+body {
+    background-color: #F0F0F0;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+img {
+    height: 300px;
+}
+
+nav {
+    position: relative;
+    top: 0;
+    left:0;
+    right:0;
+    background-color:  #0879BC;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: o ;
+    font-size: 25px;
+}
+
+#brand {
+    text-decoration: underline;
+    text-decoration: overline;
+
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+
+
+nav ul li a:hover {
+    color: rgb(141, 139, 139);
+    cursor: pointer;
+}
+
+#cart {
+    height: 50px;
+}
+
+
+nav #cart {
+    transition: transform 0.3s;
+}
+
+nav #cart:hover {
+    transform: scale(1.2);
+}
+
+
+.products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    margin: 30px;
+    justify-content: space-between;
+    position: relative;
+
+}
+
+.card-border {
+    border: #f0f0f0;
+    padding: 10px;
+    border-style: solid;
+    margin: 30px;
+    border-radius: 15px;
+    background-color:#F9F9F9;
+    transition: ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+    
+    
+}
+
+.card {
+    height: 300px;
+    width: 200px;    
+    border-radius: 30px;
+    padding: 20px 20px 20px 20px;
+    
+    
+}
+
+
+.products h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+
+button {
+    border-radius: 20px;
+    border-style: hidden;
+    background-color: #808080;
+    color: white;
+    height:30px;
+    width: 60%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+button:hover {
+    border-style: solid;
+    background-color: #0879BC;
+    border-color: white;
+    color: white;
+}
+
+#old-price {
+    text-decoration: line-through;
+}
+
+.corner-ribbon {
+    width: 100px;
+    background: #e43;
+    position: relative;
+    top: -418px;
+    left:-105px;
+    text-align: center;
+    line-height: 30px;
+    letter-spacing: 1px;
+    color: #f0f0f0;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    overflow: hidden;
+  }

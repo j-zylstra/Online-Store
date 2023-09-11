@@ -7,7 +7,14 @@ body {
     
 }
 
-
+#mission-statement {
+    color: white;
+    font-size: 4em;
+    text-align: start;
+    width: 40%;
+    font-weight: 400;
+    margin-left: -190px;
+}
 
 .video-container {
     position:absolute;
@@ -93,6 +100,7 @@ nav #cart:hover {
     
     
     height: 80vh;
+    width: 100%;
     background-color: rgba(0,0,0,0.4);
     padding: 0;
     display: flex;

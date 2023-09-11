@@ -1,5 +1,5 @@
 body {
-    background-color: grey;
+    background-color:#F0F0F0;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
@@ -12,7 +12,7 @@ nav {
     top: 0;
     left:0;
     right:0;
-    background-color: transparent;
+    background-color:  #0879BC;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -94,22 +94,33 @@ nav #cart:hover {
 
 .card-border {
     border: #f0f0f0;
+    padding: 10px;
     border-style: solid;
-    margin: 13px;
-    border-radius: 30px;
+    margin: 30px;
+    border-radius: 15px;
     background-color:#F9F9F9;
     transition: ease-in-out;
-    box-shadow: black;
-    width: 280px;
-    height: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    flex-wrap: wrap;
-    
+    align-items: center;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25);
     
 }
 
-.card-border:hover {
-    transform: scale(1.02);
+button {
+    border-radius: 20px;
+    border-style: hidden;
+    background-color: #808080;
+    color: white;
+    height:30px;
+    width: 60%;
+    margin-bottom: 20px;
+}
 
+button:hover {
+    border-style: solid;
+    background-color: #0879BC;
+    border-color: white;
+    color: white;
 }
