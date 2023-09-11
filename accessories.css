@@ -1,0 +1,115 @@
+body {
+    background-color: grey;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    min-width: 100vh;
+}
+
+
+nav {
+    position:relative;
+    top: 0;
+    left:0;
+    right:0;
+    background-color: transparent;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 0 ;
+    font-size: 25px;
+}
+
+
+
+#brand {
+    font-family: serif;
+    text-decoration: overline;
+
+}
+
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+nav ul li a:hover  {
+    color: black;
+}
+
+#cart {
+    height: 50px;
+}
+
+
+nav #cart {
+    transition: transform 0.3s;
+}
+
+nav #cart:hover {
+    transform: scale(1.2);
+}
+
+.products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    margin: 30px;
+    justify-content: space-between;
+    position: relative;
+
+}
+
+
+.products h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.card {
+    height: 300px;
+    width: 200px;    
+    border-radius: 30px;
+    padding: 20px 20px 20px 20px;
+    
+}
+
+.card-border {
+    border: #f0f0f0;
+    border-style: solid;
+    margin: 13px;
+    border-radius: 30px;
+    background-color:#F9F9F9;
+    transition: ease-in-out;
+    box-shadow: black;
+    width: 280px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    
+}
+
+.card-border:hover {
+    transform: scale(1.02);
+
+}

@@ -1,0 +1,63 @@
+
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav {
+    position: relative;
+    top: 0;
+    left:0;
+    right:0;
+    background-color: grey;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: o ;
+    font-size: 25px;
+}
+
+#brand {
+    text-decoration: underline;
+    text-decoration: overline;
+
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+
+
+
+nav ul li a:hover {
+    color: black;
+    cursor: pointer;
+}
+
+#cart {
+    height: 50px;
+}
+
+
+nav #cart {
+    transition: transform 0.3s;
+}
+
+nav #cart:hover {
+    transform: scale(1.2);
+}
