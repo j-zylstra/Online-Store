@@ -58,13 +58,27 @@ nav ul li a:hover {
 }
 
 
-nav #cart {
+
+nav #cart-link:hover {
+    transform: scale(1.2);
+}
+
+#cart-link {
+    display: flex;
+    align-items: center;
+    position: relative;
     transition: transform 0.3s;
 }
 
-nav #cart:hover {
-    transform: scale(1.2);
-}
+.quantity {
+    position: absolute;
+    top: -8px;
+    right: -16px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 10px;
+  }
 
 
 .products {
