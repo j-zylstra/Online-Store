@@ -80,7 +80,7 @@ nav #cart-link:hover {
   }
 
 
-.products {
+.bassProducts {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

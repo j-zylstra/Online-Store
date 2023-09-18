@@ -137,6 +137,7 @@ nav #cart-link:hover {
     transform:scale(1);
 }
 
+
 .wrapper.active {
     height: 520px;
 }
@@ -179,6 +180,8 @@ nav #cart-link:hover {
     justify-content: center;
     align-items: center;
     font-size: 2em;
+    border-style: none;
+    padding-top: 10px;
 }
 
 .wrapper .icon-close:hover {

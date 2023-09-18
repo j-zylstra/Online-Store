@@ -81,7 +81,7 @@ nav #cart-link:hover {
   }
 
 
-.products {
+.saleProducts {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

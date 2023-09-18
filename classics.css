@@ -80,7 +80,7 @@ nav #cart-link:hover {
     padding: 3px 10px;
   }
 
-.products {
+.classicProducts {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

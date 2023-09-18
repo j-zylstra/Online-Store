@@ -99,62 +99,95 @@ nav #cart-link:hover {
 
 .cart {
     height: 100%;
-    width: 50%;
+    width: 70%;
     position: relative;
   }
   
 .cart-header {
     display: flex;
-    justify-content: space-around;
     padding: 10px 0;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
   }
+
+.cart-header .column1 {
+    width: 40%;
+    text-align: center;
+}
+.cart-header .column2 {
+    width: 40%;
+    text-align: center;
+}
+.cart-header .column3 {
+    width: 20%;
+    text-align: end;
+    padding-right: 2%;
+}
   
 .cart-items {
     max-height: calc(100vh - 247px);
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
   }
   
 .cart-item {
     display: flex;
-    justify-content: space-around;
-    padding: 0;
-  }
-
-.cart-item div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding-top: 5px;
+    
+    
   }
 
 .cart-item .item-info {
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: 10px;
-    margin: 10px;
+    margin: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    width: 40%;
   }
 
-.cart-item .item-info h4 {
-    padding: 10px;
-}
+  .cart-item .item-info h4 {
+    width: 65%;
+  }
 
-.cart-item .item-info:hover {
-    background-color: rgba(255, 0, 0, 0.6);
+  .icon-close {
+    
+    width: 20px;
+    height: 20px;
+    background:transparent;
+    color:#0879BC; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    margin-right: 10px;
+  }
+
+  .icon-close:hover {
     cursor: pointer;
-  }
+}
 
 .cart-item .item-info img {
     width: 75px;
+    
   }
   
 .cart-item .unit-price {
-    flex: 1;
-    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    width: 40%;
   }
   
 .cart-item .units {
-    flex: 1;
+    display: flex;
+    justify-content:flex-end;
+    align-items: center;
+    width: 20%;
   }
 
 .cart-item .units .number {
@@ -166,23 +199,34 @@ nav #cart-link:hover {
     width: 20px;
     height: 20px;
     background-color:#0879BC;
-    border-radius: 50%;
+    border-radius: 30%;
     font-weight: bold;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  
+
+
+  .cart-item .units .btn-plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 .cart-footer {
     width: 100%;
     position: absolute;
     bottom: 0;
     left: 0;
+    
   }
 
 .cart-footer div {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 0;
+    padding: 15px 0px;
     font-size: 1.3rem;
   }
 

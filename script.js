@@ -1,89 +1,113 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
-    const bassElement = document.getElementById("bass");
+    // Define an array of navigation items with their IDs and target URLs
+    const navigationItems = [
+        { id: "home", url: "index.html" },
+        { id: "sale", url: "/sale.html" },
+        { id: "review", url: "/reviews.html" },
+        { id: "cart-link", url: "cart.html" },
+        { id: "newest", url: "/newest.html" },
+        { id: "bass", url: "/bass.html" },
+        { id: "classics", url: "/classics.html" },
+        { id: "access", url: "accessories.html" },
+    ];
 
-    bassElement.addEventListener("click", function() {
-        
-        window.location.href = "/bass.html";
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const classicsElement = document.getElementById("classics");
-
-    classicsElement.addEventListener("click", function() {
-        
-        window.location.href = "/classics.html";
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const newestElement = document.getElementById("newest");
-
-    newestElement.addEventListener("click", function() {
-        
-        window.location.href = "/newest.html";
+    // Attach event listeners for each navigation item
+    navigationItems.forEach(item => {
+        const element = document.getElementById(item.id);
+        if (element) {
+            element.addEventListener("click", function() {
+                window.location.href = item.url;
+            });
+        }
     });
 });
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const cartElement = document.getElementById("cart-link");
+const cartElement = document.querySelector(".cart-items");
 
-    cartElement.addEventListener("click", function() {
-        
-        window.location.href = "cart.html";
+let cart = [];
+
+function addToCart(id) {
+
+        if (cart.some((item) => item.id === id)) {
+            alert("product already in cart") 
+        } else {
+           const item = products.find((product) => product.id === id)
+
+            cart.push(item);
+            console.log(cart);
+          }
+          updateCart();
+       };
+
+
+    function updateCart() {
+        renderCartItems();
+        //renderSubtotal();
+    }
+
+function renderCartItems() {
+    cartElement.innerHTML = "";
+    cart.forEach((item) => {
+        cartElement.innerHTML += `
+                <div class="cart-item">
+                    <div class="item-info">
+                        <img src="${item.imgSrc}" alt="${item.name}">
+                        <h4>${item.name}</h4>
+                        <span><ion-icon class="icon-close" name="close-circle-outline"></ion-icon></span>
+                    </div>
+                    <div class="unit-price">
+                        <h2><small>$</small>${item.price}</h2>
+                    </div>
+                    <div class="units">
+                        <div class="btn minus">-</div>
+                        <div class="number">${item.numberOfUnits}</div>
+                        <div class="btn plus">+</div>
+                    </div>
+                </div>`
     });
+}
+        
+    
+// Define a mapping of page URLs to product types
+const pageToProductType = {
+    "/newest.html": "new",
+    "/bass.html": "bass",
+    "/classics.html": "classic",
+    "/accessories.html": "accessories",
+    "/sale.html": "sale",
+};
+
+// Common rendering function
+function renderProducts(type) {
+    const productsElement = document.querySelector(`.${type}Products`);
+
+    products.forEach((product) => {
+        if (product.type === type) {
+            const card = document.createElement("div");
+            card.classList.add("card-border");
+            card.innerHTML = `
+                <img class="card" src="${product.imgSrc}" alt="">
+                <h3>${product.name}</h3>
+                <h2 id="price"><small>$</small>${product.price}</h2>
+                <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
+            `;
+            productsElement.appendChild(card);
+        }
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    const page = window.location.pathname;
+    const productType = pageToProductType[page];
+
+    if (productType) {
+        renderProducts(productType);
+    }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+
     
-    const homeElement = document.getElementById("home");
-
-    homeElement.addEventListener("click", function() {
-        
-        window.location.href = "index.html";
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const accessElement = document.getElementById("access");
-
-    accessElement.addEventListener("click", function() {
-        
-        window.location.href = "accessories.html";
-    });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const classicsElement = document.getElementById("sale");
-
-    classicsElement.addEventListener("click", function() {
-        
-        window.location.href = "/sale.html";
-    });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    
-    const classicsElement = document.getElementById("review");
-
-    classicsElement.addEventListener("click", function() {
-        
-        window.location.href = "/reviews.html";
-    });
-});
-
-
-
-
 
 const wrapper = document.querySelector('.wrapper');
 const loginLink = document.querySelector('.login-link');
@@ -91,21 +115,35 @@ const registerLink = document.querySelector('.register-link');
 const btnPopup = document.querySelector('.btnLogin-popup');
 const btnClose = document.querySelector('.icon-close');
 
-registerLink.addEventListener('click', ()=> {
-    wrapper.classList.add('active');
-})
+// Add a click event listener to a common ancestor element (e.g., document)
+document.addEventListener('click', (event) => {
+    const target = event.target;
 
-loginLink.addEventListener('click', ()=> {
-    wrapper.classList.remove('active');
-})
+    // Handle click on register link
+    if (target === registerLink) {
+        wrapper.classList.add('active');
+    }
 
-btnPopup.addEventListener('click', ()=> {
-    wrapper.classList.add('active-popup');
-})
+    // Handle click on login link
+    if (target === loginLink) {
+        wrapper.classList.remove('active');
+    }
 
-btnClose.addEventListener('click', ()=> {
-    wrapper.classList.remove('active-popup');
-})
+    // Handle click on btnPopup
+    if (target === btnPopup) {
+        wrapper.classList.add('active-popup');
+    }
+
+    // Handle click on btnClose
+    if (target === btnClose) {
+        event.preventDefault(); 
+        wrapper.classList.remove('active-popup');
+       
+    }
+
+    // Handle click on other elements, if needed
+    // ...
+});
 
 function subscribe() {
     const emailInput = document.getElementById("emailInput").value;

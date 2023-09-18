@@ -75,7 +75,7 @@ nav #cart-link:hover {
     padding: 3px 10px;
   }
 
-.products {
+.accessoriesProducts {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
