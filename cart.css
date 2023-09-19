@@ -86,8 +86,8 @@ nav #cart-link:hover {
 
 .products-list {
     width: 100vw;
-    height: 50vh;
-    padding-top: 100px;
+    height: 100vh;
+    padding-top: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,9 +126,8 @@ nav #cart-link:hover {
 }
   
 .cart-items {
-    max-height: calc(100vh - 247px);
-    overflow-y: auto;
-    overflow-x: auto;
+    height:50%;
+    overflow-x: hidden;
   }
   
 .cart-item {
@@ -216,9 +215,11 @@ nav #cart-link:hover {
 
 .cart-footer {
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 300px;
     
   }
 
@@ -226,7 +227,7 @@ nav #cart-link:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 0px;
+    padding: 15px 10px;
     font-size: 1.3rem;
   }
 

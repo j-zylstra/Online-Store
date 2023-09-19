@@ -1,6 +1,7 @@
 const cartElement = document.querySelector(".cart-items");
 const productsElement = document.querySelector('.products');
-let cart = [];
+const subtotalElement = document.querySelector(".subtotal");
+const totalItemsInCart = document.querySelector(".quantity")
 
 
 
@@ -49,8 +50,11 @@ const pageToProductType = {
 
 function addToCart(id) {
 
+    const storedCartData = localStorage.getItem('cart');
+    let cart = storedCartData ? JSON.parse(storedCartData) : [];
+
     if (cart.some((item) => item.id === id)) {
-        alert("product already in cart") 
+        changeNumberOfUnits("plus", id); 
     } else {
     const item = products.find((product) => product.id === id)
 
@@ -74,7 +78,7 @@ function updateCart() {
     }
             
     renderCartItems();
-    //renderSubtotal();
+    renderSubtotal();
     console.log(storedCartData);
 
     }
@@ -89,15 +93,15 @@ function renderCartItems() {
                 <div class="item-info">
                     <img src="${item.imgSrc}" alt="${item.name}">
                         <h4>${item.name}</h4>
-                        <span><ion-icon class="icon-close" name="close-circle-outline"></ion-icon></span>
+                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${item.id})" name="close-circle-outline"></ion-icon></span>
                 </div>
                 <div class="unit-price">
                     <h2><small>$</small>${item.price}</h2>
                 </div>
                 <div class="units">
-                    <div class="btn minus">-</div>
+                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${item.id})">-</div>
                     <div class="number">${item.numberOfUnits}</div>
-                    <div class="btn plus">+</div>
+                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${item.id})">+</div>
                 </div>
             </div>`;
                                
@@ -105,8 +109,65 @@ function renderCartItems() {
             cartElement.innerHTML = newContent;
                     
     };
-                
 
+    function changeNumberOfUnits(action, id) {
+        // Retrieve the existing cart data from localStorage and parse it into an array
+        const storedCartData = localStorage.getItem('cart');
+        let cart = storedCartData ? JSON.parse(storedCartData) : [];
+    
+        // Iterate through the cart items and update the number of units for the matching item
+        cart = cart.map((item) => {
+            if (item.id === id) {
+                let numberOfUnits = item.numberOfUnits;
+    
+                if (action === "minus" && numberOfUnits > 1) {
+                    numberOfUnits--;
+                } else if (action === "plus" && numberOfUnits < item.instock) {
+                    numberOfUnits++;
+                }
+
+    
+                return {
+                    ...item,
+                    numberOfUnits,
+                };
+            }
+    
+            return item;
+        });
+    
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+    
+       
+        updateCart();
+    }
+    
+
+function renderSubtotal(action, id) {
+    let totalPrice = 0, totalItems = 0; 
+
+    cart.forEach((item) => {
+        totalPrice += item.price * item.numberOfUnits;
+        totalItems += item.numberOfUnits;
+    })
+    subtotalElement.innerHTML = `Subtotal (${totalItems} items): $${totalPrice.toFixed(2)}`;
+    totalItemsInCart.innerHTML = totalItems;
+}
+function removeItemFromCart(id) {
+    // Retrieve the existing cart data from localStorage and parse it into an array
+    const storedCartData = localStorage.getItem('cart');
+    let cart = storedCartData ? JSON.parse(storedCartData) : [];
+
+    // Filter out the item with the specified id
+    cart = cart.filter((item) => item.id !== id);
+
+    // Store the updated cart data back in localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Update the cart display
+    updateCart();
+}
 
 function renderProducts(type) {
 
