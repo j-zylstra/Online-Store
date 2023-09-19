@@ -1,75 +1,43 @@
-document.addEventListener("DOMContentLoaded", function() {
-    // Define an array of navigation items with their IDs and target URLs
-    const navigationItems = [
-        { id: "home", url: "index.html" },
-        { id: "sale", url: "/sale.html" },
-        { id: "review", url: "/reviews.html" },
-        { id: "cart-link", url: "cart.html" },
-        { id: "newest", url: "/newest.html" },
-        { id: "bass", url: "/bass.html" },
-        { id: "classics", url: "/classics.html" },
-        { id: "access", url: "accessories.html" },
-    ];
+const cartElement = document.querySelector(".cart-items");
+const productsElement = document.querySelector('.products');
+let cart = [];
 
-    // Attach event listeners for each navigation item
-    navigationItems.forEach(item => {
-        const element = document.getElementById(item.id);
-        if (element) {
-            element.addEventListener("click", function() {
-                window.location.href = item.url;
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+            const navigationItems = [
+                { id: "home", url: "index.html" },
+                { id: "sale", url: "/sale.html" },
+                { id: "review", url: "/reviews.html" },
+                { id: "cart-link", url: "cart.html" },
+                { id: "newest", url: "/newest.html" },
+                { id: "bass", url: "/bass.html" },
+                { id: "classics", url: "/classics.html" },
+                { id: "access", url: "accessories.html" },
+            ];
+
+   
+            navigationItems.forEach(item => {
+                
+                const element = document.getElementById(item.id);
+                if (element) {
+
+                    element.addEventListener("click", function() {
+                        
+                        window.location.href = item.url;
+                    });
+                }
             });
-        }
-    });
+
+    
+            if (window.location.pathname.endsWith("cart.html")) {
+                updateCart();
+            }
 });
 
 
-const cartElement = document.querySelector(".cart-items");
 
-let cart = [];
-
-function addToCart(id) {
-
-        if (cart.some((item) => item.id === id)) {
-            alert("product already in cart") 
-        } else {
-           const item = products.find((product) => product.id === id)
-
-            cart.push(item);
-            console.log(cart);
-          }
-          updateCart();
-       };
-
-
-    function updateCart() {
-        renderCartItems();
-        //renderSubtotal();
-    }
-
-function renderCartItems() {
-    cartElement.innerHTML = "";
-    cart.forEach((item) => {
-        cartElement.innerHTML += `
-                <div class="cart-item">
-                    <div class="item-info">
-                        <img src="${item.imgSrc}" alt="${item.name}">
-                        <h4>${item.name}</h4>
-                        <span><ion-icon class="icon-close" name="close-circle-outline"></ion-icon></span>
-                    </div>
-                    <div class="unit-price">
-                        <h2><small>$</small>${item.price}</h2>
-                    </div>
-                    <div class="units">
-                        <div class="btn minus">-</div>
-                        <div class="number">${item.numberOfUnits}</div>
-                        <div class="btn plus">+</div>
-                    </div>
-                </div>`
-    });
-}
-        
-    
-// Define a mapping of page URLs to product types
 const pageToProductType = {
     "/newest.html": "new",
     "/bass.html": "bass",
@@ -78,8 +46,70 @@ const pageToProductType = {
     "/sale.html": "sale",
 };
 
-// Common rendering function
+
+function addToCart(id) {
+
+    if (cart.some((item) => item.id === id)) {
+        alert("product already in cart") 
+    } else {
+    const item = products.find((product) => product.id === id)
+
+        cart.push({
+            ...item,
+            numberOfUnits: 1,
+        });
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+    
+};
+
+
+function updateCart() {
+
+    const storedCartData = localStorage.getItem('cart');
+    
+    if (storedCartData) {
+                
+        cart = JSON.parse(storedCartData);
+    }
+            
+    renderCartItems();
+    //renderSubtotal();
+    console.log(storedCartData);
+
+    }
+        
+function renderCartItems() {
+
+    let newContent = ''; 
+
+    cart.forEach((item) => {
+        newContent += `
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="${item.imgSrc}" alt="${item.name}">
+                        <h4>${item.name}</h4>
+                        <span><ion-icon class="icon-close" name="close-circle-outline"></ion-icon></span>
+                </div>
+                <div class="unit-price">
+                    <h2><small>$</small>${item.price}</h2>
+                </div>
+                <div class="units">
+                    <div class="btn minus">-</div>
+                    <div class="number">${item.numberOfUnits}</div>
+                    <div class="btn plus">+</div>
+                </div>
+            </div>`;
+                               
+        });
+            cartElement.innerHTML = newContent;
+                    
+    };
+                
+
+
 function renderProducts(type) {
+
     const productsElement = document.querySelector(`.${type}Products`);
 
     products.forEach((product) => {
@@ -97,6 +127,7 @@ function renderProducts(type) {
     });
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
     const page = window.location.pathname;
     const productType = pageToProductType[page];
@@ -105,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
         renderProducts(productType);
     }
 });
+
 
 
     
