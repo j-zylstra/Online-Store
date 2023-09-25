@@ -1,7 +1,7 @@
 const cartElement = document.querySelector(".cart-items");
 const productsElement = document.querySelector('.products');
 const subtotalElement = document.querySelector(".subtotal");
-const totalItemsInCart = document.querySelector(".quantity")
+const totalItemsInCart = document.querySelector(".quantity");
 
 
 
@@ -27,13 +27,19 @@ document.addEventListener("DOMContentLoaded", function() {
                     element.addEventListener("click", function() {
                         
                         window.location.href = item.url;
+                        
+                        
                     });
+                    updateCartDisplay();
                 }
             });
+
+
 
     
             if (window.location.pathname.endsWith("cart.html")) {
                 updateCart();
+                
             }
 });
 
@@ -48,7 +54,7 @@ const pageToProductType = {
 };
 
 
-function addToCart(id) {
+function addToCart(id) { 
 
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
@@ -64,8 +70,10 @@ function addToCart(id) {
         });
         localStorage.setItem('cart', JSON.stringify(cart));
     }
+    updateCartDisplay();
     
 };
+
 
 
 function updateCart() {
@@ -79,6 +87,7 @@ function updateCart() {
             
     renderCartItems();
     renderSubtotal();
+    updateCartDisplay();
     console.log(storedCartData);
 
     }
@@ -174,7 +183,18 @@ function renderProducts(type) {
     const productsElement = document.querySelector(`.${type}Products`);
 
     products.forEach((product) => {
-        if (product.type === type) {
+        if (type === "sale" && product.type === "sale") {
+            const card = document.createElement("div");
+            card.classList.add("card-border");
+            card.innerHTML = `
+                <img class="card" src="${product.imgSrc}" alt="">
+                <h3>${product.name}</h3>
+                <h2 id="old-price"><small>$</small>${product.oldPrice}</h2>
+                <h2 id="price"><small>$</small>${product.price}</h2>
+                <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
+            `;
+            productsElement.appendChild(card);
+        } else if (product.type === type) {
             const card = document.createElement("div");
             card.classList.add("card-border");
             card.innerHTML = `
@@ -184,7 +204,7 @@ function renderProducts(type) {
                 <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
             `;
             productsElement.appendChild(card);
-        }
+        } 
     });
 }
 
@@ -198,6 +218,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+
+function updateCartDisplay() {
+    const totalItemsInCart = document.querySelector(".quantity");
+    const storedCartData = localStorage.getItem('cart');
+    const cart = storedCartData ? JSON.parse(storedCartData) : [];
+    const itemCount = cart.reduce((total, item) => total + item.numberOfUnits, 0);
+    
+    // Update the cart quantity display
+    totalItemsInCart.textContent = itemCount;
+}
 
 
     
