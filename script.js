@@ -6,9 +6,6 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 
 
-
-
-
 document.addEventListener("DOMContentLoaded", function() {
     
             const navigationItems = [
