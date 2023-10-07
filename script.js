@@ -5,6 +5,10 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 
 
+
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
     
             const navigationItems = [
@@ -31,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                     });
                     updateCartDisplay();
+                    
                 }
             });
 
@@ -39,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
             if (window.location.pathname.endsWith("cart.html")) {
                 updateCart();
-                
+                updateUI();
             }
 });
 
@@ -90,7 +95,7 @@ function updateCart() {
     updateCartDisplay();
     console.log(storedCartData);
 
-    }
+    };
         
 function renderCartItems() {
 
@@ -176,6 +181,7 @@ function removeItemFromCart(id) {
 
     // Update the cart display
     updateCart();
+    updateUI();
 }
 
 function renderProducts(type) {
@@ -229,8 +235,23 @@ function updateCartDisplay() {
     totalItemsInCart.textContent = itemCount;
 }
 
+function updateUI() {
 
-    
+    const cartEmpty = document.getElementById('empty-cart-message');
+    const cartView = document.getElementById('cart-container');
+    const cartData = localStorage.getItem('cart');
+    let cart = cartData ? JSON.parse(cartData) : [];
+
+    if (cart.length === 0) {
+        cartView.style.display = 'none';
+        cartEmpty.style.display = 'block';
+    } else {
+        cartView.style.display = 'block';
+        cartEmpty.style.display = 'none';
+    }
+};
+  
+  
 
 const wrapper = document.querySelector('.wrapper');
 const loginLink = document.querySelector('.login-link');

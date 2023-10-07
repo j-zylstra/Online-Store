@@ -53,6 +53,9 @@ nav ul li a:hover {
     height: 50px;
 }
 
+.hidden {
+  display: none;
+}
 
 
 nav #cart-link:hover {
@@ -240,3 +243,27 @@ nav #cart-link:hover {
     background-color:orangered;
     cursor: pointer;
   }
+
+#empty-cart-message {
+  display: block;
+  text-align: center;
+  padding: 60px;
+
+}
+
+#empty-cart-message button {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1em;
+  margin: 60px;
+  color: white;
+  width: 200px;
+  height: 90px;
+  border-radius: 15px;
+  background-color: #0879BC;
+
+}
+
+#empty-cart-message button:hover {
+  background-color: #087abc75;
+  color: white;
+}
