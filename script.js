@@ -4,8 +4,6 @@ const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
 
-
-
 document.addEventListener("DOMContentLoaded", function() {
     
             const navigationItems = [
@@ -165,6 +163,7 @@ function renderSubtotal(action, id) {
     subtotalElement.innerHTML = `Subtotal (${totalItems} items): $${totalPrice.toFixed(2)}`;
     totalItemsInCart.innerHTML = totalItems;
 }
+
 function removeItemFromCart(id) {
     // Retrieve the existing cart data from localStorage and parse it into an array
     const storedCartData = localStorage.getItem('cart');
@@ -260,30 +259,24 @@ const btnClose = document.querySelector('.icon-close');
 document.addEventListener('click', (event) => {
     const target = event.target;
 
-    // Handle click on register link
+    
     if (target === registerLink) {
         wrapper.classList.add('active');
     }
 
-    // Handle click on login link
     if (target === loginLink) {
         wrapper.classList.remove('active');
     }
-
-    // Handle click on btnPopup
+    
     if (target === btnPopup) {
         wrapper.classList.add('active-popup');
     }
-
-    // Handle click on btnClose
+    
     if (target === btnClose) {
         event.preventDefault(); 
         wrapper.classList.remove('active-popup');
-       
     }
 
-    // Handle click on other elements, if needed
-    // ...
 });
 
 function subscribe() {
