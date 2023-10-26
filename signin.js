@@ -22,9 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.ok) {
             wrapper.classList.remove('active-popup')
-            alert('Login Successful') 
+            alert('Login Successful')
+        } else if (response.status === 400) {
+            
+            console.log('Login failed: wrong credentials');
         } else {
-            console.log('Login failed');
+           
+            console.log('Login failed: Unexpected error');
         }
     });
 
@@ -49,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             wrapper.classList.remove('active-popup')
             alert('Registration Was Successful')
         } else {
-            
+            alert('That E-mail is already in use')
             console.log('Registration failed');
         }
     });

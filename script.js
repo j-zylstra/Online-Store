@@ -11,10 +11,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 { id: "sale", url: "/sale.html" },
                 { id: "review", url: "/reviews.html" },
                 { id: "cart-link", url: "cart.html" },
-                { id: "newest", url: "/newest.html" },
+                { id: "new", url: "/new.html" },
                 { id: "bass", url: "/bass.html" },
-                { id: "classics", url: "/classics.html" },
-                { id: "access", url: "accessories.html" },
+                { id: "classic", url: "/classic.html" },
+                { id: "accessories", url: "accessories.html" },
             ];
 
    
@@ -34,92 +34,75 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
 
-
-
-    
             if (window.location.pathname.endsWith("cart.html")) {
                 updateCart();
                 updateUI();
-            }
+            } else { 
+                if (window.location.pathname.endsWith("sale.html")) {
+                    renderSaleProducts();
+                }
+        };
 });
 
 
 
 const pageToProductType = {
-    "/newest.html": "new",
+    "/new.html": "new",
     "/bass.html": "bass",
-    "/classics.html": "classic",
+    "/classic.html": "classic",
     "/accessories.html": "accessories",
     "/sale.html": "sale",
 };
 
+function addToCart(id) {
 
-function addToCart(id) { 
-
-    const storedCartData = localStorage.getItem('cart');
-    let cart = storedCartData ? JSON.parse(storedCartData) : [];
-
-    if (cart.some((item) => item.id === id)) {
-        changeNumberOfUnits("plus", id); 
-    } else {
-    const item = products.find((product) => product.id === id)
-
-        cart.push({
-            ...item,
-            numberOfUnits: 1,
-        });
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
-    updateCartDisplay();
-    
+    fetch(`http://localhost:3000/products/${id}`)
+        .then(response => response.json())
+        .then(products => {
+            console.log(products);
+    })
 };
 
 
 
-function updateCart() {
+document.addEventListener("DOMContentLoaded", function () {
+    const page = window.location.pathname;
+    const productType = pageToProductType[page];
 
-    const storedCartData = localStorage.getItem('cart');
-    
-    if (storedCartData) {
-                
-        cart = JSON.parse(storedCartData);
+    if (productType) {
+        renderProducts(productType);
     }
-            
-    renderCartItems();
-    renderSubtotal();
-    updateCartDisplay();
-    console.log(storedCartData);
-
-    };
+});
         
-function renderCartItems() {
+function renderCartItems(cart) {
 
     let newContent = ''; 
 
-    cart.forEach((item) => {
+    cart.forEach((product) => {
         newContent += `
             <div class="cart-item">
                 <div class="item-info">
-                    <img src="${item.imgSrc}" alt="${item.name}">
-                        <h4>${item.name}</h4>
-                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${item.id})" name="close-circle-outline"></ion-icon></span>
+                    <img src="${product.imgsrc}" alt="${product.name}">
+                        <h4>${product.name}</h4>
+                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.id})" name="close-circle-outline"></ion-icon></span>
                 </div>
                 <div class="unit-price">
-                    <h2><small>$</small>${item.price}</h2>
+                    <h2><small>$</small>${product.price}</h2>
                 </div>
                 <div class="units">
-                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${item.id})">-</div>
-                    <div class="number">${item.numberOfUnits}</div>
-                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${item.id})">+</div>
+                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.id})">-</div>
+                    <div class="number">${product.numberOfUnits}</div>
+                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.id})">+</div>
                 </div>
             </div>`;
                                
         });
             cartElement.innerHTML = newContent;
                     
-    };
+}
 
-    function changeNumberOfUnits(action, id) {
+
+function changeNumberOfUnits(action, id) {
         // Retrieve the existing cart data from localStorage and parse it into an array
         const storedCartData = localStorage.getItem('cart');
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
@@ -150,8 +133,7 @@ function renderCartItems() {
     
        
         updateCart();
-    }
-    
+}
 
 function renderSubtotal(action, id) {
     let totalPrice = 0, totalItems = 0; 
@@ -183,43 +165,67 @@ function removeItemFromCart(id) {
 function renderProducts(type) {
 
     const productsElement = document.querySelector(`.${type}Products`);
+    const path = window.location.pathname;
+    const productType = path.split('/').pop().replace('.html', '');
 
-    products.forEach((product) => {
-        if (type === "sale" && product.type === "sale") {
-            const card = document.createElement("div");
-            card.classList.add("card-border");
-            card.innerHTML = `
-                <img class="card" src="${product.imgSrc}" alt="">
-                <h3>${product.name}</h3>
-                <h2 id="old-price"><small>$</small>${product.oldPrice}</h2>
-                <h2 id="price"><small>$</small>${product.price}</h2>
-                <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
-            `;
-            productsElement.appendChild(card);
-        } else if (product.type === type) {
-            const card = document.createElement("div");
-            card.classList.add("card-border");
-            card.innerHTML = `
-                <img class="card" src="${product.imgSrc}" alt="">
-                <h3>${product.name}</h3>
-                <h2 id="price"><small>$</small>${product.price}</h2>
-                <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
-            `;
-            productsElement.appendChild(card);
-        } 
-    });
+        fetch(`http://localhost:3000/products/${productType}`)
+        .then(response => response.json())
+        .then(products => {
+                console.log(products);
+                products.forEach((product) => {
+                    
+                     if (product.type === type) {
+                        const card = document.createElement("div");
+                        card.classList.add("card-border");
+                        card.innerHTML = `
+                            <img class="card" src="${product.imgsrc}" alt="">
+                            <h3>${product.name}</h3>
+                            <h2 id="price"><small>$</small>${product.price}</h2>
+                            <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
+                        `;
+                        productsElement.appendChild(card);
+                        
+                    } 
+                });
+            
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
+
+    
 }
 
+function renderSaleProducts() {
 
-document.addEventListener("DOMContentLoaded", function () {
-    const page = window.location.pathname;
-    const productType = pageToProductType[page];
+    const saleProductsElement = document.querySelector(`.saleProducts`);
 
-    if (productType) {
-        renderProducts(productType);
-    }
-});
+        fetch(`http://localhost:3000/sale`)
+        .then(response => response.json())
+        .then(sale => {
+                sale.forEach((sale) => {
+                    
+                        const card = document.createElement("div");
+                        card.classList.add("card-border");
+                        card.innerHTML = `
+                            <img class="card" src="${sale.imgsrc}" alt="">
+                            <h3>${sale.name}</h3>
+                            <h2 id="old-price"><small>$</small>${sale.oldprice}</h2>
+                            <h2 id="price"><small>$</small>${sale.price}</h2>
+                            <button type="button" onclick="addToCart(${sale.id})">Add To Cart</button>
+                        `;
+                        saleProductsElement.appendChild(card);
+                        
+                    } 
+                );
+            
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
 
+    
+}
 
 function updateCartDisplay() {
     const totalItemsInCart = document.querySelector(".quantity");
@@ -227,9 +233,9 @@ function updateCartDisplay() {
     const cart = storedCartData ? JSON.parse(storedCartData) : [];
     const itemCount = cart.reduce((total, item) => total + item.numberOfUnits, 0);
     
-    // Update the cart quantity display
+    
     totalItemsInCart.textContent = itemCount;
-}
+};
 
 function updateUI() {
 
@@ -247,6 +253,22 @@ function updateUI() {
     }
 };
   
+function updateCart() {
+
+    const storedCartData = localStorage.getItem('cart');
+    
+    if (storedCartData) {
+                
+        cart = JSON.parse(storedCartData);
+    }
+            
+    renderCartItems(cart);
+    renderSubtotal();
+    updateCartDisplay();
+    console.log(storedCartData);
+
+}
+
   
 
 const wrapper = document.querySelector('.wrapper');
@@ -255,7 +277,7 @@ const registerLink = document.querySelector('.register-link');
 const btnPopup = document.querySelector('.btnLogin-popup');
 const btnClose = document.querySelector('.icon-close');
 
-// Add a click event listener to a common ancestor element (e.g., document)
+
 document.addEventListener('click', (event) => {
     const target = event.target;
 
