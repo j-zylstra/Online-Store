@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     renderSaleProducts();
                 }
         };
-});
+})
 
 
 
@@ -50,19 +50,8 @@ const pageToProductType = {
     "/new.html": "new",
     "/bass.html": "bass",
     "/classic.html": "classic",
-    "/accessories.html": "accessories",
-    "/sale.html": "sale",
+    "/accessories.html": "accessories"
 };
-
-function addToCart(id) {
-
-    fetch(`http://localhost:3000/products/${id}`)
-        .then(response => response.json())
-        .then(products => {
-            console.log(products);
-    })
-};
-
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -82,25 +71,57 @@ function renderCartItems(cart) {
         newContent += `
             <div class="cart-item">
                 <div class="item-info">
-                    <img src="${product.imgsrc}" alt="${product.name}">
-                        <h4>${product.name}</h4>
+                    <img src="${product.product.imgsrc}" alt="${product.product.name}">
+                        <h4>${product.product.name}</h4>
                         <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.id})" name="close-circle-outline"></ion-icon></span>
                 </div>
                 <div class="unit-price">
-                    <h2><small>$</small>${product.price}</h2>
+                    <h2><small>$</small>${product.product.price}</h2>
                 </div>
                 <div class="units">
-                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.id})">-</div>
+                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
                     <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.id})">+</div>
+                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
                 </div>
             </div>`;
                                
         });
             cartElement.innerHTML = newContent;
                     
-}
+};
 
+function addToCart(id) {
+
+    const storedCartData = localStorage.getItem('cart');
+    let cart = storedCartData ? JSON.parse(storedCartData) : [];
+
+    fetch(`http://localhost:3000/products/${id}`)
+        .then(response => response.json())
+        .then(product => { 
+    
+           const existingCartItem = cart.find(item => item.product.id === id);
+
+           if (existingCartItem) {
+                if (existingCartItem.numberOfUnits < product.instock) {
+                    existingCartItem.numberOfUnits++;
+                } else {
+                    console.warn('exceeded available stock for this product.');
+                 }
+                } else {
+                 cart.push({
+                        product,
+                        numberOfUnits: 1,
+                    });
+           }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartDisplay();
+        
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        }); 
+};
 
 function changeNumberOfUnits(action, id) {
         // Retrieve the existing cart data from localStorage and parse it into an array
@@ -108,24 +129,24 @@ function changeNumberOfUnits(action, id) {
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
         // Iterate through the cart items and update the number of units for the matching item
-        cart = cart.map((item) => {
-            if (item.id === id) {
-                let numberOfUnits = item.numberOfUnits;
+        cart = cart.map((product) => {
+            if (product.product.id === id) {
+                let numberOfUnits = product.numberOfUnits;
     
                 if (action === "minus" && numberOfUnits > 1) {
                     numberOfUnits--;
-                } else if (action === "plus" && numberOfUnits < item.instock) {
+                } else if (action === "plus" && numberOfUnits < product.product.instock) {
                     numberOfUnits++;
                 }
 
     
                 return {
-                    ...item,
+                    ...product,
                     numberOfUnits,
                 };
             }
     
-            return item;
+            return product;
         });
     
         
@@ -133,33 +154,36 @@ function changeNumberOfUnits(action, id) {
     
        
         updateCart();
-}
+};
 
 function renderSubtotal(action, id) {
     let totalPrice = 0, totalItems = 0; 
 
-    cart.forEach((item) => {
-        totalPrice += item.price * item.numberOfUnits;
-        totalItems += item.numberOfUnits;
+    cart.forEach((product) => {
+        totalPrice += product.product.price * product.numberOfUnits;
+        totalItems += product.numberOfUnits;
     })
     subtotalElement.innerHTML = `Subtotal (${totalItems} items): $${totalPrice.toFixed(2)}`;
     totalItemsInCart.innerHTML = totalItems;
-}
+};
 
 function removeItemFromCart(id) {
     // Retrieve the existing cart data from localStorage and parse it into an array
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
-    // Filter out the item with the specified id
-    cart = cart.filter((item) => item.id !== id);
+     // Find the index of the item with the specified id in the cart
+     const itemIndex = cart.findIndex(product => product.id === id);
 
-    // Store the updated cart data back in localStorage
+     if (itemIndex !== -1) {
+         // Remove the item with the specified id from the cart
+         cart.splice(itemIndex, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
 
     // Update the cart display
     updateCart();
     updateUI();
+   };
 }
 
 function renderProducts(type) {
@@ -168,7 +192,7 @@ function renderProducts(type) {
     const path = window.location.pathname;
     const productType = path.split('/').pop().replace('.html', '');
 
-        fetch(`http://localhost:3000/products/${productType}`)
+        fetch(`http://localhost:3000/products/type/${productType}`)
         .then(response => response.json())
         .then(products => {
                 console.log(products);
@@ -194,38 +218,38 @@ function renderProducts(type) {
         });
 
     
-}
+};
 
 function renderSaleProducts() {
 
     const saleProductsElement = document.querySelector(`.saleProducts`);
 
-        fetch(`http://localhost:3000/sale`)
+        fetch(`http://localhost:3000/products/type/sale`)
         .then(response => response.json())
-        .then(sale => {
-                sale.forEach((sale) => {
+        .then(products => {
+            console.log(products);
+                products.forEach((product) => {
                     
                         const card = document.createElement("div");
                         card.classList.add("card-border");
                         card.innerHTML = `
-                            <img class="card" src="${sale.imgsrc}" alt="">
-                            <h3>${sale.name}</h3>
-                            <h2 id="old-price"><small>$</small>${sale.oldprice}</h2>
-                            <h2 id="price"><small>$</small>${sale.price}</h2>
-                            <button type="button" onclick="addToCart(${sale.id})">Add To Cart</button>
+                            <img class="card" src="${product.imgsrc}" alt="">
+                            <h3>${product.name}</h3>
+                            <h2 id="old-price"><small>$</small>${product.oldprice}</h2>
+                            <h2 id="price"><small>$</small>${product.price}</h2>
+                            <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
                         `;
                         saleProductsElement.appendChild(card);
                         
                     } 
                 );
-            
         })
         .catch(error => {
             console.log('Error:', error);
         });
 
     
-}
+};
 
 function updateCartDisplay() {
     const totalItemsInCart = document.querySelector(".quantity");
@@ -265,9 +289,11 @@ function updateCart() {
     renderCartItems(cart);
     renderSubtotal();
     updateCartDisplay();
-    console.log(storedCartData);
 
-}
+};
+
+
+
 
   
 
@@ -306,7 +332,6 @@ function subscribe() {
     if (emailInput) {
         alert("A confirmation email has been sent to " + emailInput + ". You are now subscribed to the mailing list.");
     } else {
-        alert("Please enter a valid email address.");
+        alert("Please enter a valid email address.")
     }
 }
-
