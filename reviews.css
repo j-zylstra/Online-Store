@@ -108,3 +108,32 @@ nav #cart-link:hover {
 .user-review p {
     font-style: italic;
 }
+
+#reviewContent {
+    display: flex;
+    text-align: start;
+    text-justify:auto ;
+    background-color: aliceblue;
+    width: 800px;
+    height: 60px;
+    border-radius: 20px;
+    margin: 15px;
+}
+
+#reviewForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px;
+}
+
+button {
+    width: 80px;
+    height: 66px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: aliceblue;
+    border-color: black;
+    border-width: 1.5px;
+    margin: 10px;
+}

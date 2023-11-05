@@ -292,9 +292,6 @@ function updateCart() {
 
 };
 
-
-
-
   
 
 const wrapper = document.querySelector('.wrapper');
