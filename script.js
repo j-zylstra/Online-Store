@@ -124,11 +124,11 @@ function addToCart(id) {
 };
 
 function changeNumberOfUnits(action, id) {
-        // Retrieve the existing cart data from localStorage and parse it into an array
+        
         const storedCartData = localStorage.getItem('cart');
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
-        // Iterate through the cart items and update the number of units for the matching item
+        
         cart = cart.map((product) => {
             if (product.product.id === id) {
                 let numberOfUnits = product.numberOfUnits;
@@ -168,19 +168,19 @@ function renderSubtotal(action, id) {
 };
 
 function removeItemFromCart(id) {
-    // Retrieve the existing cart data from localStorage and parse it into an array
+    
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
-     // Find the index of the item with the specified id in the cart
+     
      const itemIndex = cart.findIndex(product => product.id === id);
 
      if (itemIndex !== -1) {
-         // Remove the item with the specified id from the cart
+        
          cart.splice(itemIndex, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    // Update the cart display
+    
     updateCart();
     updateUI();
    };
