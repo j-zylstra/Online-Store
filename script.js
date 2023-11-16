@@ -304,60 +304,73 @@ function updateCart() {
 
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const reviewForm = document.getElementById('reviewForm');
     const reviewContent = document.getElementById('reviewContent');
 
-
     if (reviewForm) {
-    reviewForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
+        reviewForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-        const comment = reviewContent.value;
-        const userId = sessionStorage.getItem('userId');
+            const comment = reviewContent.value;
+            const userId = sessionStorage.getItem('userId');
 
-        try {
-            // Make a fetch request to submit the review
-            const response = await fetch('http://localhost:3000/reviews/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userId, comment }),
-            });
+            try {
+                // Make a fetch request to submit the review
+                const response = await fetch('http://localhost:3000/reviews/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ userId, comment }),
+                });
 
-            if (response.ok) {
+                if (response.ok) {
+                    // Handle the new review as needed (e.g., display it on the webpage)
+                    const data = await response.json();
 
-            // Handle the new review as needed (e.g., display it on the webpage)
-            const data = await response.json();
+                    if (data.content.trim() !== "") {
+                        // Display the review only if it's not empty
+                        displayReview(data);
+                    } else {
+                        console.error('Received an empty review from the server:', data);
+                    }
 
-            displayReview(data);
-            console.log(data);
+                    // Clear the form after submission
+                    reviewContent.value = '';
+                } else {
+                    console.error(`Error: ${response.status} - ${response.statusText}`);
+                }
 
-            // Clear the form after submission
-            reviewContent.value = '';
-            } else { 
-                console.error(`Error: ${response.status} - ${response.statusText}`);
+            } catch (error) {
+                console.error(error);
             }
-            
+        });
+    }
+
+    // Check if the current URL is reviews.html
+    if (window.location.href === 'http://127.0.0.1:5500/reviews.html') {
+        try {
+            // Fetch existing reviews on page load
+            const existingReviews = await fetchExistingReviews();
+
+            // Ensure existingReviews is an array
+            if (Array.isArray(existingReviews)) {
+                // Display each existing review
+                existingReviews.forEach((review) => displayReview(review));
+            } else if (existingReviews && Array.isArray(existingReviews.reviews)) {
+                // Extract the reviews property and display each existing review
+                existingReviews.reviews.forEach((review) => displayReview(review));
+            } else {
+                console.error('Unable to find reviews in the response:', existingReviews);
+            }
+
+            // Rest of your code
         } catch (error) {
             console.error(error);
         }
-    });
-}
-
-displayReview(review);
-});
-
-document.addEventListener('DOMContentLoaded', async () => {
-    // Check if the current URL is reviews.html
-    if (window.location.href === 'http://127.0.0.1:5500/reviews.html') {
-        // Fetch existing reviews on page load
-        const existingReviews = await fetchExistingReviews();
-        existingReviews.forEach((review) => displayReview(review));
-
-        // Rest of your code
     }
+
 
     async function fetchExistingReviews() {
         try {
@@ -368,71 +381,62 @@ document.addEventListener('DOMContentLoaded', async () => {
                 },
             });
 
-            if (response.ok) {
-                const reviews = await response.json();
-                return reviews; // Return the entire response
-            } else {
-                console.error(`Error: ${response.status} - ${response.statusText}`);
-                return {};
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} - ${response.statusText}`);
+            }
+
+            const text = await response.text();
+            try {
+                const reviews = JSON.parse(text);
+                console.log('Fetched reviews:', reviews); // Log the reviews before returning
+                return reviews || []; // Return the reviews array or an empty array
+            } catch (parseError) {
+                console.error('Error parsing JSON:', parseError);
+                return []; // Return an empty array if there's an error parsing JSON
             }
         } catch (error) {
-            console.error(error);
-            return {};
+            console.error(error.message);
+            return []; // Return an empty array in case of an error
         }
     }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-
-  
-
 const wrapper = document.querySelector('.wrapper');
-const loginLink = document.querySelector('.login-link');
-const registerLink = document.querySelector('.register-link');
-const btnPopup = document.querySelector('.btnLogin-popup');
-const btnClose = document.querySelector('.icon-close');
+    const loginLink = document.querySelector('.login-link');
+    const registerLink = document.querySelector('.register-link');
+    const btnPopup = document.querySelector('.btnLogin-popup');
+    const btnClose = document.querySelector('.icon-close');
 
+    document.addEventListener('click', (event) => {
+        const target = event.target;
 
-document.addEventListener('click', (event) => {
-    const target = event.target;
+        if (target === registerLink) {
+            wrapper.classList.add('active');
+        }
 
-    
-    if (target === registerLink) {
-        wrapper.classList.add('active');
+        if (target === loginLink) {
+            wrapper.classList.remove('active');
+        }
+
+        if (target === btnPopup) {
+            wrapper.classList.add('active-popup');
+        }
+
+        if (target === btnClose) {
+            event.preventDefault();
+            wrapper.classList.remove('active-popup');
+        }
+    });
+
+    function subscribe() {
+        try {
+            const emailInput = document.getElementById("emailInput").value;
+            if (emailInput) {
+                alert("A confirmation email has been sent to " + emailInput + ". You are now subscribed to the mailing list.");
+            } else {
+                alert("Please enter a valid email address.")
+            }
+        } catch (error) {
+            console.error('Error in subscribe function:', error);
+        }
     }
-
-    if (target === loginLink) {
-        wrapper.classList.remove('active');
-    }
-    
-    if (target === btnPopup) {
-        wrapper.classList.add('active-popup');
-    }
-    
-    if (target === btnClose) {
-        event.preventDefault(); 
-        wrapper.classList.remove('active-popup');
-    }
-
-});
-
-function subscribe() {
-    const emailInput = document.getElementById("emailInput").value;
-    if (emailInput) {
-        alert("A confirmation email has been sent to " + emailInput + ". You are now subscribed to the mailing list.");
-    } else {
-        alert("Please enter a valid email address.")
-    }
-}
