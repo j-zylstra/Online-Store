@@ -1,6 +1,6 @@
 
 body {
-    background-color: #b6aaaa;
+  background-image: url('/images/guitar-case.JPG');
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
@@ -45,7 +45,7 @@ nav ul li {
 
 
 nav ul li a:hover {
-    color: black;
+    color: rgb(141, 139, 139);
     cursor: pointer;
 }
 
@@ -85,6 +85,7 @@ nav #cart-link:hover {
     justify-content: center;
     align-items: center;
     margin: 60px;
+    color: white;
 }
 
 .products-list {
@@ -96,11 +97,6 @@ nav #cart-link:hover {
     justify-content: center;
   }
 
-.products img {
-    width: 200px;
-    height: 112.5px;
-  }
-
 .cart {
     height: 100%;
     width: 70%;
@@ -108,11 +104,16 @@ nav #cart-link:hover {
   }
   
 .cart-header {
+    color: white;
+    font-weight: 500;
     display: flex;
     padding: 10px 0;
     margin-bottom: 20px;
     justify-content: center;
     align-items: center;
+    background-color:#0879BC;
+    border-radius: 10px;
+    height: 25px;
   }
 
 .cart-header .column1 {
@@ -132,14 +133,22 @@ nav #cart-link:hover {
 .cart-items {
     height:50%;
     overflow-x: hidden;
+  
   }
+
+.cart-items::-webkit-scrollbar{
+  width: 0px;
+  
+}
   
 .cart-item {
     display: flex;
     justify-content: space-between;
-    padding-top: 5px;
-    
-    
+    padding: 0px;
+    border: solid white 1px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.747);
+  
   }
 
 .cart-item .item-info {
@@ -150,6 +159,7 @@ nav #cart-link:hover {
     justify-content: space-between;
     align-items: center;
     width: 40%;
+    height: 100%;
   }
 
   .cart-item .item-info h4 {
@@ -174,7 +184,9 @@ nav #cart-link:hover {
 }
 
 .cart-item .item-info img {
-    width: 75px;
+    width: 20%;
+    height: 90px;
+    border-radius: 10px;
     
   }
   
@@ -191,6 +203,7 @@ nav #cart-link:hover {
     justify-content:flex-end;
     align-items: center;
     width: 20%;
+    margin-right: 5px;
   }
 
 .cart-item .units .number {
@@ -215,6 +228,7 @@ nav #cart-link:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    
   }
 
 .cart-footer {
@@ -224,7 +238,7 @@ nav #cart-link:hover {
     align-items: center;
     justify-content: center;
     padding-bottom: 300px;
-    
+  
   }
 
 .cart-footer div {
@@ -244,26 +258,72 @@ nav #cart-link:hover {
     cursor: pointer;
   }
 
+#empty-cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #empty-cart-message {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   padding: 60px;
-
+  
 }
 
 #empty-cart-message button {
+  letter-spacing: 0.18em;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 1em;
-  margin: 60px;
+  margin: 15px;
   color: white;
-  width: 200px;
+  width: 50%;
   height: 90px;
-  border-radius: 15px;
+  border-radius: 10px;
+  border-color: #0879BC;
   background-color: #0879BC;
-
 }
 
 #empty-cart-message button:hover {
-  background-color: #087abc75;
+  background-color:#34a1e0;
   color: white;
+  border-color: white;
+}
+
+#empty-cart-message h2 {
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F0F0F0;
+  width: 50%;
+  height: 70px;
+  border-radius: 10px;
+  margin: 15px;
+
+}
+
+#shopping-links {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 30px;
+  background:#F0F0F0;
+  border-radius: 10px;
+  margin: 15px;
+}
+
+p {
+  width: 100%;
+
+  text-decoration: solid;
+  font-size: 1.25em;
+}
+
+p a {
+  font-style: italic;
+  color: blue;
 }

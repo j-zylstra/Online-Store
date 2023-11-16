@@ -30,9 +30,9 @@
         
             <div class="cart">
                 <div class="cart-header">
-                    <div class="column1">Item</div>
-                    <div class="column2">Unit price</div>
-                    <div class="column3">Units</div>
+                    <div class="column1">ITEM</div>
+                    <div class="column2">UNIT PRICE</div>
+                    <div class="column3">UNITS</div>
                 </div>
                 <div class ="cart-items">
         
@@ -51,9 +51,19 @@
 
     
 <div id="empty-cart-message">
-    <h2>There is nothing in your Cart</h2>
-    <button id="continue-shopping" onclick="redirect()">Continue Shopping</button>
-  </div>
+    <div id="empty-cart-container">
+        <h2>YOUR CART IS EMPTY....LET'S CHANGE THAT!</h2>
+        <div id="shopping-links">
+            <p>Browse our awesome store,
+                <a href="index.html">start shopping now!</a> Check out our
+                <a href="new.html">newest releases</a>, catch the last of our
+                <a href="sale.html">sale products</a> and join our
+                <a href="index.html#bottom">mailing list</a> to stay in the loop about our great offers.
+            </p>
+        </div>
+        <button id="continue-shopping" onclick="redirect()">CONTINUE SHOPPING</button>
+    </div>
+</div>
     
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <script src="script.js"></script>

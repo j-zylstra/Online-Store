@@ -23,12 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (response.ok) {
+            const responseText = await response.text()
             wrapper.classList.remove('active-popup');
             alert('Login Successful');
             emailInput.value = '';
             passwordInput.value = '';
-            console.log('User is logged in');
-
+            const responseBody = JSON.parse(responseText);
+            const userId = responseBody.userId;
+            const userName = responseBody.name;
+            sessionStorage.setItem('userId', userId);
+            sessionStorage.setItem('userName', userName);
+            console.log('User', userName, 'with the ID of:', userId, 'is logged in');
             
 
         } else if (response.status === 400) {

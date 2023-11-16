@@ -37,13 +37,14 @@ document.addEventListener("DOMContentLoaded", function() {
             if (window.location.pathname.endsWith("cart.html")) {
                 updateCart();
                 updateUI();
-            } else { 
-                if (window.location.pathname.endsWith("sale.html")) {
+            } 
+            if (window.location.pathname.endsWith("sale.html")) {
                     renderSaleProducts();
-                }
-        };
-})
+                }  
+            }
+        );
 
+        
 
 
 const pageToProductType = {
@@ -62,6 +63,17 @@ document.addEventListener("DOMContentLoaded", function () {
         renderProducts(productType);
     }
 });
+
+function displayReview(review) {
+    const reviewList = document.getElementById('reviewsList');
+    const reviewItem = document.createElement('div');
+    reviewItem.innerHTML = `<div class="user-review">
+                                <h2>${review.userName}</h2>
+                                <p>"${review.content}"</p>
+                            </div>`;
+
+    reviewList.appendChild(reviewItem);
+};
         
 function renderCartItems(cart) {
 
@@ -291,6 +303,98 @@ function updateCart() {
     updateCartDisplay();
 
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+    const reviewForm = document.getElementById('reviewForm');
+    const reviewContent = document.getElementById('reviewContent');
+
+
+    if (reviewForm) {
+    reviewForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const comment = reviewContent.value;
+        const userId = sessionStorage.getItem('userId');
+
+        try {
+            // Make a fetch request to submit the review
+            const response = await fetch('http://localhost:3000/reviews/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userId, comment }),
+            });
+
+            if (response.ok) {
+
+            // Handle the new review as needed (e.g., display it on the webpage)
+            const data = await response.json();
+
+            displayReview(data);
+            console.log(data);
+
+            // Clear the form after submission
+            reviewContent.value = '';
+            } else { 
+                console.error(`Error: ${response.status} - ${response.statusText}`);
+            }
+            
+        } catch (error) {
+            console.error(error);
+        }
+    });
+}
+
+displayReview(review);
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Check if the current URL is reviews.html
+    if (window.location.href === 'http://127.0.0.1:5500/reviews.html') {
+        // Fetch existing reviews on page load
+        const existingReviews = await fetchExistingReviews();
+        existingReviews.forEach((review) => displayReview(review));
+
+        // Rest of your code
+    }
+
+    async function fetchExistingReviews() {
+        try {
+            const response = await fetch('http://localhost:3000/reviews/DB', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const reviews = await response.json();
+                return reviews; // Return the entire response
+            } else {
+                console.error(`Error: ${response.status} - ${response.statusText}`);
+                return {};
+            }
+        } catch (error) {
+            console.error(error);
+            return {};
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
 
   
 
