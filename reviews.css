@@ -1,5 +1,5 @@
 body {
-    background-color:#F0F0F0;
+    background-image: url('/images/guitar-case.JPG');
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
@@ -77,6 +77,7 @@ nav #cart-link:hover {
   }
 
 .title {
+    color: white;
     text-align: center;
     text-decoration: underline;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -88,6 +89,15 @@ nav #cart-link:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#reviewsList {
+    background-color: #087abc86;
+    border-style: solid;
+    border-color: white;
+    border-radius: 15px;
+    padding: 20px;
+
 }
 
 .reviews {
@@ -109,15 +119,25 @@ nav #cart-link:hover {
     font-style: italic;
 }
 
+.user-review {
+    color: white;
+}
+
 #reviewContent {
-    display: flex;
-    text-align: start;
-    text-justify:auto ;
     background-color: aliceblue;
     width: 800px;
-    height: 60px;
+    height: 80px;
     border-radius: 20px;
     margin: 15px;
+}
+
+textarea {
+    padding: 4px;
+    text-align: start; 
+    line-height: 2;
+    color: black;
+    font-weight: 800;
+    font-size: 1.5em;
 }
 
 #reviewForm {
@@ -129,11 +149,12 @@ nav #cart-link:hover {
 
 button {
     width: 80px;
-    height: 66px;
+    height: 88px;
     border-radius: 20px;
     cursor: pointer;
     background-color: aliceblue;
     border-color: black;
     border-width: 1.5px;
     margin: 10px;
+    padding: 20px;
 }
