@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         );
 
-        
 
 
 const pageToProductType = {
@@ -63,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
         renderProducts(productType);
     }
 });
+
 
 function displayReview(review) {
     const reviewList = document.getElementById('reviewsList');
@@ -401,11 +401,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-const wrapper = document.querySelector('.wrapper');
+    const wrapper = document.querySelector('.wrapper');
     const loginLink = document.querySelector('.login-link');
     const registerLink = document.querySelector('.register-link');
     const btnPopup = document.querySelector('.btnLogin-popup');
     const btnClose = document.querySelector('.icon-close');
+    
 
     document.addEventListener('click', (event) => {
         const target = event.target;
@@ -440,3 +441,35 @@ const wrapper = document.querySelector('.wrapper');
             console.error('Error in subscribe function:', error);
         }
     }
+
+    
+document.getElementById('check').addEventListener('click', function() {
+    var menu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
+    var navList = document.getElementById('nav-list');
+
+    // Check the current value of menu.style.left
+    if (menu.style.left === '-100%') {
+      menu.style.left = '0';
+      navList.style.backdropFilter = 'blur(30px)';
+    } else {
+      menu.style.left = '-100%';
+      navList.style.backdropFilter = 'blur(0)';
+    }
+  });
+
+document.getElementById('login').addEventListener('click', function() {
+    var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
+
+    if (window.innerWidth < 613) {
+        bottomMenu.style.display = 'none'
+    } 
+});
+
+document.getElementById('close-login').addEventListener('click', function() {
+    var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
+    
+    if (window.innerWidth < 613) {
+        bottomMenu.style.display = 'block'
+    } 
+});
+

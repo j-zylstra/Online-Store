@@ -6,13 +6,40 @@ body {
     min-width: 100vh;
 }
 
+.checkbtn {
+    font-size: 40px;
+    color: white;
+    float: right;
+    line-height: 34px;
+    padding-bottom: 5px;
+    margin-right: 40px;
+    margin-top: 0;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+#top-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bottom-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 nav {
-    position:relative;
+    position: relative;
     top: 0;
     left:0;
     right:0;
-    background-color:  #0879BC;
+    background-color: #0879BC;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -22,37 +49,45 @@ nav {
     font-size: 25px;
 }
 
-
-
 #brand {
     font-family: serif;
     text-decoration: overline;
-
+    padding-right: 20px;
+    padding-top: 0px;
+    padding-left: 20px;
+    margin-top: 0px;
 }
 
-
-nav ul {
+#nav-list {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: auto;
+    justify-content: space-between
 }
 
-nav ul li {
+#nav-list ul {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0;
+}
+
+#nav-list ul li {
     list-style: none;
-    display: inline-block;
     margin-left: 30px;
     margin-right: 30px;
 }
 
-nav ul li a:hover  {
-    color: black;
+
+nav ul li a:hover {
+    color: rgb(141, 139, 139);
+    cursor: pointer;
 }
 
 #cart {
     height: 50px;
 }
-
 
 
 nav #cart-link:hover {
@@ -76,6 +111,7 @@ nav #cart-link:hover {
     padding: 3px 10px;
   }
 
+
 .title {
     color: white;
     text-align: center;
@@ -83,6 +119,7 @@ nav #cart-link:hover {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     letter-spacing: 2px;
     margin: 60px;
+    padding: 30px;
 }
 
 .container {
@@ -157,4 +194,112 @@ button {
     border-width: 1.5px;
     margin: 10px;
     padding: 20px;
+}
+
+@media all and (max-width: 800px) {
+
+    
+    nav {
+        background-color: transparent;
+        position: fixed;
+    }
+
+    .checkbtn {
+        display: block;
+        font-size: 35px;
+        float: right;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        padding-left: 50px;
+        padding-right: 40px;
+        margin: 0;
+    }
+
+    #top-menu{
+        background-color: #0879BC;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        backdrop-filter: blur(0);
+    }
+
+    #nav-list {
+        background-color: transparent;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        height: 400px;
+        width: 100%;
+    }
+
+    #bottom-menu {
+        background-color: transparent;
+        width: 100vh;
+        height: 20vh;
+    }
+
+    #nav-list #bottom-menu ul {
+        background-color: transparent;
+        position: fixed;
+        display: block;
+        text-align: left;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-bottom: 40px;
+        margin: 0px;
+        line-height: 2.5em;
+        font-size: 20px;
+        height: 200px;
+        backdrop-filter: blur(30px);
+        width: 50%;
+        left: -100%;
+        transition: left .5s ease;
+    }
+
+    #nav-list ul li {
+        margin: 0;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 20px;
+    }
+
+    #cart-link {
+        width: 22px;
+        height: 55px;
+    }
+
+    #cart {
+        height: 38px;
+    }
+
+    .quantity {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 2px;
+        bottom: 30px;
+        left: 28px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+    }
+
+    .title {
+        margin-top: 160px;
+        margin-bottom: 80px;
+        padding: 30px;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #reviewsList {
+        height: fit-content;
+    }
 }

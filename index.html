@@ -6,13 +6,41 @@
     <title>Riff Wired</title>
     <link rel="stylesheet" href="style.css">
     <link rel="script" href="script.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 
 <body>
 
-    
     <div class="hero">
+
+        <nav>
+            
+            <div id="nav-list">
+
+                <div id="top-menu">
+                    <label id="brand">RIFF WIRED</label>
+                    <input type="checkbox" id="check">
+                    <label for="check" class="checkbtn">
+                        <i class="fa fa-bars"></i>
+                    </label>
+                </div>
+                    
+                <div id="bottom-menu">
+                    <ul>
+                        <li><a id="home" >HOME</a></li>
+                        <li><a id="sale" >SALE</a></li>
+                        <li><a id="review" >REVIEWS</a></li>
+                        <li><a class="btnLogin-popup" id="login" >LOGIN</a></li>
+                        <li><a id="cart-link"><img id="cart" src="/images/CART.png" alt="">
+                            <span class="quantity">0</span>
+                        </a></li>
+                    <ul/>
+                </div>
+
+            </div>
+             
+        </nav>
 
         <video autoplay loop muted plays-inline class="video-container" width="100%"">
             <source id="bg-vid" src="/images/BG_VID.mp4" type="video/mp4"><source>
@@ -20,25 +48,11 @@
 
 
 
-        <nav>
-            
-            <ul>
-                <li id="brand">RIFF WIRED</li>
-                <li><a id="home" >HOME</a></li>
-                <li><a id="sale" >SALE</a></li>
-                <li><a id="review" >REVIEWS</a></li>
-                <li><a class="btnLogin-popup" id="login" >LOGIN</a></li>
-                <li><a id="cart-link"><img id="cart" src="/images/CART.png" alt="">
-                    <span class="quantity">0</span>
-                </a></li>
-            <ul>  
-             
-        </nav>
 
 
         <div class="wrapper">
 
-            <button class="icon-close">X</button>
+            <button id="close-login" class="icon-close">X</button>
             <div class="form-box login">
                 <h2>Login</h2>
                 <form action="#">
@@ -129,18 +143,18 @@
         <div id="main-info">
             <div class="info" id="fast-free">
                 <img src="images/Shipping.JPG" alt="">
-                <h2>Fast Free Delivery</h2>
+                <h2>Faster Delivery</h2>
                 <p>Enjoy free same-week delivery on most items.</p>
             </div>
             <div class="info" id="pickup">
                 <img id="bag" src="images/shop.JPG" alt="">
                 <h2>In-Store Pickup</h2>
-                <p>Pick up your online order at a RiffWired store near you.</p>
+                <p>Pick up your order at a location near you.</p>
             </div>
             <div class="info" id="returns">
                 <img src="images/Return.JPG" alt="">
                 <h2>Easy Returns</h2>
-                <p>Return eligible items within 14 days of receipt.</p>
+                <p>Return your purchased items within 14 days.</p>
             </div>
         </div>
         
