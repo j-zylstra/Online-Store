@@ -199,107 +199,101 @@ button {
 @media all and (max-width: 800px) {
 
     
-    nav {
-        background-color: transparent;
-        position: fixed;
-    }
+        nav {
+            background-color: transparent;
+            position: fixed;
+        }
 
-    .checkbtn {
-        display: block;
-        font-size: 35px;
-        float: right;
-        padding-top: 25px;
-        padding-bottom: 25px;
-        padding-left: 50px;
-        padding-right: 40px;
-        margin: 0;
-    }
+        .checkbtn {
+            display: block;
+            font-size: 35px;
+            float: right;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 50px;
+            padding-right: 40px;
+            margin: 0;
+        }
 
-    #top-menu{
-        background-color: #0879BC;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        backdrop-filter: blur(0);
-    }
+        #top-menu{
+            background-color: #0879BC;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            backdrop-filter: blur(0);
+        }
 
-    #nav-list {
-        background-color: transparent;
-        align-items: flex-start;
-        flex-wrap: wrap;
-        height: 400px;
-        width: 100%;
-    }
+        #nav-list {
+            background-color: transparent;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            height: 400px;
+            width: 100%;
+        }
 
-    #bottom-menu {
-        background-color: transparent;
-        width: 100vh;
-        height: 20vh;
-    }
+        #bottom-menu {
+            background-color: transparent;
+            width: 100vh;
+            height: 20vh;
+        }
 
-    #nav-list #bottom-menu ul {
-        background-color: transparent;
-        position: fixed;
-        display: block;
-        text-align: left;
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-top: 0px;
-        padding-bottom: 40px;
-        margin: 0px;
-        line-height: 2.5em;
-        font-size: 20px;
-        height: 200px;
-        backdrop-filter: blur(30px);
-        width: 50%;
-        left: -100%;
-        transition: left .5s ease;
-    }
+        #nav-list #bottom-menu ul {
+            background-color: transparent;
+            position: fixed;
+            display: block;
+            text-align: left;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 0px;
+            padding-bottom: 40px;
+            margin: 0px;
+            line-height: 2.5em;
+            font-size: 20px;
+            height: 200px;
+            backdrop-filter: blur(30px);
+            width: 50%;
+            left: -100%;
+            transition: left .5s ease;
+        }
 
-    #nav-list ul li {
-        margin: 0;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left: 20px;
-    }
+        #nav-list ul li {
+            margin: 0;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 20px;
+        }
 
-    #cart-link {
-        width: 22px;
-        height: 55px;
-    }
+        #cart-link {
+            width: 22px;
+            height: 55px;
+        }
 
-    #cart {
-        height: 38px;
-    }
+        #cart {
+            height: 38px;
+        }
 
-    .quantity {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        top: 2px;
-        bottom: 30px;
-        left: 28px;
-        border-radius: 50%;
-        background-color: red;
-        color: white;
-    }
+        .quantity {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 2px;
+            bottom: 30px;
+            left: 28px;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
+        }
 
-    .title {
-        margin-top: 160px;
-        margin-bottom: 80px;
-        padding: 30px;
-    }
+        .title {
+            font-size: 30px;
+            margin-top: 160px;
+            margin-bottom: 80px;
+            padding: 30px;
+        }
 
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-    #reviewsList {
-        height: fit-content;
-    }
+    
 }
