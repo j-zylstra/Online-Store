@@ -204,7 +204,7 @@ function renderProducts(type) {
     const path = window.location.pathname;
     const productType = path.split('/').pop().replace('.html', '');
 
-        fetch(`http://localhost:3000/products/type/${productType}`)
+        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
         .then(response => response.json())
         .then(products => {
                 console.log(products);
