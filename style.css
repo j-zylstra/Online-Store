@@ -368,7 +368,7 @@ nav #cart-link:hover {
 
 .card-border:hover {
     transform: scale(1.02);
-
+    cursor: pointer;
 }
 
 #product-preview {

@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
         var passwordInput = loginForm.querySelector('input[type="password"]');
         var email = emailInput.value;
         var password = passwordInput.value;
+        var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
+       
 
         const response = await fetch('http://localhost:3000/login', {
             method: 'POST',
@@ -33,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const userName = responseBody.name;
             sessionStorage.setItem('userId', userId);
             sessionStorage.setItem('userName', userName);
+            bottomMenu.style.left = '0';
             console.log('User', userName, 'with the ID of:', userId, 'is logged in');
             
 
@@ -55,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         var name = nameVal.value;
         var email = emailVal.value;
         var password = passwordVal.value;
+        var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
        
         const response = await fetch('http://localhost:3000/register', {
             method: 'POST',
@@ -70,7 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
             nameVal.value = '';
             emailVal.value = '';
             passwordVal.value = '';
+            bottomMenu.style.left = '0';
             console.log('User was registered successfully');
+            
         } else {
             alert('That E-mail is already in use')
             console.log('Registration failed');

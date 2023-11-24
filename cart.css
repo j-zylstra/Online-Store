@@ -637,7 +637,7 @@ p a {
   }
 
   .cart-item .item-info {
-    width: 70%;
+    width: 75%;
     height: 50px;
   }
 
@@ -646,7 +646,8 @@ p a {
   }
 
   .cart-item .item-info h4 {
-    font-size: 14px;
+    font-size: 12px;
+    padding-left: 4px;
   }
 
   .cart-item .unit-price {

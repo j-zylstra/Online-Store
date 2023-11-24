@@ -459,9 +459,9 @@ document.getElementById('check').addEventListener('click', function() {
 
 document.getElementById('login').addEventListener('click', function() {
     var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
-
+    
     if (window.innerWidth < 613) {
-        bottomMenu.style.display = 'none'
+        bottomMenu.style.left = '-100%';
     } 
 });
 
@@ -469,7 +469,7 @@ document.getElementById('close-login').addEventListener('click', function() {
     var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
     
     if (window.innerWidth < 613) {
-        bottomMenu.style.display = 'block'
+        bottomMenu.style.left = '0'
     } 
 });
 
