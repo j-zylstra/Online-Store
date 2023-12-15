@@ -4,6 +4,7 @@ const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
 
+
 document.addEventListener("DOMContentLoaded", function() {
     
             const navigationItems = [
@@ -236,7 +237,7 @@ function renderSaleProducts() {
 
     const saleProductsElement = document.querySelector(`.saleProducts`);
 
-        fetch(`http://localhost:3000/products/type/sale`)
+        fetch(`https://git.heroku.com/aqueous-ocean-91362.git/products/type/sale`)
         .then(response => response.json())
         .then(products => {
             console.log(products);
