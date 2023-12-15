@@ -4,11 +4,12 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "serve -s build"
   },
   "repository": {
     "type": "git",
-    "url": "Online-Store"
+    "url": "https://riff-wired-27891913b14e.herokuapp.com"
   },
   "author": "",
   "license": "ISC"
