@@ -108,7 +108,7 @@ function addToCart(id) {
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
-    fetch(`http://localhost:3000/products/${id}`)
+    fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/${id}`)
         .then(response => response.json())
         .then(product => { 
     
@@ -205,7 +205,7 @@ function renderProducts(type) {
     const path = window.location.pathname;
     const productType = path.split('/').pop().replace('.html', '');
 
-        fetch(`http://localhost:3000/products/type/${productType}`)
+        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
         .then(response => response.json())
         .then(products => {
                 console.log(products);
@@ -237,7 +237,7 @@ function renderSaleProducts() {
 
     const saleProductsElement = document.querySelector(`.saleProducts`);
 
-        fetch(`https://git.heroku.com/aqueous-ocean-91362.git/products/type/sale`)
+        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/sale`)
         .then(response => response.json())
         .then(products => {
             console.log(products);
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             try {
                 // Make a fetch request to submit the review
-                const response = await fetch('http://localhost:3000/reviews/', {
+                const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Check if the current URL is reviews.html
-    if (window.location.href === 'http://127.0.0.1:5500/reviews.html') {
+    if (window.location.href === 'https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews.html') {
         try {
             // Fetch existing reviews on page load
             const existingReviews = await fetchExistingReviews();
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     async function fetchExistingReviews() {
         try {
-            const response = await fetch('http://localhost:3000/reviews/DB', {
+            const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews/DB', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
