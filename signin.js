@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
        
 
-        const response = await fetch('http://localhost:3000/login', {
+        const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         var password = passwordVal.value;
         var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
        
-        const response = await fetch('http://localhost:3000/register', {
+        const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
