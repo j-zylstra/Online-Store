@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             try {
                 // Make a fetch request to submit the review
-                const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews/', {
+                const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
