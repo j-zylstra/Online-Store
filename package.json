@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.html",
+  "homepage": "https://git.heroku.com/riff-wired.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "serve -s build"
