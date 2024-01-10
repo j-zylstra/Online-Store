@@ -1,1 +1,2 @@
-frontend: http-server ./ -p $PORT
+web: serve -s -l $PORT .
+
