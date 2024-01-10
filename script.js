@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const navigationItems = [
                 { id: "home", url: "index.html" },
                 { id: "sale", url: "/sale.html" },
-                { id: "review", url: "/reviews" },
+                { id: "review", url: "https://riff-wired-27891913b14e.herokuapp.com/reviews" },
                 { id: "cart-link", url: "cart.html" },
                 { id: "new", url: "/new.html" },
                 { id: "bass", url: "/bass.html" },
