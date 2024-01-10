@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const navigationItems = [
                 { id: "home", url: "index.html" },
                 { id: "sale", url: "/sale.html" },
-                { id: "review", url: "https://riff-wired-27891913b14e.herokuapp.com/reviews" },
+                { id: "review", url: "riff-wired-27891913b14e.herokuapp.com/reviews" },
                 { id: "cart-link", url: "cart.html" },
                 { id: "new", url: "/new.html" },
                 { id: "bass", url: "/bass.html" },
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Check if the current URL is reviews.html
-    if (window.location.href === 'https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews.html') {
+    if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews') {
         try {
             // Fetch existing reviews on page load
             const existingReviews = await fetchExistingReviews();
