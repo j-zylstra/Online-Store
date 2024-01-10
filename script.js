@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const navigationItems = [
                 { id: "home", url: "index.html" },
                 { id: "sale", url: "/sale.html" },
-                { id: "review", url: "/reviews.html" },
+                { id: "review", url: "/reviews" },
                 { id: "cart-link", url: "cart.html" },
                 { id: "new", url: "/new.html" },
                 { id: "bass", url: "/bass.html" },
