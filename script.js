@@ -4,48 +4,46 @@ const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
 
-
 document.addEventListener("DOMContentLoaded", function() {
-    
-            const navigationItems = [
-                { id: "home", url: "index.html" },
-                { id: "sale", url: "sale.html" },
-                { id: "review", url: "reviews.html" },
-                { id: "cart-link", url: "cart.html" },
-                { id: "new", url: "new.html" },
-                { id: "bass", url: "bass.html" },
-                { id: "classic", url: "classic.html" },
-                { id: "accessories", url: "accessories.html" },
-            ];
+    const navigationItems = [
+        { id: "home", url: "index.html" },
+        { id: "sale", url: "sale.html" },
+        { id: "review", url: "reviews.html" },
+        { id: "cart-link", url: "cart.html" },
+        { id: "new", url: "new.html" },
+        { id: "bass", url: "bass.html" },
+        { id: "classic", url: "classic.html" },
+        { id: "accessories", url: "accessories.html" },
+    ];
 
-   
-            navigationItems.forEach(item => {
-                
-                const element = document.getElementById(item.id);
-                if (element) {
+    const handleNavigation = (item) => {
+        window.location.href = item.url;
+        updateCartDisplay();
+    };
 
-                    element.addEventListener("click", function() {
-                        
-                        
-                        window.location.href = item.url;
-                        console.log(window.location);
-                        
-                        
-                    });
-                    updateCartDisplay();
-                   
-                }
-            });
+    const handleCartPage = () => {
+        if (window.location.pathname.endsWith("cart.html")) {
+            updateCart();
+            updateUI();
+        }
+    };
 
-            if (window.location.pathname.endsWith("cart.html")) {
-                updateCart();
-                updateUI();
-            } 
-            if (window.location.pathname.endsWith("sale.html")) {
-                    renderSaleProducts();
-                }  
-            }
-        );
+    const handleSalePage = () => {
+        if (window.location.pathname.endsWith("sale.html")) {
+            renderSaleProducts();
+        }
+    };
+
+    navigationItems.forEach(item => {
+        const element = document.getElementById(item.id);
+        if (element) {
+            element.addEventListener("click", () => handleNavigation(item));
+        }
+    });
+
+    handleCartPage();
+    handleSalePage();
+});
 
 
 
