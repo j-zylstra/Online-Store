@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     const handleNavigation = (item) => {
+        console.log("Clicked on", item.id);
+        console.log("Navigating to", item.url);
         window.location.href = item.url;
         updateCartDisplay();
     };
