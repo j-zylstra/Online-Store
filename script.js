@@ -9,12 +9,12 @@ document.addEventListener("DOMContentLoaded", function() {
     
             const navigationItems = [
                 { id: "home", url: "index.html" },
-                { id: "sale", url: "/sale.html" },
-                { id: "review", url: "https://riff-wired-27891913b14e.herokuapp.com/reviews.html" },
+                { id: "sale", url: "sale.html" },
+                { id: "review", url: "reviews.html" },
                 { id: "cart-link", url: "cart.html" },
-                { id: "new", url: "/new.html" },
-                { id: "bass", url: "/bass.html" },
-                { id: "classic", url: "/classic.html" },
+                { id: "new", url: "new.html" },
+                { id: "bass", url: "bass.html" },
+                { id: "classic", url: "classic.html" },
                 { id: "accessories", url: "accessories.html" },
             ];
 
@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     element.addEventListener("click", function() {
                         
+                        console.log("Clicked on", item.id);
+                        console.log("Navigating to", item.url);
                         window.location.href = item.url;
                         
                         
