@@ -26,14 +26,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     element.addEventListener("click", function() {
                         
-                        console.log("Clicked on", item.id);
-                        console.log("Navigating to", item.url);
+                        
                         window.location.href = item.url;
                         
                         
                     });
                     updateCartDisplay();
-                    
+                    console.log("Clicked on", item.id);
+                    console.log("Navigating to", item.url);
                 }
             });
 
