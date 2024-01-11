@@ -28,12 +28,12 @@ document.addEventListener("DOMContentLoaded", function() {
                         
                         
                         window.location.href = item.url;
-                        
+                        console.log("Clicked on", item.id);
+                        console.log("Navigating to", item.url);
                         
                     });
                     updateCartDisplay();
-                    console.log("Clicked on", item.id);
-                    console.log("Navigating to", item.url);
+                   
                 }
             });
 
