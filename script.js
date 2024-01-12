@@ -66,17 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-document.addEventListener("DOMContentLoaded", 
-    function displayReview(review) {
-        const reviewList = document.getElementById('reviewsList');
-        const reviewItem = document.createElement('div');
-        reviewItem.innerHTML = `<div class="user-review">
-                                    <h2>${review.userName}</h2>
-                                    <p>"${review.content}"</p>
-                                </div>`;
-
-        reviewList.appendChild(reviewItem);
-    });
         
 function renderCartItems(cart) {
 
@@ -402,6 +391,18 @@ document.addEventListener('DOMContentLoaded', async () => {
             return []; // Return an empty array in case of an error
         }
     }
+
+    
+    function displayReview(review) {
+        const reviewList = document.getElementById('reviewsList');
+        const reviewItem = document.createElement('div');
+        reviewItem.innerHTML = `<div class="user-review">
+                                    <h2>${review.userName}</h2>
+                                    <p>"${review.content}"</p>
+                                </div>`;
+
+        reviewList.appendChild(reviewItem);
+    };
 });
 
     const wrapper = document.querySelector('.wrapper');
