@@ -66,17 +66,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+document.addEventListener("DOMContentLoaded", 
+    function displayReview(review) {
+        const reviewList = document.getElementById('reviewsList');
+        const reviewItem = document.createElement('div');
+        reviewItem.innerHTML = `<div class="user-review">
+                                    <h2>${review.userName}</h2>
+                                    <p>"${review.content}"</p>
+                                </div>`;
 
-function displayReview(review) {
-    const reviewList = document.getElementById('reviewsList');
-    const reviewItem = document.createElement('div');
-    reviewItem.innerHTML = `<div class="user-review">
-                                <h2>${review.userName}</h2>
-                                <p>"${review.content}"</p>
-                            </div>`;
-
-    reviewList.appendChild(reviewItem);
-};
+        reviewList.appendChild(reviewItem);
+    });
         
 function renderCartItems(cart) {
 
