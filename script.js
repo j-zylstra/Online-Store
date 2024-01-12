@@ -7,13 +7,13 @@ const totalItemsInCart = document.querySelector(".quantity");
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
         { id: "home", url: "index.html" },
-        { id: "sale", url: "./sale" },
+        { id: "sale", url: "./sale.html" },
         { id: "review", url: "./reviews.html" },
-        { id: "cart-link", url: "/cart" },
-        { id: "new", url: "/new" },
-        { id: "bass", url: "/bass" },
-        { id: "classic", url: "/classic" },
-        { id: "accessories", url: "/accessories" },
+        { id: "cart-link", url: "./cart.html" },
+        { id: "new", url: "./new.html" },
+        { id: "bass", url: "./bass.html" },
+        { id: "classic", url: "./classic.html" },
+        { id: "accessories", url: "./accessories.html" },
     ];
 
     const handleNavigation = (item) => {
