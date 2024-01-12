@@ -7,8 +7,8 @@ const totalItemsInCart = document.querySelector(".quantity");
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
         { id: "home", url: "index.html" },
-        { id: "sale", url: "/sale" },
-        { id: "review", url: "reviews" },
+        { id: "sale", url: "./sale" },
+        { id: "review", url: "./reviews.html" },
         { id: "cart-link", url: "/cart" },
         { id: "new", url: "/new" },
         { id: "bass", url: "/bass" },
