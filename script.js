@@ -66,10 +66,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 const pageToProductType = {
-    "/#new": "new",
-    "/#bass": "bass",
-    "/#classic": "classic",
-    "/#accessories": "accessories"
+    "#new": "new",
+    "#bass": "bass",
+    "#classic": "classic",
+    "#accessories": "accessories"
 };
 
 
