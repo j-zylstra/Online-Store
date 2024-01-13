@@ -6,43 +6,52 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
-        { id: "home", url: "index.html" },
-        { id: "sale", url: "/sale" },
-        { id: "review", url: "/reviews" },
-        { id: "cart-link", url: "/cart" },
-        { id: "new", url: "/new" },
-        { id: "bass", url: "/bass" },
-        { id: "classic", url: "/classic" },
-        { id: "accessories", url: "/accessories" },
+        { id: "home", url: "#index" },
+        { id: "sale", url: "#sale" },
+        { id: "review", url: "#reviews" },
+        { id: "cart-link", url: "#cart" },
+        { id: "new", url: "#new" },
+        { id: "bass", url: "#bass" },
+        { id: "classic", url: "#classic" },
+        { id: "accessories", url: "#accessories" },
     ];
 
     const handleNavigation = (item) => {
         console.log("Clicked on", item.id);
-        window.location.pathname = item.url;
+        window.location.hash = item.url;
         console.log("New URL:", window.location.href);
         updateCartDisplay();
     };
 
     const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart")) {
+        if (window.location.hash.endsWith("#cart")) {
             updateCart();
             updateUI();
         }
     };
 
     const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
+        if (window.location.hash.endsWith("#sale")) {
             renderSaleProducts();
         }
     };
 
-    navigationItems.forEach(item => {
-        const element = document.getElementById(item.id);
-        if (element) {
-            element.addEventListener("click", () => handleNavigation(item));
+    window.addEventListener("hashchange", () => {
+        const currentHash = window.location.hash;
+        const selectedItem = navigationItems.find(item => item.url === currentHash);
+        if (selectedItem) {
+            handleNavigation(selectedItem);
         }
+        handleCartPage();
+        handleSalePage();
     });
 
+    // Initial page load handling
+    const initialHash = window.location.hash;
+    const selectedItem = navigationItems.find(item => item.url === initialHash);
+    if (selectedItem) {
+        handleNavigation(selectedItem);
+    }
     handleCartPage();
     handleSalePage();
 });
