@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (productType) {
         renderProducts(productType);
     }
-    console.log(productType);
 });
 
         
