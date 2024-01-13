@@ -211,11 +211,11 @@ function renderProducts(type) {
     const productsElement = document.querySelector(`.${type}Products`);
     const path = window.location.pathname;
     const productType = path.split('/').pop();
-
+    console.log(productType);
         fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
         .then(response => response.json())
         .then(products => {
-            console.log(productType);
+            
                 console.log(products);
                 products.forEach((product) => {
                     
