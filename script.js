@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const handleNavigation = (item) => {
         console.log("Clicked on", item.id);
-        window.location.replace(item.url);
+        window.location.hash = item.url;
         console.log("New URL:", window.location.href);
         updateCartDisplay();
     };
@@ -36,12 +36,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
+    
     navigationItems.forEach(item => {
         const element = document.getElementById(item.id);
         if (element) {
             element.addEventListener("click", () => handleNavigation(item));
         }
     });
+
 
     window.addEventListener("hashchange", () => {
         const currentHash = window.location.hash;
@@ -66,10 +68,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 const pageToProductType = {
-    "#new": "new",
-    "#bass": "bass",
-    "#classic": "classic",
-    "#accessories": "accessories"
+    "/new": "new",
+    "/bass": "bass",
+    "/classic": "classic",
+    "/accessories": "accessories"
 };
 
 
@@ -209,12 +211,12 @@ function removeItemFromCart(id) {
 function renderProducts(type) {
 
     const productsElement = document.querySelector(`.${type}Products`);
-    
-    console.log(type);
-        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${type}`)
+    const path = window.location.pathname;
+    const productType = path.split('/').pop().replace('.html', '');
+
+        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
         .then(response => response.json())
         .then(products => {
-            
                 console.log(products);
                 products.forEach((product) => {
                     
