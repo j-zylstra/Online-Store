@@ -36,6 +36,13 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
+    navigationItems.forEach(item => {
+        const element = document.getElementById(item.id);
+        if (element) {
+            element.addEventListener("click", () => handleNavigation(item));
+        }
+    });
+
     window.addEventListener("hashchange", () => {
         const currentHash = window.location.hash;
         const selectedItem = navigationItems.find(item => item.url === currentHash);
