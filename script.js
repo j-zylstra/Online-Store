@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 const pageToProductType = {
-    "/new.html": "new",
-    "/bass.html": "bass",
-    "/classic.html": "classic",
-    "/accessories.html": "accessories"
+    "/new": "new",
+    "/bass": "bass",
+    "/classic": "classic",
+    "/accessories": "accessories"
 };
 
 
