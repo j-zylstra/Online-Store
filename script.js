@@ -78,7 +78,7 @@ const pageToProductType = {
 document.addEventListener("DOMContentLoaded", function () {
     const page = window.location.pathname;
     const productType = pageToProductType[page];
-
+    console.log(productType);
     if (productType) {
         renderProducts(productType);
     }
