@@ -6,7 +6,7 @@ const totalItemsInCart = document.querySelector(".quantity");
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
         { id: "home", url: "/index.html" },
-        { id: "sale", url: "/sale" },
+        { id: "sale", url: "/sale.html" },
         { id: "review", url: "/reviews.html" },
         { id: "cart-link", url: "/cart.html" },
         { id: "new", url: "/new.html" },
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const handleNavigation = (item) => {
         window.location.pathname = item.url;
+        console.log("item url is" + item.url)
         updateCartDisplay();
     };
 
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const element = document.getElementById(item.id);
         if (element) {
             element.addEventListener("click", () => handleNavigation(item));
+            console.log("item is" + item);
         }
     });
 
