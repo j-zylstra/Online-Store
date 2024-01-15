@@ -21,14 +21,14 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart.html")) {
+        if (window.location.pathname.endsWith("cart")) {
             updateCart();
             updateUI();
         }
     };
 
     const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale.html")) {
+        if (window.location.pathname.endsWith("sale")) {
             renderSaleProducts();
         }
     };
