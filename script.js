@@ -3,40 +3,36 @@ const productsElement = document.querySelector('.products');
 const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
-
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
-        { id: "home", url: "#index" },
-        { id: "sale", url: "#sale" },
-        { id: "review", url: "#reviews" },
-        { id: "cart-link", url: "#cart" },
-        { id: "new", url: "#new" },
-        { id: "bass", url: "#bass" },
-        { id: "classic", url: "#classic" },
-        { id: "accessories", url: "#accessories" },
+        { id: "home", url: "index.html" },
+        { id: "sale", url: "sale.html" },
+        { id: "review", url: "reviews.html" },
+        { id: "cart-link", url: "cart.html" },
+        { id: "new", url: "new.html" },
+        { id: "bass", url: "bass.html" },
+        { id: "classic", url: "classic.html" },
+        { id: "accessories", url: "accessories.html" },
     ];
 
     const handleNavigation = (item) => {
-        console.log("Clicked on", item.id);
-        window.location.hash = item.url;
-        console.log("New URL:", window.location.href);
+        window.location.href = item.url;
         updateCartDisplay();
     };
 
     const handleCartPage = () => {
-        if (window.location.hash.endsWith("#cart")) {
+        if (window.location.pathname.endsWith("cart.html")) {
             updateCart();
             updateUI();
         }
     };
 
     const handleSalePage = () => {
-        if (window.location.hash.endsWith("#sale")) {
+        if (window.location.pathname.endsWith("sale.html")) {
             renderSaleProducts();
         }
     };
 
-    
     navigationItems.forEach(item => {
         const element = document.getElementById(item.id);
         if (element) {
@@ -44,23 +40,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-
-    window.addEventListener("hashchange", () => {
-        const currentHash = window.location.hash;
-        const selectedItem = navigationItems.find(item => item.url === currentHash);
-        if (selectedItem) {
-            handleNavigation(selectedItem);
-        }
-        handleCartPage();
-        handleSalePage();
-    });
-
-    // Initial page load handling
-    const initialHash = window.location.hash;
-    const selectedItem = navigationItems.find(item => item.url === initialHash);
-    if (selectedItem) {
-        handleNavigation(selectedItem);
-    }
     handleCartPage();
     handleSalePage();
 });
@@ -68,10 +47,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 const pageToProductType = {
-    "/#new": "new",
-    "/#bass": "bass",
-    "/#classic": "classic",
-    "/#accessories": "accessories"
+    "/new": "new",
+    "/bass": "bass",
+    "/classic": "classic",
+    "/accessories": "accessories"
 };
 
 
