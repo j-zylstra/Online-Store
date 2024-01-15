@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     const handleNavigation = (item) => {
-        window.location.href = item;
+        window.location.pathname = item.url;
         updateCartDisplay();
     };
 
