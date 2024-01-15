@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const handleNavigation = (item) => {
         window.location.pathname = item.url;
-        console.log("item url is" + item.url)
         updateCartDisplay();
     };
 
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const element = document.getElementById(item.id);
         if (element) {
             element.addEventListener("click", () => handleNavigation(item));
-            console.log("item is" + item);
+        
         }
     });
 
