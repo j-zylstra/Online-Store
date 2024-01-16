@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    handleCartPage();
-    handleSalePage();
+    // handleCartPage();
+    // handleSalePage();
 });
 
 
