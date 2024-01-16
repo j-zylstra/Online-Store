@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
-            renderSaleProducts();
-        }
-    };
+    // const handleSalePage = () => {
+    //     if (window.location.pathname.endsWith("sale")) {
+    //         renderSaleProducts();
+    //     }
+    // };
 
     navigationItems.forEach(item => {
         const element = document.getElementById(item.id);
