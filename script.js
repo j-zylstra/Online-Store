@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // const handleSalePage = () => {
-    //     if (window.location.pathname.endsWith("sale")) {
-    //         renderSaleProducts();
-    //     }
-    // };
+    const handleSalePage = () => {
+        if (window.location.pathname.endsWith("sale")) {
+            renderSaleProducts();
+        }
+    };
 
     navigationItems.forEach(item => {
         const element = document.getElementById(item.id);
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // handleCartPage();
-    // handleSalePage();
+    handleCartPage();
+    handleSalePage();
 });
 
 
@@ -221,36 +221,36 @@ function renderProducts(type) {
     
 };
 
-// function renderSaleProducts() {
+function renderSaleProducts() {
 
-//     const saleProductsElement = document.querySelector(`.saleProducts`);
+    const saleProductsElement = document.querySelector(`.saleProducts`);
 
-//         fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/sale`)
-//         .then(response => response.json())
-//         .then(products => {
-//             console.log(products);
-//                 products.forEach((product) => {
+        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/sale`)
+        .then(response => response.json())
+        .then(products => {
+            console.log(products);
+                products.forEach((product) => {
                     
-//                         const card = document.createElement("div");
-//                         card.classList.add("card-border");
-//                         card.innerHTML = `
-//                             <img class="card" src="${product.imgsrc}" alt="">
-//                             <h3>${product.name}</h3>
-//                             <h2 id="old-price"><small>$</small>${product.oldprice}</h2>
-//                             <h2 id="price"><small>$</small>${product.price}</h2>
-//                             <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
-//                         `;
-//                         saleProductsElement.appendChild(card);
+                        const card = document.createElement("div");
+                        card.classList.add("card-border");
+                        card.innerHTML = `
+                            <img class="card" src="${product.imgsrc}" alt="">
+                            <h3>${product.name}</h3>
+                            <h2 id="old-price"><small>$</small>${product.oldprice}</h2>
+                            <h2 id="price"><small>$</small>${product.price}</h2>
+                            <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
+                        `;
+                        saleProductsElement.appendChild(card);
                         
-//                     } 
-//                 );
-//         })
-//         .catch(error => {
-//             console.log('Error:', error);
-//         });
+                    } 
+                );
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
 
     
-// };
+};
 
 function updateCartDisplay() {
     const totalItemsInCart = document.querySelector(".quantity");
