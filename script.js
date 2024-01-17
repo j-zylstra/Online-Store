@@ -5,14 +5,14 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
-        { id: "home", url: "/index.html" },
+        { id: "home", url: "/" },
         { id: "sale", url: "/sale" },
-        { id: "review", url: "/reviews.html" },
-        { id: "cart-link", url: "/cart.html" },
-        { id: "new", url: "/new.html" },
-        { id: "bass", url: "/bass.html" },
-        { id: "classic", url: "/classic.html" },
-        { id: "accessories", url: "/accessories.html" },
+        { id: "review", url: "/reviews" },
+        { id: "cart-link", url: "/cart" },
+        { id: "new", url: "/new" },
+        { id: "bass", url: "/bass" },
+        { id: "classic", url: "/classic" },
+        { id: "accessories", url: "/accessories" },
     ];
 
     const handleNavigation = (item) => {
