@@ -71,6 +71,11 @@ nav {
     margin-right: 30px;
 }
 
+nav ul li a {
+    color: #FFFFFF;
+    font-size: 25px;
+}
+
 nav ul li a:hover {
     color: rgb(141, 139, 139);
     cursor: pointer;
