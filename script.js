@@ -3,29 +3,29 @@ const productsElement = document.querySelector('.products');
 const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
-document.addEventListener("DOMContentLoaded", function() {
-    const navigationItems = [
-        { id: "home", url: "/" },
-        // { id: "sale", url: "/sale" },
-        { id: "review", url: "/reviews" },
-        { id: "cart-link", url: "/cart" },
-        { id: "new", url: "/new" },
-        { id: "bass", url: "/bass" },
-        { id: "classic", url: "/classic" },
-        { id: "accessories", url: "/accessories" },
-    ];
+// document.addEventListener("DOMContentLoaded", function() {
+//     const navigationItems = [
+//         { id: "home", url: "/" },
+//         // { id: "sale", url: "/sale" },
+//         { id: "review", url: "/reviews" },
+//         { id: "cart-link", url: "/cart" },
+//         { id: "new", url: "/new" },
+//         { id: "bass", url: "/bass" },
+//         { id: "classic", url: "/classic" },
+//         { id: "accessories", url: "/accessories" },
+//     ];
 
-    const handleNavigation = (item) => {
-        window.location.pathname = item.url;
-        updateCartDisplay();
-    };
+//     const handleNavigation = (item) => {
+//         window.location.pathname = item.url;
+//         updateCartDisplay();
+//     };
 
-    const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart")) {
-            updateCart();
-            updateUI();
-        }
-    };
+//     const handleCartPage = () => {
+//         if (window.location.pathname.endsWith("cart")) {
+//             updateCart();
+//             updateUI();
+//         }
+//     };
 
     const handleSalePage = () => {
         if (window.location.pathname.endsWith("sale")) {
@@ -33,17 +33,17 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    navigationItems.forEach(item => {
-        const element = document.getElementById(item.id);
-        if (element) {
-            element.addEventListener("click", () => handleNavigation(item));
+//     navigationItems.forEach(item => {
+//         const element = document.getElementById(item.id);
+//         if (element) {
+//             element.addEventListener("click", () => handleNavigation(item));
         
-        }
-    });
+//         }
+//     });
 
-    handleCartPage();
-    handleSalePage();
-});
+//     handleCartPage();
+//     handleSalePage();
+// });
 
 
 
