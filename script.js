@@ -5,14 +5,14 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
-        { id: "home", url: "/" },
-        { id: "sale", url: "/sale" },
-        { id: "review", url: "/reviews" },
-        { id: "cart-link", url: "/cart" },
-        { id: "new", url: "/new" },
-        { id: "bass", url: "/bass" },
-        { id: "classic", url: "/classic" },
-        { id: "accessories", url: "/accessories" },
+        { id: "home", url: "/index.html" },
+        { id: "sale", url: "/sale.html" },
+        { id: "review", url: "/reviews.html" },
+        { id: "cart-link", url: "/cart.html" },
+        { id: "new", url: "/new.html" },
+        { id: "bass", url: "/bass.html" },
+        { id: "classic", url: "/classic.html" },
+        { id: "accessories", url: "/accessories.html" },
     ];
 
     const handleNavigation = (item) => {
@@ -21,14 +21,14 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart")) {
+        if (window.location.pathname.endsWith("cart.html")) {
             updateCart();
             updateUI();
         }
     };
 
     const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
+        if (window.location.pathname.endsWith("sale.html")) {
             renderSaleProducts();
         }
     };
@@ -48,10 +48,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 const pageToProductType = {
-    "/new": "new",
-    "/bass": "bass",
-    "/classic": "classic",
-    "/accessories": "accessories"
+    "/new.html": "new",
+    "/bass.html": "bass",
+    "/classic.html": "classic",
+    "/accessories.html": "accessories"
 };
 
 
