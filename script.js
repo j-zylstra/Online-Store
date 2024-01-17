@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     const handleNavigation = () => {
-        window.location.pathname = '/sale.html';
+        window.location.pathname = '/classic.html';
         updateCartDisplay();
     };
 
