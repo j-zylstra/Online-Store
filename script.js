@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { id: "accessories", url: "/accessories.html" },
     ];
 
-    const handleNavigation = (item) => {
+    const handleNavigation = () => {
         window.location.pathname = '/sale.html';
         updateCartDisplay();
     };
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
     navigationItems.forEach(item => {
         const element = document.getElementById(item.id);
         if (element) {
-            element.addEventListener("click", () => handleNavigation(item));
+            element.addEventListener("click", () => handleNavigation());
         
         }
     });
