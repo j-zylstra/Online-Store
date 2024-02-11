@@ -2,7 +2,7 @@
   "name": "online-store",
   "version": "1.0.0",
   "description": "",
-  "main": "index.html",
+  "main": "Store-Server/server.cjs",
   "homepage": "https://riff-wired-27891913b14e.herokuapp.com/",
   "engines": {
     "node": "18.13.0"
