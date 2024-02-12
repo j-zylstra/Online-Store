@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/sale.css">
+    <link rel="stylesheet" href="reviews.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>SALE</title>
+    <title>Customer Reviews</title>
 </head>
 <body>
-
     <nav>
             
         <div id="nav-list">
@@ -36,11 +35,16 @@
          
     </nav>
 
-    <div id="gallery" class="saleProducts">
-        
+    <h1 class="title">CUSTOMER REVIEWS</h1>
+    <div class="container">
+        <div id="reviewsList">
+            
+        </div>
     </div>
-
-    
-    <script src="/public/script.js"></script>
+    <form id="reviewForm">
+        <textarea id="reviewContent" placeholder="Write your review" rows="4" maxlength="200"></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+    <script src="script.js"></script>
 </body>
 </html>
