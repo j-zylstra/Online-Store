@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Rendering sale products");
             renderSaleProducts();
         } else if (productType) {
-            console.log("Rendering " + `${productType}` + " products");
+            console.log("Rendering" + " " +`${productType}` + " " + " products");
             renderProducts(productType);
         }};
     
