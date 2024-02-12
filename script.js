@@ -14,7 +14,7 @@ const totalItemsInCart = document.querySelector(".quantity");
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
         { id: "home", url: "/" },
-        { id: "sale", url: "/sale.html" },
+        { id: "sale", url: "/sale" },
         { id: "review", url: "/reviews" },
         { id: "cart-link", url: "/cart" },
         { id: "new", url: "/new" },
