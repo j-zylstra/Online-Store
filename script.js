@@ -16,34 +16,44 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     const handleNavigation = (item) => {
-        window.location.pathname = item.url;
+        history.pushState(null, null, item.url);
         updateCartDisplay();
+        handlePage(item.url); // New function to handle page content
     };
 
-    const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart")) {
+    const handlePage = (url) => {
+        // Add logic to handle different pages based on the URL
+        if (url.endsWith("cart")) {
             updateCart();
             updateUI();
+        } else if (url.endsWith("sale")) {
+            renderSaleProducts();
+        } else {
+            // Add more conditions for other pages if needed
         }
     };
 
-    const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
-            renderSaleProducts();
-        }
-    };
+    // New event listener for popstate event (back/forward navigation)
+    window.addEventListener("popstate", function(event) {
+        const url = window.location.pathname;
+        handlePage(url);
+    });
 
     navigationItems.forEach(item => {
         const element = document.getElementById(item.id);
         if (element) {
-            element.addEventListener("click", () => handleNavigation(item));
-        
+            element.addEventListener("click", (event) => {
+                event.preventDefault();
+                handleNavigation(item);
+            });
         }
     });
 
-    handleCartPage();
-    handleSalePage();
+    // Initial handling of the current page
+    const initialUrl = window.location.pathname;
+    handlePage(initialUrl);
 });
+
 
 
 
