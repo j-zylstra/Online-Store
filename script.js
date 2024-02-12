@@ -30,21 +30,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const handlePage = (url) => {
         console.log("Handling page for URL:", url);
-
-        if (url === "/cart") {
-            console.log("Navigating to Cart page");
-            // Handle rendering of Cart page content or redirect to "/cart.html"
+    
+        if (url === "/") {
+            console.log("Navigating to Home page");
         } else if (url === "/sale") {
             console.log("Navigating to Sale page");
-            // Handle rendering of Sale page content or redirect to "/sale.html"
         } else if (url === "/new") {
             console.log("Navigating to New Products page");
-            // Handle rendering of New Products page content or redirect to "/new.html"
+        } else if (url === "/bass") {
+            console.log("Navigating to Bass Products page");
+        } else if (url === "/classic") {
+            console.log("Navigating to Classic Products page");
+        } else if (url === "/accessories") {
+            console.log("Navigating to Accessories Products page");
+        } else if (url === "/cart") {
+            console.log("Navigating to the Cart page");
+        } else {
+            console.log("Navigating to an unknown page");
         }
-        // Add similar conditions for other pages
-
-        // You may choose to implement rendering logic or redirection here
+    
+        // Perform a full-page reload to switch to the new HTML file
+        window.location.href = url;
     };
+    
 
     // New event listener for popstate event (back/forward navigation)
     window.addEventListener("popstate", function(event) {
