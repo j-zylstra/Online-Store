@@ -70,9 +70,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Initial handling of the current page
-    const initialUrl = window.location.pathname;
-    handlePage(initialUrl);
 });
 
 
