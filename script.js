@@ -14,7 +14,7 @@ const totalItemsInCart = document.querySelector(".quantity");
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
         { id: "home", url: "/" },
-        { id: "sale", url: "/sale" },
+        { id: "sale", url: "/sale.html" },
         { id: "review", url: "/reviews" },
         { id: "cart-link", url: "/cart" },
         { id: "new", url: "/new" },
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
         if (url === "/") {
             console.log("Navigating to Home page");
-        } else if (url === "/sale") {
+        } else if (url === "/sale.html") {
             console.log("Navigating to Sale page");
         } else if (url === "/new") {
             console.log("Navigating to New Products page");
