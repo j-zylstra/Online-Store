@@ -38,14 +38,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (url.endsWith("cart")) {
             console.log("Updating cart and UI");
-            updateCart();
-            updateUI();
+
+            document.addEventListener("DOMContentLoaded", function() {
+                updateCart();
+                updateUI();
+            });
+
         } else if (url.endsWith("sale")) {
             console.log("Rendering sale products");
-            renderSaleProducts();
+
+            document.addEventListener("DOMContentLoaded", function() {
+                renderSaleProducts();
+            });
+            
         } else if (productType) {
-            console.log("Rendering" + " " +`${productType}` + " " + " products");
-            renderProducts(productType);
+            console.log("Rendering" + " " +`${productType}` + " " + "products");
+
+            document.addEventListener("DOMContentLoaded", function() {
+                renderProducts(productType);
+            });
         }};
     
 
