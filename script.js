@@ -3,6 +3,16 @@ const productsElement = document.querySelector(".products");
 const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
+
+
+const pageToProductType = {
+    "/new": "new",
+    "/bass": "bass",
+    "/classic": "classic",
+    "/accessories": "accessories"
+};
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
         { id: "home", url: "/" },
@@ -23,15 +33,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const handlePage = (url) => {
         // Add logic to handle different pages based on the URL
+        const page = window.location.pathname;
+        const productType = pageToProductType[page];
+
         if (url.endsWith("cart")) {
             updateCart();
             updateUI();
         } else if (url.endsWith("sale")) {
             renderSaleProducts();
-        } else {
-            // Add more conditions for other pages if needed
-        }
-    };
+        } else if (productType) {
+            renderProducts(productType);
+        }};
+    
 
     // New event listener for popstate event (back/forward navigation)
     window.addEventListener("popstate", function(event) {
@@ -54,24 +67,6 @@ document.addEventListener("DOMContentLoaded", function() {
     handlePage(initialUrl);
 });
 
-
-
-
-const pageToProductType = {
-    "/new": "new",
-    "/bass": "bass",
-    "/classic": "classic",
-    "/accessories": "accessories"
-};
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const page = window.location.pathname;
-    const productType = pageToProductType[page];
-    if (productType) {
-        renderProducts(productType);
-    }
-});
 
         
 function renderCartItems(cart) {
