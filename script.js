@@ -5,15 +5,14 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 
 
-const pageToProductType = {
-    "/new": "new",
-    "/bass": "bass",
-    "/classic": "classic",
-    "/accessories": "accessories"
-};
+// const pageToProductType = {
+//     "/new": "new",
+//     "/bass": "bass",
+//     "/classic": "classic",
+//     "/accessories": "accessories"
+// };
 
-
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const navigationItems = [
         { id: "home", url: "/" },
         { id: "sale", url: "/sale" },
@@ -33,40 +32,32 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const handlePage = (url) => {
         console.log("Handling page for URL:", url);
-        const page = window.location.pathname;
-        const productType = pageToProductType[page];
 
-        if (url.endsWith("cart")) {
-            console.log("Updating cart and UI");
-
-            document.addEventListener("DOMContentLoaded", function() {
-                updateCart();
-                updateUI();
-            });
-
-        } else if (url.endsWith("sale")) {
+        if (url.endsWith("sale")) {
             console.log("Rendering sale products");
-
-            document.addEventListener("DOMContentLoaded", function() {
-                renderSaleProducts();
-            });
-            
-        } else if (productType) {
-            console.log("Rendering" + " " +`${productType}` + " " + "products");
-
-            document.addEventListener("DOMContentLoaded", function() {
-                renderProducts(productType);
-            });
-        }};
-    
+            loadPageContent("sale.html", ".saleProducts");
+        } else if (url.endsWith("new")) {
+            console.log("Rendering new products");
+            loadPageContent("new.html", ".newProducts");
+        } else if (url.endsWith("bass")) {
+            console.log("Rendering bass products");
+            loadPageContent("bass.html", ".bassProducts");
+        } else if (url.endsWith("classic")) {
+            console.log("Rendering classic products");
+            loadPageContent("classic.html", ".classicProducts");
+        } else if (url.endsWith("accessories")) {
+            console.log("Rendering accessories");
+            loadPageContent("accessories.html", ".accessoriesProducts");
+        }
+    };
 
     // New event listener for popstate event (back/forward navigation)
-    window.addEventListener("popstate", function(event) {
+    window.addEventListener("popstate", function (event) {
         const url = window.location.pathname;
         handlePage(url);
     });
 
-    navigationItems.forEach(item => {
+    navigationItems.forEach((item) => {
         const element = document.getElementById(item.id);
         if (element) {
             element.addEventListener("click", (event) => {
@@ -80,6 +71,22 @@ document.addEventListener("DOMContentLoaded", function() {
     const initialUrl = window.location.pathname;
     handlePage(initialUrl);
 });
+
+// Function to load page content using AJAX
+function loadPageContent(url, containerSelector) {
+    const container = document.querySelector(containerSelector);
+    if (container) {
+        fetch(url)
+            .then((response) => response.text())
+            .then((html) => {
+                container.innerHTML = html;
+            })
+            .catch((error) => {
+                console.error("Error fetching page content:", error);
+            });
+    }
+}
+
 
 
         
