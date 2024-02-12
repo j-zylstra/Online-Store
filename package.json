@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "Store-Server/server.cjs",
-  "homepage": "https://riff-wired-27891913b14e.herokuapp.com/",
+  "homepage": "https://riff-wired-27891913b14e.herokuapp.com/public/index.html",
   "engines": {
     "node": "18.13.0"
   },
