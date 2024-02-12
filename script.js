@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", function() {
             updateUI();
         } else if (url.endsWith("sale")) {
             renderSaleProducts();
+        } else if (url.endsWith("reviews")) {
+            fetchExistingReviews();
         } else if (productType) {
             renderProducts(productType);
         }};
