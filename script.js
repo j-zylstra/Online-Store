@@ -32,16 +32,19 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     const handlePage = (url) => {
-        // Add logic to handle different pages based on the URL
+        console.log("Handling page for URL:", url);
         const page = window.location.pathname;
         const productType = pageToProductType[page];
 
         if (url.endsWith("cart")) {
+            console.log("Updating cart and UI");
             updateCart();
             updateUI();
         } else if (url.endsWith("sale")) {
+            console.log("Rendering sale products");
             renderSaleProducts();
         } else if (productType) {
+            console.log("Rendering" + `${productType}` + "products");
             renderProducts(productType);
         }};
     
