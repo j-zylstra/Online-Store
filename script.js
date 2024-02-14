@@ -7,8 +7,8 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
-        { id: "home", url: "index" },
-        { id: "sale", url: "/sale" },
+        { id: "home", url: "index.html" },
+        { id: "sale", url: "https://riff-wired-27891913b14e.herokuapp.com/sale.html" },
         { id: "review", url: "reviews" },
         { id: "cart-link", url: "cart" },
         { id: "new", url: "new" },
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
+        if (window.location.pathname.endsWith("sale.html")) {
             renderSaleProducts();
         }
     };
