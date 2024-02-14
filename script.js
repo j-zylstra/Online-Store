@@ -30,24 +30,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const handlePage = async (url) => {
         console.log("Handling page for URL:", url);
-
+    
         try {
             const response = await fetch(window.location.origin + url);
             const htmlContent = await response.text();
-
-            // Create a temporary div element to hold the new content
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = htmlContent;
-
-            // Extract the content of the body tag from the new HTML
-            const newBodyContent = tempDiv.querySelector('body').innerHTML;
-
+    
             // Replace the current body content with the new content
-            document.body.innerHTML = newBodyContent;
+            document.body.innerHTML = htmlContent;
         } catch (error) {
             console.error('Error loading page:', error);
         }
     };
+    
 
     // New event listener for popstate event (back/forward navigation)
     window.addEventListener("popstate", function(event) {
