@@ -28,31 +28,17 @@ document.addEventListener("DOMContentLoaded", function() {
         handlePage(item.url); // New function to handle page content
     };
 
-    const handlePage = (url) => {
+    const handlePage = async (url) => {
         console.log("Handling page for URL:", url);
-    
-        if (url === "/") {
-            console.log("Navigating to Home page");
-        } else if (url === "/sale") {
-            console.log("Navigating to Sale page");
-        } else if (url === "/new") {
-            console.log("Navigating to New Products page");
-        } else if (url === "/bass") {
-            console.log("Navigating to Bass Products page");
-        } else if (url === "/classic") {
-            console.log("Navigating to Classic Products page");
-        } else if (url === "/accessories") {
-            console.log("Navigating to Accessories Products page");
-        } else if (url === "/cart") {
-            console.log("Navigating to the Cart page");
-        } else {
-            console.log("Navigating to an unknown page");
+
+        try {
+            const response = await fetch(url);
+            const htmlContent = await response.text();
+            document.querySelector("html").innerHTML = htmlContent;
+        } catch (error) {
+            console.error('Error loading page:', error);
         }
-    
-        // Perform a full-page reload to switch to the new HTML file
-        window.location.href = url;
     };
-    
 
     // New event listener for popstate event (back/forward navigation)
     window.addEventListener("popstate", function(event) {
@@ -70,8 +56,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    // Initial handling of the current page
+    const initialUrl = window.location.pathname;
+    handlePage(initialUrl);
 });
-
 
 
         
