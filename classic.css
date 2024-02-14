@@ -75,16 +75,21 @@ nav {
     align-items: center;
     justify-content: space-evenly;
     padding: 0;
+    list-style: none;
 }
 
-#nav-list ul li {
+#nav-list ul li a{
     list-style: none;
     margin-left: 30px;
     margin-right: 30px;
+    color: #FFFFFF;
+    font-size: 25px;
+    list-style: none;
+    text-decoration: none;
 }
+ 
 
-
-nav ul li a:hover {
+ #nav-list ul li a:hover {
     color: rgb(141, 139, 139);
     cursor: pointer;
 }

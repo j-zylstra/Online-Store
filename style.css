@@ -390,7 +390,10 @@ nav #cart-link:hover {
 #product-preview h3 {
     display: flex;
     justify-content: center;
-    
+}
+
+#product-preview a {
+    text-decoration: none;
 }
 
 hr {
