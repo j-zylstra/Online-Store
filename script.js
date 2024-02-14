@@ -5,64 +5,67 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 
 
-// const pageToProductType = {
-//     "/new": "new",
-//     "/bass": "bass",
-//     "/classic": "classic",
-//     "/accessories": "accessories"
-// };
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
-        { id: "home", url: "/" },
-        { id: "sale", url: "/sale" },
-        { id: "review", url: "/reviews" },
-        { id: "cart-link", url: "/cart" },
-        { id: "new", url: "/new" },
-        { id: "bass", url: "/bass" },
-        { id: "classic", url: "/classic" },
-        { id: "accessories", url: "/accessories" },
+        { id: "home", url: "index.html" },
+        { id: "sale", url: "/sale.html" },
+        { id: "review", url: "reviews.html" },
+        { id: "cart-link", url: "cart.html" },
+        { id: "new", url: "new.html" },
+        { id: "bass", url: "bass.html" },
+        { id: "classic", url: "classic.html" },
+        { id: "accessories", url: "accessories.html" },
     ];
 
     const handleNavigation = (item) => {
-        history.pushState(null, null, item.url);
-        handlePage(item.url); // New function to handle page content
+        console.log("Clicked on", item.id);
+        window.location.href = item.url;
+        console.log("New URL:", window.location.href);
+        updateCartDisplay();
     };
 
-    const handlePage = async (url) => {
-        console.log("Handling page for URL:", url);
-    
-        try {
-            const response = await fetch(window.location.origin + url);
-            const htmlContent = await response.text();
-    
-            // Replace the current body content with the new content
-            document.body.innerHTML = htmlContent;
-        } catch (error) {
-            console.error('Error loading page:', error);
+    const handleCartPage = () => {
+        if (window.location.pathname.endsWith("cart.html")) {
+            updateCart();
+            updateUI();
         }
     };
-    
 
-    // New event listener for popstate event (back/forward navigation)
-    window.addEventListener("popstate", function(event) {
-        const url = window.location.pathname;
-        handlePage(url);
-    });
+    const handleSalePage = () => {
+        if (window.location.pathname.endsWith("sale.html")) {
+            renderSaleProducts();
+        }
+    };
 
     navigationItems.forEach(item => {
         const element = document.getElementById(item.id);
         if (element) {
-            element.addEventListener("click", (event) => {
-                event.preventDefault();
-                handleNavigation(item);
-            });
+            element.addEventListener("click", () => handleNavigation(item));
         }
     });
 
-    // Initial handling of the current page
-    const initialUrl = window.location.pathname;
-    handlePage(initialUrl);
+    handleCartPage();
+    handleSalePage();
 });
+
+const pageToProductType = {
+"/new.html": "new",
+"/bass.html": "bass",
+"/classic.html": "classic",
+"/accessories.html": "accessories"
+};
+
+
+document.addEventListener("DOMContentLoaded", function () {
+const page = window.location.pathname;
+const productType = pageToProductType[page];
+
+if (productType) {
+renderProducts(productType);
+}
+});
+
+
 
 function renderCartItems(cart) {
 
@@ -191,7 +194,7 @@ function renderProducts(type) {
 
     const productsElement = document.querySelector(`.${type}Products`);
     const path = window.location.pathname;
-    const productType = path.split('/').pop().split('/');
+    const productType = path.split('/').pop().replace('.html', '');
         fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
         .then(response => response.json())
         .then(products => {
@@ -291,7 +294,6 @@ function updateCart() {
     updateCartDisplay();
 
 };
-
 document.addEventListener('DOMContentLoaded', async () => {
     const reviewForm = document.getElementById('reviewForm');
     const reviewContent = document.getElementById('reviewContent');
@@ -336,8 +338,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // Check if the current URL is reviews
-    if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews') {
+    // Check if the current URL is reviews.html
+    if (window.location.href === 'http://127.0.0.1:5500/reviews.html') {
         try {
             // Fetch existing reviews on page load
             const existingReviews = await fetchExistingReviews();
@@ -457,19 +459,31 @@ document.getElementById('check').addEventListener('click', function() {
     }
   });
 
-document.getElementById('login').addEventListener('click', function() {
-    var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
-    
-    if (window.innerWidth < 613) {
-        bottomMenu.style.left = '-100%';
-    } 
+  document.addEventListener("DOMContentLoaded", function() {
+    var loginElement = document.getElementById('login');
+
+    // Check if the element with ID 'login' exists
+    if (loginElement) {
+        loginElement.addEventListener('click', function() {
+            var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
+            
+            if (window.innerWidth < 613) {
+                bottomMenu.style.left = '-100%';
+            } 
+        });
+    }
 });
 
-document.getElementById('close-login').addEventListener('click', function() {
-    var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
-    
-    if (window.innerWidth < 613) {
-        bottomMenu.style.left = '0'
-    } 
-});
+const closeLoginButton = document.getElementById('close-login');
+
+if (closeLoginButton) {
+    closeLoginButton.addEventListener('click', function() {
+        var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
+
+        if (window.innerWidth < 613) {
+            bottomMenu.style.left = '0';
+        }
+    });
+};
+
 
