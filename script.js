@@ -32,9 +32,18 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Handling page for URL:", url);
 
         try {
-            const response = await fetch(window.location.origin + url); // Use absolute path
+            const response = await fetch(window.location.origin + url);
             const htmlContent = await response.text();
-            document.body.innerHTML = htmlContent;
+
+            // Create a temporary div element to hold the new content
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+
+            // Extract the content of the body tag from the new HTML
+            const newBodyContent = tempDiv.querySelector('body').innerHTML;
+
+            // Replace the current body content with the new content
+            document.body.innerHTML = newBodyContent;
         } catch (error) {
             console.error('Error loading page:', error);
         }
