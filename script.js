@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
         if (url === "/") {
             console.log("Navigating to Home page");
-        } else if (url === "/sale.html") {
+        } else if (url === "/sale") {
             console.log("Navigating to Sale page");
         } else if (url === "/new") {
             console.log("Navigating to New Products page");
