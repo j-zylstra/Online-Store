@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Handling page for URL:", url);
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(window.location.origin + url); // Use absolute path
             const htmlContent = await response.text();
             document.body.innerHTML = htmlContent;
         } catch (error) {
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const initialUrl = window.location.pathname;
     handlePage(initialUrl);
 });
- 
+
 function renderCartItems(cart) {
 
     let newContent = ''; 
