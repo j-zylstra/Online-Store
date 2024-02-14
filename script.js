@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         try {
             const response = await fetch(url);
             const htmlContent = await response.text();
-            document.querySelector("html").innerHTML = htmlContent;
+            document.body.innerHTML = htmlContent;
         } catch (error) {
             console.error('Error loading page:', error);
         }
@@ -60,9 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const initialUrl = window.location.pathname;
     handlePage(initialUrl);
 });
-
-
-        
+ 
 function renderCartItems(cart) {
 
     let newContent = ''; 
