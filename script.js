@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         { id: "sale", url: "sale.html" },
         { id: "review", url: "reviews" },
         { id: "cart-link", url: "cart" },
-        { id: "new", url: "new" },
+        // { id: "new", url: "new" },
         { id: "bass", url: "bass" },
         { id: "classic", url: "classic" },
         { id: "accessories", url: "accessories" },
