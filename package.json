@@ -9,7 +9,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "serve -s -l $PORT ."
+    "start": "serve -s -l $PORT .",
+    "dev": "parcel index.html",
+    "prod": "parcel build index.html"
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "serve": "^14.2.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
   }
 }
