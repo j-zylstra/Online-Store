@@ -67,65 +67,65 @@ const pageToProductType = {
 
 
 
-function renderCartItems(cart) {
+// function renderCartItems(cart) {
 
-    let newContent = ''; 
+//     let newContent = ''; 
 
-    cart.forEach((product) => {
-        newContent += `
-            <div class="cart-item">
-                <div class="item-info">
-                    <img src="${product.product.imgsrc}" alt="${product.product.name}">
-                        <h4>${product.product.name}</h4>
-                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.id})" name="close-circle-outline"></ion-icon></span>
-                </div>
-                <div class="unit-price">
-                    <h2><small>$</small>${product.product.price}</h2>
-                </div>
-                <div class="units">
-                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
-                    <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
-                </div>
-            </div>`;
+//     cart.forEach((product) => {
+//         newContent += `
+//             <div class="cart-item">
+//                 <div class="item-info">
+//                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
+//                         <h4>${product.product.name}</h4>
+//                         <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.id})" name="close-circle-outline"></ion-icon></span>
+//                 </div>
+//                 <div class="unit-price">
+//                     <h2><small>$</small>${product.product.price}</h2>
+//                 </div>
+//                 <div class="units">
+//                     <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
+//                     <div class="number">${product.numberOfUnits}</div>
+//                     <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
+//                 </div>
+//             </div>`;
                                
-        });
-            cartElement.innerHTML = newContent;
+//         });
+//             cartElement.innerHTML = newContent;
                     
-};
+// };
 
-function addToCart(id) {
+// function addToCart(id) {
 
-    const storedCartData = localStorage.getItem('cart');
-    let cart = storedCartData ? JSON.parse(storedCartData) : [];
+//     const storedCartData = localStorage.getItem('cart');
+//     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
-    fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/${id}`)
-        .then(response => response.json())
-        .then(product => { 
+//     fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/${id}`)
+//         .then(response => response.json())
+//         .then(product => { 
     
-           const existingCartItem = cart.find(item => item.product.id === id);
+//            const existingCartItem = cart.find(item => item.product.id === id);
 
-           if (existingCartItem) {
-                if (existingCartItem.numberOfUnits < product.instock) {
-                    existingCartItem.numberOfUnits++;
-                } else {
-                    console.warn('exceeded available stock for this product.');
-                 }
-                } else {
-                 cart.push({
-                        product,
-                        numberOfUnits: 1,
-                    });
-           }
+//            if (existingCartItem) {
+//                 if (existingCartItem.numberOfUnits < product.instock) {
+//                     existingCartItem.numberOfUnits++;
+//                 } else {
+//                     console.warn('exceeded available stock for this product.');
+//                  }
+//                 } else {
+//                  cart.push({
+//                         product,
+//                         numberOfUnits: 1,
+//                     });
+//            }
 
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartDisplay();
+//             localStorage.setItem('cart', JSON.stringify(cart));
+//             updateCartDisplay();
         
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        }); 
-};
+//         })
+//         .catch(error => {
+//             console.error('Error:', error);
+//         }); 
+// };
 
 function changeNumberOfUnits(action, id) {
         
@@ -190,69 +190,69 @@ function removeItemFromCart(id) {
    };
 }
 
-function renderProducts(type) {
+// function renderProducts(type) {
 
-    const productsElement = document.querySelector(`.${type}Products`);
-    const path = window.location.pathname;
-    const productType = path.split('/').pop().replace('.html', '');
-        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
-        .then(response => response.json())
-        .then(products => {
-                console.log(products);
-                products.forEach((product) => {
+//     const productsElement = document.querySelector(`.${type}Products`);
+//     const path = window.location.pathname;
+//     const productType = path.split('/').pop().replace('.html', '');
+//         fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
+//         .then(response => response.json())
+//         .then(products => {
+//                 console.log(products);
+//                 products.forEach((product) => {
                     
-                     if (product.type === type) {
-                        const card = document.createElement("div");
-                        card.classList.add("card-border");
-                        card.innerHTML = `
-                            <img class="card" src="${product.imgsrc}" alt="">
-                            <h3>${product.name}</h3>
-                            <h2 id="price"><small>$</small>${product.price}</h2>
-                            <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
-                        `;
-                        productsElement.appendChild(card);
+//                      if (product.type === type) {
+//                         const card = document.createElement("div");
+//                         card.classList.add("card-border");
+//                         card.innerHTML = `
+//                             <img class="card" src="${product.imgsrc}" alt="">
+//                             <h3>${product.name}</h3>
+//                             <h2 id="price"><small>$</small>${product.price}</h2>
+//                             <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
+//                         `;
+//                         productsElement.appendChild(card);
                         
-                    } 
-                });
+//                     } 
+//                 });
             
-        })
-        .catch(error => {
-            console.log('Error:', error);
-        });
+//         })
+//         .catch(error => {
+//             console.log('Error:', error);
+//         });
 
     
-};
+// };
 
-function renderSaleProducts() {
+// function renderSaleProducts() {
 
-    const saleProductsElement = document.querySelector(`.saleProducts`);
+//     const saleProductsElement = document.querySelector(`.saleProducts`);
 
-        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/sale`)
-        .then(response => response.json())
-        .then(products => {
-            console.log(products);
-                products.forEach((product) => {
+//         fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/sale`)
+//         .then(response => response.json())
+//         .then(products => {
+//             console.log(products);
+//                 products.forEach((product) => {
                     
-                        const card = document.createElement("div");
-                        card.classList.add("card-border");
-                        card.innerHTML = `
-                            <img class="card" src="${product.imgsrc}" alt="">
-                            <h3>${product.name}</h3>
-                            <h2 id="old-price"><small>$</small>${product.oldprice}</h2>
-                            <h2 id="price"><small>$</small>${product.price}</h2>
-                            <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
-                        `;
-                        saleProductsElement.appendChild(card);
+//                         const card = document.createElement("div");
+//                         card.classList.add("card-border");
+//                         card.innerHTML = `
+//                             <img class="card" src="${product.imgsrc}" alt="">
+//                             <h3>${product.name}</h3>
+//                             <h2 id="old-price"><small>$</small>${product.oldprice}</h2>
+//                             <h2 id="price"><small>$</small>${product.price}</h2>
+//                             <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
+//                         `;
+//                         saleProductsElement.appendChild(card);
                         
-                    } 
-                );
-        })
-        .catch(error => {
-            console.log('Error:', error);
-        });
+//                     } 
+//                 );
+//         })
+//         .catch(error => {
+//             console.log('Error:', error);
+//         });
 
     
-};
+// };
 
 function updateCartDisplay() {
     const totalItemsInCart = document.querySelector(".quantity");
