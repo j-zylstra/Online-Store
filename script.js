@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             wrapper.classList.remove('active');
         }
 
-        if (target === btnLogin-popup) {
+        if (target === btnPopup) {
             wrapper.classList.add('active-popup');
         }
 
