@@ -5,48 +5,48 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     const navigationItems = [
-//         { id: "home", url: "index.html" },
-//         { id: "sale", url: "sale.html" },
-//         { id: "review", url: "reviews" },
-//         { id: "cart-link", url: "cart" },
-//         { id: "new", url: "new" },
-//         { id: "bass", url: "bass" },
-//         { id: "classic", url: "classic" },
-//         { id: "accessories", url: "accessories" },
-//     ];
+document.addEventListener("DOMContentLoaded", function() {
+    const navigationItems = [
+        { id: "home", url: "index.html" },
+        { id: "sale", url: "sale.html" },
+        { id: "review", url: "reviews" },
+        { id: "cart-link", url: "cart" },
+        { id: "new", url: "new" },
+        { id: "bass", url: "bass" },
+        { id: "classic", url: "classic" },
+        { id: "accessories", url: "accessories" },
+    ];
 
-//     const handleNavigation = (item) => {
-//         console.log("Clicked on", item.id);
-//         window.location.href = item.url;
-//         console.log("New URL:", window.location.href);
-//         updateCartDisplay();
-//     };
+    const handleNavigation = (item) => {
+        console.log("Clicked on", item.id);
+        window.location.href = item.url;
+        console.log("New URL:", window.location.href);
+        updateCartDisplay();
+    };
 
-//     const handleCartPage = () => {
-//         if (window.location.pathname.endsWith("cart")) {
-//             updateCart();
-//             updateUI();
-//         }
-//     };
+    const handleCartPage = () => {
+        if (window.location.pathname.endsWith("cart")) {
+            updateCart();
+            updateUI();
+        }
+    };
 
-//     const handleSalePage = () => {
-//         if (window.location.pathname.endsWith("sale")) {
-//             renderSaleProducts();
-//         }
-//     };
+    const handleSalePage = () => {
+        if (window.location.pathname.endsWith("sale")) {
+            renderSaleProducts();
+        }
+    };
 
-//     navigationItems.forEach(item => {
-//         const element = document.getElementById(item.id);
-//         if (element) {
-//             element.addEventListener("click", () => handleNavigation(item));
-//         }
-//     });
+    navigationItems.forEach(item => {
+        const element = document.getElementById(item.id);
+        if (element) {
+            element.addEventListener("click", () => handleNavigation(item));
+        }
+    });
 
-//     handleCartPage();
-//     handleSalePage();
-// });
+    handleCartPage();
+    handleSalePage();
+});
 
 const pageToProductType = {
 "/new": "new",
