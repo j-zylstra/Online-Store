@@ -8,7 +8,7 @@ const totalItemsInCart = document.querySelector(".quantity");
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
         { id: "home", url: "index.html" },
-        { id: "sale", url: "sale.html" },
+        { id: "sale", url: "sale" },
         { id: "review", url: "reviews" },
         { id: "cart-link", url: "cart" },
         { id: "new", url: "new" },
@@ -19,23 +19,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const handleNavigation = (item) => {
         console.log("Clicked on", item.id);
-        window.location.href = item.url;
-        console.log("New URL:", window.location.href);
+        window.location = item.url;
+        console.log("New URL:", window.location);
         updateCartDisplay();
     };
 
-    const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart")) {
-            updateCart();
-            updateUI();
-        }
-    };
+    // const handleCartPage = () => {
+    //     if (window.location.pathname.endsWith("cart")) {
+    //         updateCart();
+    //         updateUI();
+    //     }
+    // };
 
-    const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
-            renderSaleProducts();
-        }
-    };
+    // const handleSalePage = () => {
+    //     if (window.location.pathname.endsWith("sale")) {
+    //         renderSaleProducts();
+    //     }
+    // };
 
     navigationItems.forEach(item => {
         const element = document.getElementById(item.id);
@@ -44,8 +44,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    handleCartPage();
-    handleSalePage();
+    // handleCartPage();
+    // handleSalePage();
 });
 
 const pageToProductType = {
@@ -56,14 +56,14 @@ const pageToProductType = {
 };
 
 
-document.addEventListener("DOMContentLoaded", function () {
-const page = window.location.pathname;
-const productType = pageToProductType[page];
+// document.addEventListener("DOMContentLoaded", function () {
+// const page = window.location.pathname;
+// const productType = pageToProductType[page];
 
-if (productType) {
-renderProducts(productType);
-}
-});
+// if (productType) {
+// renderProducts(productType);
+// }
+// });
 
 
 
@@ -294,114 +294,115 @@ function updateCart() {
     updateCartDisplay();
 
 };
-document.addEventListener('DOMContentLoaded', async () => {
-    const reviewForm = document.getElementById('reviewForm');
-    const reviewContent = document.getElementById('reviewContent');
 
-    if (reviewForm) {
-        reviewForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
+// document.addEventListener('DOMContentLoaded', async () => {
+//     const reviewForm = document.getElementById('reviewForm');
+//     const reviewContent = document.getElementById('reviewContent');
 
-            const comment = reviewContent.value;
-            const userId = sessionStorage.getItem('userId');
+//     if (reviewForm) {
+//         reviewForm.addEventListener('submit', async (event) => {
+//             event.preventDefault();
 
-            try {
-                // Make a fetch request to submit the review
-                const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ userId, comment }),
-                });
+//             const comment = reviewContent.value;
+//             const userId = sessionStorage.getItem('userId');
 
-                if (response.ok) {
-                    // Handle the new review as needed (e.g., display it on the webpage)
-                    const data = await response.json();
+//             try {
+//                 // Make a fetch request to submit the review
+//                 const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews', {
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json',
+//                     },
+//                     body: JSON.stringify({ userId, comment }),
+//                 });
 
-                    if (data.content.trim() !== "") {
-                        // Display the review only if it's not empty
-                        displayReview(data);
-                    } else {
-                        console.error('Received an empty review from the server:', data);
-                    }
+//                 if (response.ok) {
+//                     // Handle the new review as needed (e.g., display it on the webpage)
+//                     const data = await response.json();
 
-                    // Clear the form after submission
-                    reviewContent.value = '';
-                } else {
-                    console.error(`Error: ${response.status} - ${response.statusText}`);
-                }
+//                     if (data.content.trim() !== "") {
+//                         // Display the review only if it's not empty
+//                         displayReview(data);
+//                     } else {
+//                         console.error('Received an empty review from the server:', data);
+//                     }
 
-            } catch (error) {
-                console.error(error);
-            }
-        });
-    }
+//                     // Clear the form after submission
+//                     reviewContent.value = '';
+//                 } else {
+//                     console.error(`Error: ${response.status} - ${response.statusText}`);
+//                 }
 
-    // Check if the current URL is reviews.html
-    if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews') {
-        try {
-            // Fetch existing reviews on page load
-            const existingReviews = await fetchExistingReviews();
+//             } catch (error) {
+//                 console.error(error);
+//             }
+//         });
+//     }
 
-            // Ensure existingReviews is an array
-            if (Array.isArray(existingReviews)) {
-                // Display each existing review
-                existingReviews.forEach((review) => displayReview(review));
-            } else if (existingReviews && Array.isArray(existingReviews.reviews)) {
-                // Extract the reviews property and display each existing review
-                existingReviews.reviews.forEach((review) => displayReview(review));
-            } else {
-                console.error('Unable to find reviews in the response:', existingReviews);
-            }
+//     // Check if the current URL is reviews.html
+//     if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews') {
+//         try {
+//             // Fetch existing reviews on page load
+//             const existingReviews = await fetchExistingReviews();
 
-            // Rest of your code
-        } catch (error) {
-            console.error(error);
-        }
-    }
+//             // Ensure existingReviews is an array
+//             if (Array.isArray(existingReviews)) {
+//                 // Display each existing review
+//                 existingReviews.forEach((review) => displayReview(review));
+//             } else if (existingReviews && Array.isArray(existingReviews.reviews)) {
+//                 // Extract the reviews property and display each existing review
+//                 existingReviews.reviews.forEach((review) => displayReview(review));
+//             } else {
+//                 console.error('Unable to find reviews in the response:', existingReviews);
+//             }
+
+//             // Rest of your code
+//         } catch (error) {
+//             console.error(error);
+//         }
+//     }
 
 
-    async function fetchExistingReviews() {
-        try {
-            const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews/DB', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+//     async function fetchExistingReviews() {
+//         try {
+//             const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews/DB', {
+//                 method: 'GET',
+//                 headers: {
+//                     'Content-Type': 'application/json',
+//                 },
+//             });
 
-            if (!response.ok) {
-                throw new Error(`Error: ${response.status} - ${response.statusText}`);
-            }
+//             if (!response.ok) {
+//                 throw new Error(`Error: ${response.status} - ${response.statusText}`);
+//             }
 
-            const text = await response.text();
-            try {
-                const reviews = JSON.parse(text);
-                console.log('Fetched reviews:', reviews); // Log the reviews before returning
-                return reviews || []; // Return the reviews array or an empty array
-            } catch (parseError) {
-                console.error('Error parsing JSON:', parseError);
-                return []; // Return an empty array if there's an error parsing JSON
-            }
-        } catch (error) {
-            console.error(error.message);
-            return []; // Return an empty array in case of an error
-        }
-    }
+//             const text = await response.text();
+//             try {
+//                 const reviews = JSON.parse(text);
+//                 console.log('Fetched reviews:', reviews); // Log the reviews before returning
+//                 return reviews || []; // Return the reviews array or an empty array
+//             } catch (parseError) {
+//                 console.error('Error parsing JSON:', parseError);
+//                 return []; // Return an empty array if there's an error parsing JSON
+//             }
+//         } catch (error) {
+//             console.error(error.message);
+//             return []; // Return an empty array in case of an error
+//         }
+//     }
 
     
-    function displayReview(review) {
-        const reviewList = document.getElementById('reviewsList');
-        const reviewItem = document.createElement('div');
-        reviewItem.innerHTML = `<div class="user-review">
-                                    <h2>${review.userName}</h2>
-                                    <p>"${review.content}"</p>
-                                </div>`;
+//     function displayReview(review) {
+//         const reviewList = document.getElementById('reviewsList');
+//         const reviewItem = document.createElement('div');
+//         reviewItem.innerHTML = `<div class="user-review">
+//                                     <h2>${review.userName}</h2>
+//                                     <p>"${review.content}"</p>
+//                                 </div>`;
 
-        reviewList.appendChild(reviewItem);
-    };
-});
+//         reviewList.appendChild(reviewItem);
+//     };
+// });
 
     const wrapper = document.querySelector('.wrapper');
     const loginLink = document.querySelector('.login-link');
