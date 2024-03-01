@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
       { id: "accessories", url: "accessories" },
     ];
   
-    const handleNavigation = (item, event) => {
-      event.preventDefault(); 
+    const handleNavigation = (item) => {
+      
       console.log("Clicked on", item.id);
       const newPath = item.url;
       history.pushState({ page: newPath }, null, newPath);
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     navigationItems.forEach((item) => {
       const element = document.getElementById(item.id);
       if (element) {
-        element.addEventListener("click", (event) => handleNavigation(item, event));
+        element.addEventListener("click", () => handleNavigation(item));
       }
     });
   
