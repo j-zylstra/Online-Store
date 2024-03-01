@@ -190,38 +190,38 @@ function removeItemFromCart(id) {
    };
 }
 
-function renderProducts(type) {
+// function renderProducts(type) {
 
-    const productsElement = document.querySelector(`.${type}Products`);
-    const path = window.location.pathname;
-    const productType = path.split('/').pop().replace('.html', '');
-        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
-        .then(response => response.json())
-        .then(products => {
-                console.log(products);
-                products.forEach((product) => {
+//     const productsElement = document.querySelector(`.${type}Products`);
+//     const path = window.location.pathname;
+//     const productType = path.split('/').pop().replace('.html', '');
+//         fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
+//         .then(response => response.json())
+//         .then(products => {
+//                 console.log(products);
+//                 products.forEach((product) => {
                     
-                     if (product.type === type) {
-                        const card = document.createElement("div");
-                        card.classList.add("card-border");
-                        card.innerHTML = `
-                            <img class="card" src="${product.imgsrc}" alt="">
-                            <h3>${product.name}</h3>
-                            <h2 id="price"><small>$</small>${product.price}</h2>
-                            <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
-                        `;
-                        productsElement.appendChild(card);
+//                      if (product.type === type) {
+//                         const card = document.createElement("div");
+//                         card.classList.add("card-border");
+//                         card.innerHTML = `
+//                             <img class="card" src="${product.imgsrc}" alt="">
+//                             <h3>${product.name}</h3>
+//                             <h2 id="price"><small>$</small>${product.price}</h2>
+//                             <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
+//                         `;
+//                         productsElement.appendChild(card);
                         
-                    } 
-                });
+//                     } 
+//                 });
             
-        })
-        .catch(error => {
-            console.log('Error:', error);
-        });
+//         })
+//         .catch(error => {
+//             console.log('Error:', error);
+//         });
 
     
-};
+// };
 
 function renderSaleProducts() {
 
