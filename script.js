@@ -7,12 +7,12 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 document.addEventListener("DOMContentLoaded", function() {
     const navigationItems = [
-        { id: "home", url: "index" },
-        { id: "sale", url: "sale" },
-        { id: "review", url: "reviews" },
-        { id: "cart-link", url: "cart" },
-        { id: "new", url: "https://riff-wired-27891913b14e.herokuapp.com/new" },
-        { id: "bass", url: "bass" },
+        { id: "home", url: "/" },
+        { id: "sale", url: "/sale" },
+        { id: "review", url: "reviews.html" },
+        { id: "cart-link", url: "/cart.html" },
+        { id: "new", url: "./new" },
+        { id: "bass", url: "./bass.html" },
         { id: "classic", url: "classic" },
         { id: "accessories", url: "accessories" },
     ];
@@ -60,9 +60,9 @@ document.addEventListener("DOMContentLoaded", function () {
 const page = window.location.pathname;
 const productType = pageToProductType[page];
 
-// if (productType) {
-// renderProducts(productType);
-// }
+if (productType) {
+renderProducts(productType);
+}
 });
 
 
@@ -190,38 +190,38 @@ function removeItemFromCart(id) {
    };
 }
 
-// function renderProducts(type) {
+function renderProducts(type) {
 
-//     const productsElement = document.querySelector(`.${type}Products`);
-//     const path = window.location.pathname;
-//     const productType = path.split('/').pop().replace('.html', '');
-//         fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
-//         .then(response => response.json())
-//         .then(products => {
-//                 console.log(products);
-//                 products.forEach((product) => {
+    const productsElement = document.querySelector(`.${type}Products`);
+    const path = window.location.pathname;
+    const productType = path.split('/').pop().replace('.html', '');
+        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/${productType}`)
+        .then(response => response.json())
+        .then(products => {
+                console.log(products);
+                products.forEach((product) => {
                     
-//                      if (product.type === type) {
-//                         const card = document.createElement("div");
-//                         card.classList.add("card-border");
-//                         card.innerHTML = `
-//                             <img class="card" src="${product.imgsrc}" alt="">
-//                             <h3>${product.name}</h3>
-//                             <h2 id="price"><small>$</small>${product.price}</h2>
-//                             <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
-//                         `;
-//                         productsElement.appendChild(card);
+                     if (product.type === type) {
+                        const card = document.createElement("div");
+                        card.classList.add("card-border");
+                        card.innerHTML = `
+                            <img class="card" src="${product.imgsrc}" alt="">
+                            <h3>${product.name}</h3>
+                            <h2 id="price"><small>$</small>${product.price}</h2>
+                            <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
+                        `;
+                        productsElement.appendChild(card);
                         
-//                     } 
-//                 });
+                    } 
+                });
             
-//         })
-//         .catch(error => {
-//             console.log('Error:', error);
-//         });
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
 
     
-// };
+};
 
 function renderSaleProducts() {
 
