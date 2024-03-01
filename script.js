@@ -4,66 +4,68 @@ const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
 
-
-document.addEventListener("DOMContentLoaded", function() {
-    const navigationItems = [
-        { id: "home", url: "/" },
-        { id: "sale", url: "sale" },
-        { id: "review", url: "reviews" },
-        { id: "cart-link", url: "cart" },
-        { id: "new", url: "new" },
-        { id: "bass", url: "bass" },
-        { id: "classic", url: "classic" },
-        { id: "accessories", url: "accessories" },
-    ];
-
-    const handleNavigation = (item) => {
-        console.log("Clicked on", item.id);
-        window.location = item.url;
-        console.log("New URL:", window.location);
-        updateCartDisplay();
-    };
-
-    const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart")) {
-            updateCart();
-            updateUI();
-        }
-    };
-
-    const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
-            renderSaleProducts();
-        }
-    };
-
-    navigationItems.forEach(item => {
-        const element = document.getElementById(item.id);
-        if (element) {
-            element.addEventListener("click", () => handleNavigation(item));
-        }
-    });
-
-    handleCartPage();
-    handleSalePage();
-});
-
-const pageToProductType = {
-"/new": "new",
-"/bass": "bass",
-"/classic": "classic",
-"/accessories": "accessories"
-};
-
-
 document.addEventListener("DOMContentLoaded", function () {
-const page = window.location.pathname;
-const productType = pageToProductType[page];
-
-if (productType) {
-renderProducts(productType);
-}
-});
+    const navigationItems = [
+      { id: "home", url: "/" },
+      { id: "sale", url: "sale" },
+      { id: "review", url: "reviews" },
+      { id: "cart-link", url: "cart" },
+      { id: "new", url: "new" },
+      { id: "bass", url: "bass" },
+      { id: "classic", url: "classic" },
+      { id: "accessories", url: "accessories" },
+    ];
+  
+    const handleNavigation = (item) => {
+      console.log("Clicked on", item.id);
+      const newPath = item.url;
+      history.pushState({ page: newPath }, null, newPath);
+      console.log("New URL:", window.location);
+      updateCartDisplay();
+      handleCartPage();
+      handleSalePage();
+    };
+  
+    const handleCartPage = () => {
+      if (window.location.pathname.endsWith("cart")) {
+        updateCart();
+        updateUI();
+      }
+    };
+  
+    const handleSalePage = () => {
+      if (window.location.pathname.endsWith("sale")) {
+        renderSaleProducts();
+      }
+    };
+  
+    navigationItems.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) {
+        element.addEventListener("click", () => handleNavigation(item));
+      }
+    });
+  
+    // handleCartPage();
+    // handleSalePage();
+  });
+  
+  const pageToProductType = {
+    "/new": "new",
+    "/bass": "bass",
+    "/classic": "classic",
+    "/accessories": "accessories",
+  };
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const page = window.location.pathname;
+    const productType = pageToProductType[page];
+  
+    if (productType) {
+      renderProducts(productType);
+    }
+  });
+  
 
 
 
