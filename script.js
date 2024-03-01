@@ -60,9 +60,9 @@ document.addEventListener("DOMContentLoaded", function () {
 const page = window.location.pathname;
 const productType = pageToProductType[page];
 
-if (productType) {
-renderProducts(productType);
-}
+// if (productType) {
+// renderProducts(productType);
+// }
 });
 
 
