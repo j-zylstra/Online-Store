@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
       { id: "accessories", url: "accessories" },
     ];
   
-    const handleNavigation = (item) => {
+    const handleNavigation = (item, event) => {
+      event.preventDefault(); 
       console.log("Clicked on", item.id);
       const newPath = item.url;
       history.pushState({ page: newPath }, null, newPath);
