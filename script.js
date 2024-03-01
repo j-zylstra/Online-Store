@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     navigationItems.forEach((item) => {
       const element = document.getElementById(item.id);
       if (element) {
-        element.addEventListener("click", () => handleNavigation(item));
+        element.addEventListener("click", (event) => handleNavigation(item, event));
       }
     });
   
