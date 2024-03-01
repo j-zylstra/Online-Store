@@ -18,27 +18,25 @@ document.addEventListener("DOMContentLoaded", function () {
   
     const handleNavigation = (item) => {
       
-      console.log("Clicked on", item.id);
-      const newPath = item.url;
-      history.pushState({ page: newPath }, null, newPath);
-      console.log("New URL:", window.location);
-      updateCartDisplay();
-      handleCartPage();
-      handleSalePage();
+        console.log("Clicked on", item.id);
+        window.location.href = item.url;
+    //   updateCartDisplay();
+    //   handleCartPage();
+    //   handleSalePage();
     };
   
-    const handleCartPage = () => {
-      if (window.location.pathname.endsWith("cart")) {
-        updateCart();
-        updateUI();
-      }
-    };
+    // const handleCartPage = () => {
+    //   if (window.location.pathname.endsWith("cart")) {
+    //     updateCart();
+    //     updateUI();
+    //   }
+    // };
   
-    const handleSalePage = () => {
-      if (window.location.pathname.endsWith("sale")) {
-        renderSaleProducts();
-      }
-    };
+    // const handleSalePage = () => {
+    //   if (window.location.pathname.endsWith("sale")) {
+    //     renderSaleProducts();
+    //   }
+    // };
   
     navigationItems.forEach((item) => {
       const element = document.getElementById(item.id);
