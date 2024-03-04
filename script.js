@@ -7,36 +7,18 @@ const totalItemsInCart = document.querySelector(".quantity");
 document.addEventListener("DOMContentLoaded", function () {
     const navigationItems = [
       { id: "home", url: "/" },
-      { id: "sale", url: "sale" },
-      { id: "review", url: "reviews" },
-      { id: "cart-link", url: "cart" },
-      { id: "new", url: "new" },
-      { id: "bass", url: "bass" },
-      { id: "classic", url: "classic" },
-      { id: "accessories", url: "accessories" },
+      { id: "sale", url: "/sale" },
+      { id: "review", url: "/reviews" },
+      { id: "cart-link", url: "/cart" },
+      { id: "new", url: "/new" },
+      { id: "bass", url: "/bass" },
+      { id: "classic", url: "/classic" },
+      { id: "accessories", url: "/accessories" },
     ];
   
     const handleNavigation = (item) => {
-      
-        console.log("Clicked on", item.id);
-        window.location.href = item.url;
-        console.log(window.location.pathname);
-      updateCartDisplay();
-      handleCartPage();
-      handleSalePage();
-    };
-  
-    const handleCartPage = () => {
-      if (window.location.pathname.endsWith("cart.html")) {
-        updateCart();
-        updateUI();
-      }
-    };
-  
-    const handleSalePage = () => {
-      if (window.location.pathname.endsWith("sale.html")) {
-        renderSaleProducts();
-      }
+      console.log("Clicked on", item.id);
+      window.location.href = item.url;
     };
   
     navigationItems.forEach((item) => {
@@ -45,10 +27,26 @@ document.addEventListener("DOMContentLoaded", function () {
         element.addEventListener("click", () => handleNavigation(item));
       }
     });
+  });
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const handleCartPage = () => {
+      if (window.location.pathname.endsWith("/cart")) {
+        updateCart();
+        updateUI();
+      }
+    };
+  
+    const handleSalePage = () => {
+      if (window.location.pathname.endsWith("/sale")) {
+        renderSaleProducts();
+      }
+    };
   
     handleCartPage();
     handleSalePage();
   });
+  
   
   const pageToProductType = {
     "/new": "new",
