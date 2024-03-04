@@ -7,36 +7,36 @@ const totalItemsInCart = document.querySelector(".quantity");
 document.addEventListener("DOMContentLoaded", function () {
     const navigationItems = [
       { id: "home", url: "/" },
-      { id: "sale", url: "sale" },
-      { id: "review", url: "reviews" },
-      { id: "cart-link", url: "cart" },
-      { id: "new", url: "new" },
-      { id: "bass", url: "bass" },
-      { id: "classic", url: "classic" },
-      { id: "accessories", url: "accessories" },
+      { id: "sale", url: "sale.html" },
+      { id: "review", url: "reviews.html" },
+      { id: "cart-link", url: "cart.html" },
+      { id: "new", url: "new.html" },
+      { id: "bass", url: "bass.html" },
+      { id: "classic", url: "classic.html" },
+      { id: "accessories", url: "accessories.html" },
     ];
   
     const handleNavigation = (item) => {
       
         console.log("Clicked on", item.id);
         window.location.href = item.url;
-    //   updateCartDisplay();
-    //   handleCartPage();
-    //   handleSalePage();
+      updateCartDisplay();
+      handleCartPage();
+      handleSalePage();
     };
   
-    // const handleCartPage = () => {
-    //   if (window.location.pathname.endsWith("cart")) {
-    //     updateCart();
-    //     updateUI();
-    //   }
-    // };
+    const handleCartPage = () => {
+      if (window.location.pathname.endsWith("cart")) {
+        updateCart();
+        updateUI();
+      }
+    };
   
-    // const handleSalePage = () => {
-    //   if (window.location.pathname.endsWith("sale")) {
-    //     renderSaleProducts();
-    //   }
-    // };
+    const handleSalePage = () => {
+      if (window.location.pathname.endsWith("sale")) {
+        renderSaleProducts();
+      }
+    };
   
     navigationItems.forEach((item) => {
       const element = document.getElementById(item.id);
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   
-    // handleCartPage();
-    // handleSalePage();
+    handleCartPage();
+    handleSalePage();
   });
   
   const pageToProductType = {
