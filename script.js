@@ -26,14 +26,14 @@ document.addEventListener("DOMContentLoaded", function () {
     };
   
     const handleCartPage = () => {
-      if (window.location.pathname.endsWith("cart")) {
+      if (window.location.pathname.endsWith("cart.html")) {
         updateCart();
         updateUI();
       }
     };
   
     const handleSalePage = () => {
-      if (window.location.pathname.endsWith("sale")) {
+      if (window.location.pathname.endsWith("sale.html")) {
         renderSaleProducts();
       }
     };
@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   
   const pageToProductType = {
-    "/new": "new",
-    "/bass": "bass",
-    "/classic": "classic",
-    "/accessories": "accessories",
+    "/new.html": "new",
+    "/bass.html": "bass",
+    "/classic.html": "classic",
+    "/accessories.html": "accessories",
   };
   
   document.addEventListener("DOMContentLoaded", function () {
@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Check if the current URL is reviews.html
-    if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews') {
+    if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews.html') {
         try {
             // Fetch existing reviews on page load
             const existingReviews = await fetchExistingReviews();
