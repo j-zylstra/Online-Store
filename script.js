@@ -7,19 +7,20 @@ const totalItemsInCart = document.querySelector(".quantity");
 document.addEventListener("DOMContentLoaded", function () {
     const navigationItems = [
       { id: "home", url: "/" },
-      { id: "sale", url: "sale.html" },
-      { id: "review", url: "reviews.html" },
-      { id: "cart-link", url: "cart.html" },
-      { id: "new", url: "new.html" },
-      { id: "bass", url: "bass.html" },
-      { id: "classic", url: "classic.html" },
-      { id: "accessories", url: "accessories.html" },
+      { id: "sale", url: "sale" },
+      { id: "review", url: "reviews" },
+      { id: "cart-link", url: "cart" },
+      { id: "new", url: "new" },
+      { id: "bass", url: "bass" },
+      { id: "classic", url: "classic" },
+      { id: "accessories", url: "accessories" },
     ];
   
     const handleNavigation = (item) => {
       
         console.log("Clicked on", item.id);
         window.location.href = item.url;
+        console.log(window.location.pathname);
       updateCartDisplay();
       handleCartPage();
       handleSalePage();
@@ -50,10 +51,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   
   const pageToProductType = {
-    "/new.html": "new",
-    "/bass.html": "bass",
-    "/classic.html": "classic",
-    "/accessories.html": "accessories",
+    "/new": "new",
+    "/bass": "bass",
+    "/classic": "classic",
+    "/accessories": "accessories",
   };
   
   document.addEventListener("DOMContentLoaded", function () {
@@ -341,7 +342,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Check if the current URL is reviews.html
-    if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews.html') {
+    if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews') {
         try {
             // Fetch existing reviews on page load
             const existingReviews = await fetchExistingReviews();
