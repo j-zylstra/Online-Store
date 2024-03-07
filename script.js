@@ -3,6 +3,7 @@ const productsElement = document.querySelector(".products");
 const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
+
 (() => {
     document.addEventListener("DOMContentLoaded", function () {
       const navigationItems = [
@@ -18,11 +19,24 @@ const totalItemsInCart = document.querySelector(".quantity");
   
       const handleNavigation = (item) => {
         console.log("Clicked on", item.id);
+        
+        // Perform actions after the navigation
+        const afterNavigation = () => {
+          console.log("After Navigation:", window.location.href);
+          updateCartDisplay();
+          handleCartPage();
+          handleSalePage();
+        };
+  
+        // Check if the navigation is synchronous or asynchronous
+        if (window.location.href === item.url) {
+          afterNavigation();
+        } else {
+          window.addEventListener('load', afterNavigation);
+        }
+
+        // Trigger the navigation
         window.location.href = item.url;
-        console.log(window.location.pathname);
-        updateCartDisplay();
-        handleCartPage();
-        handleSalePage();
       };
   
       const handleCartPage = () => {
@@ -49,8 +63,7 @@ const totalItemsInCart = document.querySelector(".quantity");
       handleSalePage();
     });
   })();
-  
-  
+
   const pageToProductType = {
     "/new": "new",
     "/bass": "bass",
