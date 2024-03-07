@@ -16,8 +16,9 @@ const totalItemsInCart = document.querySelector(".quantity");
         { id: "accessories", url: "accessories" },
       ];
   
-      const handleNavigation = (item) => {
+      const handleNavigation = (item, event) => {
         console.log("Clicked on", item.id);
+        event.preventDefault(); // Prevent the default behavior (page reload)
         window.location.href = item.url;
       };
   
@@ -34,10 +35,10 @@ const totalItemsInCart = document.querySelector(".quantity");
     //     }
     //   };
   
-      navigationItems.forEach((item) => {
+    navigationItems.forEach((item) => {
         const element = document.getElementById(item.id);
         if (element) {
-          element.addEventListener("click", () => handleNavigation(item));
+          element.addEventListener("click", (event) => handleNavigation(item, event));
         }
       });
   
