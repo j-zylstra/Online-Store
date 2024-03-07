@@ -3,7 +3,6 @@ const productsElement = document.querySelector(".products");
 const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
-
 (() => {
     document.addEventListener("DOMContentLoaded", function () {
       const navigationItems = [
@@ -19,8 +18,7 @@ const totalItemsInCart = document.querySelector(".quantity");
   
       const handleNavigation = (item) => {
         console.log("Clicked on", item.id);
-        
-        // Perform actions after the navigation
+  
         const afterNavigation = () => {
           console.log("After Navigation:", window.location.href);
           updateCartDisplay();
@@ -28,15 +26,15 @@ const totalItemsInCart = document.querySelector(".quantity");
           handleSalePage();
         };
   
-        // Check if the navigation is synchronous or asynchronous
         if (window.location.href === item.url) {
           afterNavigation();
         } else {
+          // Use the load event for asynchronous navigation
           window.addEventListener('load', afterNavigation);
+  
+          // Trigger the navigation after setting up the event listener
+          window.location.href = item.url;
         }
-
-        // Trigger the navigation
-        window.location.href = item.url;
       };
   
       const handleCartPage = () => {
@@ -59,11 +57,10 @@ const totalItemsInCart = document.querySelector(".quantity");
         }
       });
   
-      handleCartPage();
-      handleSalePage();
+      // Don't call handleCartPage() and handleSalePage() here; let them be triggered after navigation
     });
   })();
-
+  
   const pageToProductType = {
     "/new": "new",
     "/bass": "bass",
