@@ -3,52 +3,53 @@ const productsElement = document.querySelector(".products");
 const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    const navigationItems = [
-      { id: "home", url: "/" },
-      { id: "sale", url: "sale" },
-      { id: "review", url: "reviews" },
-      { id: "cart-link", url: "cart" },
-      { id: "new", url: "new" },
-      { id: "bass", url: "bass" },
-      { id: "classic", url: "classic" },
-      { id: "accessories", url: "accessories" },
-    ];
+(() => {
+    document.addEventListener("DOMContentLoaded", function () {
+      const navigationItems = [
+        { id: "home", url: "/" },
+        { id: "sale", url: "sale" },
+        { id: "review", url: "reviews" },
+        { id: "cart-link", url: "cart" },
+        { id: "new", url: "new" },
+        { id: "bass", url: "bass" },
+        { id: "classic", url: "classic" },
+        { id: "accessories", url: "accessories" },
+      ];
   
-    const handleNavigation = (item) => {
-      
+      const handleNavigation = (item) => {
         console.log("Clicked on", item.id);
         window.location.href = item.url;
         console.log(window.location.pathname);
-      updateCartDisplay();
+        updateCartDisplay();
+        handleCartPage();
+        handleSalePage();
+      };
+  
+      const handleCartPage = () => {
+        if (window.location.pathname.endsWith("cart")) {
+          updateCart();
+          updateUI();
+        }
+      };
+  
+      const handleSalePage = () => {
+        if (window.location.pathname.endsWith("sale")) {
+          renderSaleProducts();
+        }
+      };
+  
+      navigationItems.forEach((item) => {
+        const element = document.getElementById(item.id);
+        if (element) {
+          element.addEventListener("click", () => handleNavigation(item));
+        }
+      });
+  
       handleCartPage();
       handleSalePage();
-    };
-  
-    const handleCartPage = () => {
-      if (window.location.pathname.endsWith("cart")) {
-        updateCart();
-        updateUI();
-      }
-    };
-  
-    const handleSalePage = () => {
-      if (window.location.pathname.endsWith("sale")) {
-        renderSaleProducts();
-      }
-    };
-  
-    navigationItems.forEach((item) => {
-      const element = document.getElementById(item.id);
-      if (element) {
-        element.addEventListener("click", () => handleNavigation(item));
-      }
     });
+  })();
   
-    handleCartPage();
-    handleSalePage();
-  });
   
   const pageToProductType = {
     "/new": "new",
