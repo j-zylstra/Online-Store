@@ -18,37 +18,21 @@ const totalItemsInCart = document.querySelector(".quantity");
   
       const handleNavigation = (item) => {
         console.log("Clicked on", item.id);
-  
-        const afterNavigation = () => {
-          console.log("After Navigation:", window.location.href);
-          updateCartDisplay();
-          handleCartPage();
-          handleSalePage();
-        };
-  
-        if (window.location.href === item.url) {
-          afterNavigation();
-        } else {
-          // Use the load event for asynchronous navigation
-          window.addEventListener('load', afterNavigation);
-  
-          // Trigger the navigation after setting up the event listener
-          window.location.href = item.url;
-        }
+        window.location.href = item.url;
       };
   
-      const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart")) {
-          updateCart();
-          updateUI();
-        }
-      };
+    //   const handleCartPage = () => {
+    //     if (window.location.pathname.endsWith("cart")) {
+    //       updateCart();
+    //       updateUI();
+    //     }
+    //   };
   
-      const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
-          renderSaleProducts();
-        }
-      };
+    //   const handleSalePage = () => {
+    //     if (window.location.pathname.endsWith("sale")) {
+    //       renderSaleProducts();
+    //     }
+    //   };
   
       navigationItems.forEach((item) => {
         const element = document.getElementById(item.id);
