@@ -16,35 +16,38 @@ const totalItemsInCart = document.querySelector(".quantity");
         { id: "accessories", url: "accessories" },
       ];
   
-      const handleNavigation = (item, event) => {
+      const handleNavigation = (item) => {
         console.log("Clicked on", item.id);
-        event.preventDefault(); // Prevent the default behavior (page reload)
         window.location.href = item.url;
+        console.log(window.location.href);
+        updateCartDisplay();
+        handleCartPage();
+        handleSalePage();
       };
   
-    //   const handleCartPage = () => {
-    //     if (window.location.pathname.endsWith("cart")) {
-    //       updateCart();
-    //       updateUI();
-    //     }
-    //   };
+      const handleCartPage = () => {
+        if (window.location.pathname.endsWith("cart")) {
+          updateCart();
+          updateUI();
+        }
+      };
   
-    //   const handleSalePage = () => {
-    //     if (window.location.pathname.endsWith("sale")) {
-    //       renderSaleProducts();
-    //     }
-    //   };
+      const handleSalePage = () => {
+        if (window.location.pathname.endsWith("sale")) {
+          renderSaleProducts();
+        }
+      };
   
-    navigationItems.forEach((item) => {
+      navigationItems.forEach((item) => {
         const element = document.getElementById(item.id);
         if (element) {
-          element.addEventListener("click", (event) => handleNavigation(item, event));
+          element.addEventListener("click", () => handleNavigation(item));
         }
       });
-  
-      // Don't call handleCartPage() and handleSalePage() here; let them be triggered after navigation
+
     });
   })();
+  
   
   const pageToProductType = {
     "/new": "new",
