@@ -94,7 +94,7 @@ nav {
   color: rgb(141, 139, 139);
   cursor: pointer;
 }
-#cart {
+.cart {
   height: 50px;
 }
 
@@ -141,7 +141,7 @@ nav #cart-link:hover {
     justify-content: center;
   }
 
-.cart {
+.shopCart {
     height: 100%;
     width: 700px;
     position: relative;
@@ -370,7 +370,7 @@ p a {
 }
 
 @media all and (max-width: 900px) {
-    .cart {
+    .shopCart {
       width: 600px;
     }
 }
@@ -382,7 +382,7 @@ p a {
         position: fixed;
     }
 
-    .cart {
+    .shopCart {
       width: 550px;
     }
 
@@ -470,7 +470,7 @@ p a {
         height: 55px;
     }
 
-    #cart {
+    .cart {
         height: 38px;
     }
 
@@ -509,7 +509,7 @@ p a {
 }
 
 @media all and (max-width: 700px) {
-  .cart {
+  .shopCart {
     width: 500px;
   }
 
@@ -528,7 +528,7 @@ p a {
     font-size: 20px;
   }
 
-  .cart {
+  .shopCart {
     width: 400px;
   }
 
@@ -583,7 +583,7 @@ p a {
 
 @media all and (max-width: 500px) {
 
-  .cart {
+  .shopCart {
     width: 360px;
   }
 
@@ -636,7 +636,7 @@ p a {
     padding-top: 25px;
   }
 
-  .cart {
+  .shopCart {
     width: 300px;
   }
 

@@ -95,7 +95,7 @@ nav {
     cursor: pointer;
 }
 
-#cart {
+.cart {
     height: 50px;
 }
 
@@ -287,7 +287,7 @@ button:active {
         height: 55px;
     }
 
-    #cart {
+    .cart {
         height: 38px;
     }
 
