@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const salePath = {
         id: "sale",
-        url: "/sale"
+        url: "/sale.html"
     };
 
     const saleBtn = document.getElementById('sale');
