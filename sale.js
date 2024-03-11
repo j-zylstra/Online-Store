@@ -9,7 +9,7 @@ saleBtn.addEventListener('click', () => {
     window.location.href = salePath.url;
 }); 
 
-if (path === salePath.url) {
+if (window.location.href === salePath.url) {
     renderSaleProducts();
 };
 
