@@ -1,18 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const salePath = {
-        id: "sale",
-        url: "/sale.html"
-    };
-
-    const saleBtn = document.getElementById('sale');
-
-    saleBtn.addEventListener('click', () => {
-        window.location.href = salePath.url;
-        console.log("new sale logic working");
-        renderSaleProducts();
-    });
-});
-
 
 function renderSaleProducts() {
 
@@ -44,4 +29,27 @@ function renderSaleProducts() {
 
     
 };
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const salePath = {
+        id: "sale",
+        url: "/sale.html"
+    };
+
+    const saleBtn = document.getElementById('sale');
+
+    saleBtn.addEventListener('click', () => {
+        window.location.href = salePath.url;
+    });
+});
+
+if (window.location.pathname.endsWith("sale")) {
+    console.log("directed to sale page");
+    renderSaleProducts();
+}   
+
 
