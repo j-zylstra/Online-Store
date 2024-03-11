@@ -8,5 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     saleBtn.addEventListener('click', () => {
         window.location.href = salePath.url;
+        console.log("new sale logic working");
     });
 });
