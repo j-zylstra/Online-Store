@@ -1,2 +1,2 @@
-web: serve -s -l $PORT .
+web: serve -l $PORT .
 
