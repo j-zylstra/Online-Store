@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 if (window.location.pathname.endsWith("sale")) {
     console.log("directed to sale page");
-    // renderSaleProducts();
+    renderSaleProducts();
 }   
 
 
