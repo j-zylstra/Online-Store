@@ -3,67 +3,67 @@ const productsElement = document.querySelector(".products");
 const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
-// (() => {
-//     document.addEventListener("DOMContentLoaded", function () {
-//       const navigationItems = [
-//         { id: "home", url: "/" },
-//         { id: "sale", url: "sale" },
-//         { id: "review", url: "reviews" },
-//         { id: "cart-link", url: "cart" },
-//         { id: "new", url: "new" },
-//         { id: "bass", url: "bass" },
-//         { id: "classic", url: "classic" },
-//         { id: "accessories", url: "accessories" },
-//       ];
+(() => {
+    document.addEventListener("DOMContentLoaded", function () {
+      const navigationItems = [
+        { id: "home", url: "/" },
+        { id: "sale", url: "sale" },
+        { id: "review", url: "reviews" },
+        { id: "cart-link", url: "cart" },
+        { id: "new", url: "new" },
+        { id: "bass", url: "bass" },
+        { id: "classic", url: "classic" },
+        { id: "accessories", url: "accessories" },
+      ];
   
-//       const handleNavigation = (item) => {
-//         console.log("Clicked on", item.id);
-//         window.location.href = item.url;
-//         console.log(window.location.href);
-//         updateCartDisplay();
-//         handleCartPage();
-//         handleSalePage();
-//       };
+      const handleNavigation = (item) => {
+        console.log("Clicked on", item.id);
+        window.location.href = item.url;
+        console.log(window.location.href);
+        updateCartDisplay();
+        handleCartPage();
+        handleSalePage();
+      };
   
-//       const handleCartPage = () => {
-//         if (window.location.pathname.endsWith("cart")) {
-//           updateCart();
-//           updateUI();
-//         }
-//       };
+      const handleCartPage = () => {
+        if (window.location.pathname.endsWith("cart")) {
+          updateCart();
+          updateUI();
+        }
+      };
   
-//       const handleSalePage = () => {
-//         if (window.location.pathname.endsWith("sale")) {
-//           renderSaleProducts();
-//         }
-//       };
+      const handleSalePage = () => {
+        if (window.location.pathname.endsWith("sale")) {
+          renderSaleProducts();
+        }
+      };
   
-//       navigationItems.forEach((item) => {
-//         const element = document.getElementById(item.id);
-//         if (element) {
-//           element.addEventListener("click", () => handleNavigation(item));
-//         }
-//       });
+      navigationItems.forEach((item) => {
+        const element = document.getElementById(item.id);
+        if (element) {
+          element.addEventListener("click", () => handleNavigation(item));
+        }
+      });
 
-//     });
-//   })();
+    });
+  })();
   
   
-//   const pageToProductType = {
-//     "/new": "new",
-//     "/bass": "bass",
-//     "/classic": "classic",
-//     "/accessories": "accessories",
-//   };
+  const pageToProductType = {
+    "/new": "new",
+    "/bass": "bass",
+    "/classic": "classic",
+    "/accessories": "accessories",
+  };
   
-//   document.addEventListener("DOMContentLoaded", function () {
-//     const page = window.location.pathname;
-//     const productType = pageToProductType[page];
+  document.addEventListener("DOMContentLoaded", function () {
+    const page = window.location.pathname;
+    const productType = pageToProductType[page];
   
-//     if (productType) {
-//       renderProducts(productType);
-//     }
-//   });
+    if (productType) {
+      renderProducts(productType);
+    }
+  });
   
 
 
@@ -224,36 +224,36 @@ function renderProducts(type) {
     
 };
 
-// function renderSaleProducts() {
+function renderSaleProducts() {
 
-//     const saleProductsElement = document.querySelector(`.saleProducts`);
+    const saleProductsElement = document.querySelector(`.saleProducts`);
 
-//         fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/sale`)
-//         .then(response => response.json())
-//         .then(products => {
-//             console.log(products);
-//                 products.forEach((product) => {
+        fetch(`https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/products/type/sale`)
+        .then(response => response.json())
+        .then(products => {
+            console.log(products);
+                products.forEach((product) => {
                     
-//                         const card = document.createElement("div");
-//                         card.classList.add("card-border");
-//                         card.innerHTML = `
-//                             <img class="card" src="${product.imgsrc}" alt="">
-//                             <h3>${product.name}</h3>
-//                             <h2 id="old-price"><small>$</small>${product.oldprice}</h2>
-//                             <h2 id="price"><small>$</small>${product.price}</h2>
-//                             <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
-//                         `;
-//                         saleProductsElement.appendChild(card);
+                        const card = document.createElement("div");
+                        card.classList.add("card-border");
+                        card.innerHTML = `
+                            <img class="card" src="${product.imgsrc}" alt="">
+                            <h3>${product.name}</h3>
+                            <h2 id="old-price"><small>$</small>${product.oldprice}</h2>
+                            <h2 id="price"><small>$</small>${product.price}</h2>
+                            <button type="button" onclick="addToCart(${product.id})">Add To Cart</button>
+                        `;
+                        saleProductsElement.appendChild(card);
                         
-//                     } 
-//                 );
-//         })
-//         .catch(error => {
-//             console.log('Error:', error);
-//         });
+                    } 
+                );
+        })
+        .catch(error => {
+            console.log('Error:', error);
+        });
 
     
-// };
+};
 
 function updateCartDisplay() {
     const totalItemsInCart = document.querySelector(".quantity");
