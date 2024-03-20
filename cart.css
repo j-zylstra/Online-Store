@@ -176,6 +176,7 @@ nav #cart-link:hover {
   
 .cart-items {
     height: relative;
+    max-height: 50%;
     overflow-x: hidden;
     
   }
