@@ -177,6 +177,8 @@ nav #cart-link:hover {
 .cart-items {
     height:50%;
     overflow-x: hidden;
+    background: transparent;
+    backdrop-filter: blur(90px);
   }
 
 .cart-items::-webkit-scrollbar{
