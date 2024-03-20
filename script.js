@@ -22,7 +22,6 @@ const totalItemsInCart = document.querySelector(".quantity");
         console.log(window.location.href);
         updateCartDisplay();
         handleCartPage();
-        handleSalePage();
       };
   
       const handleCartPage = () => {
@@ -44,7 +43,7 @@ const totalItemsInCart = document.querySelector(".quantity");
           element.addEventListener("click", () => handleNavigation(item));
         }
       });
-
+      handleSalePage();
     });
   })();
   
