@@ -73,7 +73,7 @@ function renderCartItems(cart) {
 
     cart.forEach((product) => {
         newContent += `
-            <div class="cart-items">
+            <div class="cart-item">
                 <div class="item-info">
                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
                         <h4>${product.product.name}</h4>
