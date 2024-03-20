@@ -686,6 +686,7 @@ p a {
   }
 
   .cart-items {
-    height: 40%;
+    height: relative;
+    max-height: 40%;
   }
 }
