@@ -20,8 +20,6 @@ const totalItemsInCart = document.querySelector(".quantity");
         console.log("Clicked on", item.id);
         window.location.href = item.url;
         console.log(window.location.href);
-        updateCartDisplay();
-        handleCartPage();
       };
   
       const handleCartPage = () => {
@@ -44,6 +42,8 @@ const totalItemsInCart = document.querySelector(".quantity");
         }
       });
       handleSalePage();
+      updateCartDisplay();
+      handleCartPage();
     });
   })();
   
