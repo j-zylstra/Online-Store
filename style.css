@@ -1151,6 +1151,8 @@ footer {
     #nav-list {
         height: 500px;
     }
+
+
 }
 
 @media all and (max-height: 680px) {
@@ -1159,6 +1161,12 @@ footer {
         height: 400px;
         font-size: 1em;
         padding-top: 0;
+    }
+
+    .card {
+        height: 280px;
+        width: 200px;
+        padding-bottom: 15px;
     }
 }
 
