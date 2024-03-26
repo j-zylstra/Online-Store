@@ -1152,6 +1152,18 @@ footer {
         height: 500px;
     }
 
+    .card {
+        height: 280px;
+        width: 200px;
+        padding-bottom: 15px;
+    }
+
+    .card-border {
+        margin: 20px;
+        width: 2600px;
+        height: 320px;
+    }
+
 
 }
 
@@ -1161,12 +1173,6 @@ footer {
         height: 400px;
         font-size: 1em;
         padding-top: 0;
-    }
-
-    .card {
-        height: 280px;
-        width: 200px;
-        padding-bottom: 15px;
     }
 }
 
