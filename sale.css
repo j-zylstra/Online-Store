@@ -253,6 +253,7 @@ button:active {
 
     #bottom-menu {
         background-color: transparent;
+        backdrop-filter: blur(30px);
         width: 100vh;
         height: 20vh;
     }
@@ -372,6 +373,6 @@ button:active {
     .saleProducts {
         display: flex;
         justify-content: center;
-        
+
     }
 }
