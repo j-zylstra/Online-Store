@@ -1153,14 +1153,16 @@ footer {
     }
 
     .card {
-        height: 280px;
-        width: 200px;
-        padding-bottom: 15px;
+        height: 250px;
+        width: 180px;
+    
     }
+
+
 
     .card-border {
         margin: 20px;
-        width: 2600px;
+        width: 260px;
         height: 320px;
     }
 
