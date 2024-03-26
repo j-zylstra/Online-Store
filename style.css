@@ -1155,7 +1155,7 @@ footer {
     .card {
         height: 250px;
         width: 180px;
-    
+        margin-bottom: 0;
     }
 
 
