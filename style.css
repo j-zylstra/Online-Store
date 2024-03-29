@@ -858,7 +858,7 @@ footer {
     }
 
     #nav-list #bottom-menu ul {
-        position: fixed;
+        position: relative;
         display: block;
         text-align: left;
         padding-left: 0px;
