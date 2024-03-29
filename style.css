@@ -850,6 +850,7 @@ footer {
 
     #bottom-menu {
         width: 100vh;
+        position: fixed;
     }
 
     #nav-list #bottom-menu ul {

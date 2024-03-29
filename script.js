@@ -475,18 +475,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    window.addEventListener('scroll', function() {
-        var menu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
-        var navList = document.getElementById('nav-list');
-    
-        // Check if the menu is open and the window width is less than 613px (mobile)
-        if (menu.style.left === '0' && window.innerWidth < 613) {
-            menu.style.left = '-100%';
-            navList.style.webkitBackdropFilter = 'blur(0)'; // Reset backdrop filter
-            navList.style.backdropFilter = 'blur(0)'; // Reset backdrop filter
-        }
-    });
-    
+
     
 
 const closeLoginButton = document.getElementById('close-login');
