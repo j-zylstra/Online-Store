@@ -188,7 +188,7 @@ textarea {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 100px;
+    width: 80%;
 }
 
 button {
@@ -303,10 +303,15 @@ button {
             padding: 30px;
         }
 
+        #reviewsList {
+            width: 80%;
+        
+        }
+
         
         #reviewContent {
             background-color: aliceblue;
-            width: 70%;
+            width: 80%;
             height: 80px;
             border-radius: 20px;
             margin: 15px;
