@@ -306,10 +306,14 @@ button {
         
         #reviewContent {
             background-color: aliceblue;
-            width: 600px;
+            width: 70%;
             height: 80px;
             border-radius: 20px;
             margin: 15px;
+        }
+
+        button {
+            width: 60px;
         }
 }
 
