@@ -168,7 +168,7 @@ nav #cart-link:hover {
 
 #reviewContent {
     background-color: aliceblue;
-    width: 800px;
+    width: 70%;
     height: 80px;
     border-radius: 20px;
     margin: 15px;
@@ -193,7 +193,7 @@ textarea {
 
 button {
     width: 80px;
-    height: 88px;
+    height: 65px;
     border-radius: 20px;
     cursor: pointer;
     background-color: aliceblue;
