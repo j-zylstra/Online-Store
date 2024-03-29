@@ -334,12 +334,6 @@ button:active {
 
 }
 
-@media all and (max-width: 760px) {
-    #nav-list #bottom-menu ul {
-        position: relative;
-    }
-}
-
 @media all and (max-width: 700px) {
    
     .card-border {
