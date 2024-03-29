@@ -510,6 +510,13 @@ p a {
     
 }
 
+
+@media all and (max-width: 760px) {
+  #nav-list #bottom-menu ul {
+      position: relative;
+  }
+}
+
 @media all and (max-width: 700px) {
   .shopCart {
     width: 500px;

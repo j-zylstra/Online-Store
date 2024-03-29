@@ -302,3 +302,10 @@ button {
 
     
 }
+
+
+@media all and (max-width: 760px) {
+    #nav-list #bottom-menu ul {
+        position: relative;
+    }
+}
