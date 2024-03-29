@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Check if the current URL is reviews.html
-    if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews') {
+    if (window.location.href === 'https://riff-wired-27891913b14e.herokuapp.com/reviews' || window.location.href === 'http://riff-wired-27891913b14e.herokuapp.com/reviews') {
         try {
             // Fetch existing reviews on page load
             const existingReviews = await fetchExistingReviews();
