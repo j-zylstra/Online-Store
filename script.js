@@ -444,36 +444,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error in subscribe function:', error);
         }
     }
-
+    document.getElementById('check').addEventListener('click', function() {
+        var menu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
+        var navList = document.getElementById('nav-list');
     
-document.getElementById('check').addEventListener('click', function() {
-    var menu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
-    var navList = document.getElementById('nav-list');
-
-    // Check the current value of menu.style.left
-    if (menu.style.left === '-100%') {
-      menu.style.left = '0';
-      navList.style.backdropFilter = 'blur(30px)';
-    } else {
-      menu.style.left = '-100%';
-      navList.style.backdropFilter = 'blur(0)';
-    }
-  });
-
-  document.addEventListener("DOMContentLoaded", function() {
-    var loginElement = document.getElementById('login');
-
-    // Check if the element with ID 'login' exists
-    if (loginElement) {
-        loginElement.addEventListener('click', function() {
-            var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
-            
-            if (window.innerWidth < 613) {
-                bottomMenu.style.left = '-100%';
-            } 
-        });
-    }
-});
+        // Check the current value of menu.style.left
+        if (menu.style.left === '-100%') {
+            menu.style.left = '0';
+            navList.style.webkitBackdropFilter = 'blur(30px)'; // Safari
+            navList.style.backdropFilter = 'blur(30px)'; // Standard
+        } else {
+            menu.style.left = '-100%';
+            navList.style.webkitBackdropFilter = 'blur(0)'; // Safari
+            navList.style.backdropFilter = 'blur(0)'; // Standard
+        }
+    });
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        var loginElement = document.getElementById('login');
+    
+        // Check if the element with ID 'login' exists
+        if (loginElement) {
+            loginElement.addEventListener('click', function() {
+                var bottomMenu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
+                
+                if (window.innerWidth < 613) {
+                    bottomMenu.style.left = '-100%';
+                } 
+            });
+        }
+    });
+    
 
 const closeLoginButton = document.getElementById('close-login');
 
