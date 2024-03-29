@@ -7,7 +7,7 @@ body {
     width: 100vw;
 }
 
-.main {
+#main {
     display: flex;
     flex-direction: column;
     justify-content: center;
