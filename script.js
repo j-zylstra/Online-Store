@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             console.error('Error in subscribe function:', error);
         }
     }
-    document.getElementById('check').addEventListener('click', function() {
+    document.getElementById('hambrgr').addEventListener('click', function() {
         var menu = document.getElementById('bottom-menu').getElementsByTagName('ul')[0];
         var navList = document.getElementById('nav-list');
     
