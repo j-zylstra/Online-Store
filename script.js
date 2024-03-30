@@ -301,12 +301,49 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (reviewForm) {
         reviewForm.addEventListener('submit', async (event) => {
-            // Event listener for form submission
-            // Code omitted for brevity
+            event.preventDefault();
+
+            const comment = reviewContent.value.trim(); // Trim comment value to remove leading and trailing whitespace
+            const userId = sessionStorage.getItem('userId');
+
+            // Check if the comment is not empty and userId is defined
+            if (comment !== '' && userId !== null) {
+                try {
+                    // Make a fetch request to submit the review
+                    const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ userId, comment }),
+                    });
+
+                    if (response.ok) {
+                        // Handle the new review as needed (e.g., display it on the webpage)
+                        const data = await response.json();
+
+                        if (data.content.trim() !== "") {
+                            // Display the review only if it's not empty
+                            displayReview(data);
+                        } else {
+                            console.error('Received an empty review from the server:', data);
+                        }
+
+                        // Clear the form after submission
+                        reviewContent.value = '';
+                    } else {
+                        console.error(`Error: ${response.status} - ${response.statusText}`);
+                    }
+
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
+                console.error('Comment is empty or userId is not defined');
+            }
         });
     }
 
-    // Function to fetch existing reviews
     async function fetchExistingReviews() {
         try {
             const response = await fetch('https://aqueous-ocean-91362-9acaca4dceea.herokuapp.com/reviews/DB', {
