@@ -295,12 +295,12 @@ function updateCart() {
 
 };
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     const reviewForm = document.getElementById('reviewForm');
     const reviewContent = document.getElementById('reviewContent');
 
     if (reviewForm) {
-        reviewForm.addEventListener('submit', async (event) => {
+        reviewForm.addEventListener('submit', async (event) => { // Wrap the callback function in async
             event.preventDefault();
 
             const comment = reviewContent.value.trim(); // Trim comment value to remove leading and trailing whitespace
