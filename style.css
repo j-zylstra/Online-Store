@@ -823,7 +823,7 @@ footer {
         color: inherit;
     }
 
-    .check:hover {
+    #check:hover {
         background-color: transparent;
         color: inherit;
     }
