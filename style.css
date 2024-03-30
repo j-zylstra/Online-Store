@@ -823,11 +823,6 @@ footer {
         color: inherit;
     }
 
-    #check:hover {
-        background-color: transparent;
-        color: inherit;
-    }
-
     .checkbtn {
         display: block;
         font-size: 35px;
