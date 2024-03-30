@@ -325,6 +325,12 @@ button {
             border-radius: 20px;
             margin: 15px;
         }
+        
+        textarea {
+        line-height: 1.5;    
+        font-size: 1em;
+        font-weight: 400;
+        }
 
         button {
             width: 100px;
