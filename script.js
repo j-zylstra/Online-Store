@@ -177,7 +177,7 @@ function removeItemFromCart(id) {
 
     // Find the index of the item with the specified ID
     const itemIndex = cart.findIndex(product => product.id === id);
-
+    console.log(itemIndex);
     if (itemIndex !== -1) {
         // Remove the item from the cart array
         cart.splice(itemIndex, 1);
