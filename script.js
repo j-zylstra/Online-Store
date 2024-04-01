@@ -175,12 +175,22 @@ function removeItemFromCart(id) {
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
-    const updatedCart = cart.filter(product => product.id !== id);
+    // Find the index of the item with the specified ID
+    const itemIndex = cart.findIndex(product => product.id === id);
 
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    if (itemIndex !== -1) {
+        // Remove the item from the cart array
+        cart.splice(itemIndex, 1);
 
-    updateCart();
-    updateUI();
+        // Update localStorage with the modified cart array
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Update the cart display
+        updateCart();
+        
+        // Update the UI
+        updateUI();
+    }
 }
 
 
