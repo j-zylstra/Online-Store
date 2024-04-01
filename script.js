@@ -172,24 +172,17 @@ function renderSubtotal(action, id) {
 };
 
 function removeItemFromCart(id) {
-    
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
-    
-     
-     const itemIndex = cart.findIndex(product => product.id === id);
-     console.log(product.id);
 
-     if (itemIndex !== -1) {
-        
-         cart.splice(itemIndex.product.id);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    const updatedCart = cart.filter(product => product.id !== id);
 
-    
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+
     updateCart();
     updateUI();
-   };
 }
+
 
 function renderProducts(type) {
 
