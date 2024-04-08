@@ -77,7 +77,7 @@ function renderCartItems(cart) {
                 <div class="item-info">
                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
                         <h4>${product.product.name}</h4>
-                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.id})" name="close-circle-outline"></ion-icon></span>
+                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.product.id})" name="close-circle-outline"></ion-icon></span>
                 </div>
                 <div class="unit-price">
                     <h2><small>$</small>${product.product.price}</h2>
