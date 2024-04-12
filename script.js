@@ -3,70 +3,8 @@ const productsElement = document.querySelector(".products");
 const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
-(() => {
-    document.addEventListener("DOMContentLoaded", function () {
-      const navigationItems = [
-        { id: "home", url: "/" },
-        { id: "sale", url: "sale" },
-        { id: "review", url: "reviews" },
-        { id: "cart-link", url: "cart" },
-        { id: "new", url: "new" },
-        { id: "bass", url: "bass" },
-        { id: "classic", url: "classic" },
-        { id: "accessories", url: "accessories" },
-      ];
-  
-      const handleNavigation = (item) => {
-        console.log("Clicked on", item.id);
-        window.location.href = item.url;
-        console.log(window.location.href);
-      };
-  
-      const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart")) {
-          updateCart();
-          updateUI();
-        }
-      };
-  
-      const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
-          renderSaleProducts();
-        }
-      };
-  
-      navigationItems.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element) {
-          element.addEventListener("click", () => handleNavigation(item));
-        }
-      });
-      handleSalePage();
-      updateCartDisplay();
-      handleCartPage();
-    });
-  })();
-  
-  
-  const pageToProductType = {
-    "/new": "new",
-    "/bass": "bass",
-    "/classic": "classic",
-    "/accessories": "accessories",
-  };
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const page = window.location.pathname;
-    const productType = pageToProductType[page];
-  
-    if (productType) {
-      renderProducts(productType);
-    }
-  });
-  
 
-
-
+  
 function addToCart(id) {
 
     const storedCartData = localStorage.getItem('cart');
@@ -144,6 +82,28 @@ function renderSubtotal(action, id) {
     totalItemsInCart.innerHTML = totalItems;
 };
 
+function removeItemFromCart(id) {
+    const storedCartData = localStorage.getItem('cart');
+    let cart = storedCartData ? JSON.parse(storedCartData) : [];
+    console.log('remove item triggered');
+    // Find the index of the item with the specified ID
+    const itemIndex = cart.findIndex(item => item.product.id === id);
+    console.log(itemIndex);
+    if (itemIndex !== -1) {
+        // Remove the item from the cart array
+        cart.splice(itemIndex, 1);
+
+        // Update localStorage with the modified cart array
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Update the cart display
+        updateCart();
+        
+        // Update the UI
+        updateUI();
+    }
+}
+
 function renderCartItems(cart) {
     let newContent = '';
 
@@ -205,28 +165,6 @@ function renderCartItems(cart) {
     cartElement.addEventListener('touchmove', (event) => {
         event.preventDefault();
     });
-}
-
-function removeItemFromCart(id) {
-    const storedCartData = localStorage.getItem('cart');
-    let cart = storedCartData ? JSON.parse(storedCartData) : [];
-    console.log('remove item triggered');
-    // Find the index of the item with the specified ID
-    const itemIndex = cart.findIndex(item => item.product.id === id);
-    console.log(itemIndex);
-    if (itemIndex !== -1) {
-        // Remove the item from the cart array
-        cart.splice(itemIndex, 1);
-
-        // Update localStorage with the modified cart array
-        localStorage.setItem('cart', JSON.stringify(cart));
-        
-        // Update the cart display
-        updateCart();
-        
-        // Update the UI
-        updateUI();
-    }
 }
 
 function renderProducts(type) {
@@ -527,5 +465,66 @@ if (closeLoginButton) {
         }
     });
 };
+
+(() => {
+    document.addEventListener("DOMContentLoaded", function () {
+      const navigationItems = [
+        { id: "home", url: "/" },
+        { id: "sale", url: "sale" },
+        { id: "review", url: "reviews" },
+        { id: "cart-link", url: "cart" },
+        { id: "new", url: "new" },
+        { id: "bass", url: "bass" },
+        { id: "classic", url: "classic" },
+        { id: "accessories", url: "accessories" },
+      ];
+  
+      const handleNavigation = (item) => {
+        console.log("Clicked on", item.id);
+        window.location.href = item.url;
+        console.log(window.location.href);
+      };
+  
+      const handleCartPage = () => {
+        if (window.location.pathname.endsWith("cart")) {
+          updateCart();
+          updateUI();
+        }
+      };
+  
+      const handleSalePage = () => {
+        if (window.location.pathname.endsWith("sale")) {
+          renderSaleProducts();
+        }
+      };
+  
+      navigationItems.forEach((item) => {
+        const element = document.getElementById(item.id);
+        if (element) {
+          element.addEventListener("click", () => handleNavigation(item));
+        }
+      });
+      handleSalePage();
+      updateCartDisplay();
+      handleCartPage();
+    });
+  })();
+  
+  
+  const pageToProductType = {
+    "/new": "new",
+    "/bass": "bass",
+    "/classic": "classic",
+    "/accessories": "accessories",
+  };
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const page = window.location.pathname;
+    const productType = pageToProductType[page];
+  
+    if (productType) {
+      renderProducts(productType);
+    }
+  });
 
 
