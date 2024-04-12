@@ -94,7 +94,7 @@ const totalItemsInCart = document.querySelector(".quantity");
     const iconCloseElements = document.querySelectorAll('.icon-close');
     iconCloseElements.forEach((element) => {
         element.addEventListener('click', () => {
-            const productId = element.dataset.id;
+            const productId = element.dataset.product.id;
             removeItemFromCart(productId);
         });
     });
@@ -103,7 +103,7 @@ const totalItemsInCart = document.querySelector(".quantity");
     btnElements.forEach((element) => {
         element.addEventListener('click', () => {
             const action = element.dataset.action;
-            const productId = element.dataset.id;
+            const productId = element.dataset.product.id;
             changeNumberOfUnits(action, productId);
         });
     });
