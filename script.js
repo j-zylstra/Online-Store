@@ -24,6 +24,7 @@ const totalItemsInCart = document.querySelector(".quantity");
   
       const handleCartPage = () => {
         if (window.location.pathname.endsWith("cart")) {
+          
           updateCart();
           updateUI();
         }
