@@ -71,7 +71,8 @@ const totalItemsInCart = document.querySelector(".quantity");
 
     cart.forEach((product) => {
         const productId = product.product.id; // Get product ID
-
+        console.log(productId);
+        console.log(product.product.id);
         newContent += `
             <div class="cart-item">
                 <div class="item-info">
@@ -91,6 +92,8 @@ const totalItemsInCart = document.querySelector(".quantity");
     });
 
     cartElement.innerHTML = newContent;
+
+
 
     // Add event listeners for click and touch events to each individual element
     const iconCloseElements = document.querySelectorAll('.icon-close');
