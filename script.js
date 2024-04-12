@@ -71,8 +71,7 @@ const totalItemsInCart = document.querySelector(".quantity");
 
     cart.forEach((product) => {
         const productId = product.product.id; // Get product ID
-        console.log(productId);
-        console.log(product.product.id);
+        
         newContent += `
             <div class="cart-item">
                 <div class="item-info">
@@ -101,10 +100,12 @@ const totalItemsInCart = document.querySelector(".quantity");
         const productId = element.dataset.id; // Get product ID
         element.addEventListener('click', () => {
             removeItemFromCart(productId);
+            console.log(productId);
         });
         element.addEventListener('touchstart', (event) => {
             event.preventDefault(); // Prevent default touch behavior
             removeItemFromCart(productId);
+            console.log(productId);
         });
     });
 
@@ -114,11 +115,13 @@ const totalItemsInCart = document.querySelector(".quantity");
         element.addEventListener('click', () => {
             const action = element.dataset.action;
             changeNumberOfUnits(action, productId);
+            console.log(action, productId); 
         });
         element.addEventListener('touchstart', (event) => {
             event.preventDefault(); // Prevent default touch behavior
             const action = element.dataset.action;
             changeNumberOfUnits(action, productId);
+            console.log(action, productId); 
         });
     });
 }
