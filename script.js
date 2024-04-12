@@ -67,60 +67,32 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 
 
-  function renderCartItems(cart) {
-    let newContent = '';
+function renderCartItems(cart) {
+
+    let newContent = ''; 
 
     cart.forEach((product) => {
         newContent += `
             <div class="cart-item">
                 <div class="item-info">
                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
-                    <h4>${product.product.name}</h4>
-                    <span><ion-icon class="icon-close" data-id="${product.product.id}" name="close-circle-outline"></ion-icon></span>
+                        <h4>${product.product.name}</h4>
+                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.product.id})" name="close-circle-outline"></ion-icon></span>
                 </div>
                 <div class="unit-price">
                     <h2><small>$</small>${product.product.price}</h2>
                 </div>
                 <div class="units">
-                    <div class="btn minus" data-action="minus" data-id="${product.product.id}">-</div>
+                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
                     <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus" data-action="plus" data-id="${product.product.id}">+</div>
+                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
                 </div>
             </div>`;
-    });
-
-    cartElement.innerHTML = newContent;
-
-    // Add event listeners for both click and touch events
-    const iconCloseElements = document.querySelectorAll('.icon-close');
-    iconCloseElements.forEach((element) => {
-        const productId = element.dataset.id; // Get product ID here
-        element.addEventListener('click', () => {
-            removeItemFromCart(productId);
+                               
         });
-        element.addEventListener('touchstart', (event) => {
-            event.preventDefault(); // Prevent default touch behavior
-            removeItemFromCart(productId);
-        });
-        console.log(productId);
-    });
-
-    const btnElements = document.querySelectorAll('.btn');
-    btnElements.forEach((element) => {
-        const productId = element.dataset.id; // Get product ID here
-        element.addEventListener('click', () => {
-            const action = element.dataset.action;
-            changeNumberOfUnits(action, productId);
-        });
-        element.addEventListener('touchstart', (event) => {
-            event.preventDefault(); // Prevent default touch behavior
-            const action = element.dataset.action;
-            changeNumberOfUnits(action, productId);
-        });
-        console.log(action);
-    });
-}
-
+            cartElement.innerHTML = newContent;
+                    
+};
 
 function addToCart(id) {
 
