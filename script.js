@@ -66,33 +66,49 @@ const totalItemsInCart = document.querySelector(".quantity");
   
 
 
-
-function renderCartItems(cart) {
-
-    let newContent = ''; 
+  function renderCartItems(cart) {
+    let newContent = '';
 
     cart.forEach((product) => {
         newContent += `
             <div class="cart-item">
                 <div class="item-info">
                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
-                        <h4>${product.product.name}</h4>
-                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.product.id})" name="close-circle-outline"></ion-icon></span>
+                    <h4>${product.product.name}</h4>
+                    <span><ion-icon class="icon-close" data-id="${product.product.id}" name="close-circle-outline"></ion-icon></span>
                 </div>
                 <div class="unit-price">
                     <h2><small>$</small>${product.product.price}</h2>
                 </div>
                 <div class="units">
-                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
+                    <div class="btn minus" data-action="minus" data-id="${product.product.id}">-</div>
                     <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
+                    <div class="btn plus" data-action="plus" data-id="${product.product.id}">+</div>
                 </div>
             </div>`;
-                               
+    });
+
+    cartElement.innerHTML = newContent;
+
+    // Add event listeners for the click events
+    const iconCloseElements = document.querySelectorAll('.icon-close');
+    iconCloseElements.forEach((element) => {
+        element.addEventListener('click', () => {
+            const productId = element.dataset.id;
+            removeItemFromCart(productId);
         });
-            cartElement.innerHTML = newContent;
-                    
-};
+    });
+
+    const btnElements = document.querySelectorAll('.btn');
+    btnElements.forEach((element) => {
+        element.addEventListener('click', () => {
+            const action = element.dataset.action;
+            const productId = element.dataset.id;
+            changeNumberOfUnits(action, productId);
+        });
+    });
+}
+
 
 function addToCart(id) {
 
