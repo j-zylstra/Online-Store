@@ -167,7 +167,7 @@ function changeNumberOfUnits(action, id) {
         const storedCartData = localStorage.getItem('cart');
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
-        
+        console.log('change units triggered');
         cart = cart.map((product) => {
             if (product.product.id === id) {
                 let numberOfUnits = product.numberOfUnits;
@@ -209,7 +209,7 @@ function renderSubtotal(action, id) {
 function removeItemFromCart(id) {
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
-
+    console.log('remove item triggered');
     // Find the index of the item with the specified ID
     const itemIndex = cart.findIndex(item => item.product.id === id);
     console.log(itemIndex);
