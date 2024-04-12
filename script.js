@@ -101,11 +101,38 @@ function removeItemFromCart(id) {
         
         // Update the UI
         updateUI();
+
+        renderCartItems(cart);
     }
 }
 
 function renderCartItems(cart) {
-    // Add event listeners for click and touch events first
+    let newContent = '';
+
+    cart.forEach((product) => {
+        const productId = product.product.id; // Get product ID
+
+        newContent += `
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="${product.product.imgsrc}" alt="${product.product.name}">
+                    <h4>${product.product.name}</h4>
+                    <span><ion-icon class="icon-close" data-id="${productId}" name="close-circle-outline"></ion-icon></span>
+                </div>
+                <div class="unit-price">
+                    <h2><small>$</small>${product.product.price}</h2>
+                </div>
+                <div class="units">
+                    <div class="btn minus" data-action="minus" data-id="${productId}">-</div>
+                    <div class="number">${product.numberOfUnits}</div>
+                    <div class="btn plus" data-action="plus" data-id="${productId}">+</div>
+                </div>
+            </div>`;
+    });
+
+    cartElement.innerHTML = newContent;
+
+    // Add event listeners for click and touch events to each individual element
     const iconCloseElements = document.querySelectorAll('.icon-close');
     iconCloseElements.forEach((element) => {
         const productId = element.dataset.id; // Get product ID
@@ -136,30 +163,10 @@ function renderCartItems(cart) {
         });
     });
 
-    // Build the new content after declaring event listeners
-    let newContent = '';
-    cart.forEach((product) => {
-        const productId = product.product.id; // Get product ID
-
-        newContent += `
-            <div class="cart-item">
-                <div class="item-info">
-                    <img src="${product.product.imgsrc}" alt="${product.product.name}">
-                    <h4>${product.product.name}</h4>
-                    <span><ion-icon class="icon-close" data-id="${productId}" name="close-circle-outline"></ion-icon></span>
-                </div>
-                <div class="unit-price">
-                    <h2><small>$</small>${product.product.price}</h2>
-                </div>
-                <div class="units">
-                    <div class="btn minus" data-action="minus" data-id="${productId}">-</div>
-                    <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus" data-action="plus" data-id="${productId}">+</div>
-                </div>
-            </div>`;
+    // Prevent touchmove event on the cart container to ensure touch events are triggered properly
+    cartElement.addEventListener('touchmove', (event) => {
+        event.preventDefault();
     });
-
-    cartElement.innerHTML = newContent;
 }
 
 function renderProducts(type) {
@@ -261,7 +268,7 @@ function updateCart() {
         cart = JSON.parse(storedCartData);
     }
             
-    renderCartItems(cart);
+    
     renderSubtotal();
     updateCartDisplay();
 
@@ -461,65 +468,6 @@ if (closeLoginButton) {
     });
 };
 
-(() => {
-    document.addEventListener("DOMContentLoaded", function () {
-      const navigationItems = [
-        { id: "home", url: "/" },
-        { id: "sale", url: "sale" },
-        { id: "review", url: "reviews" },
-        { id: "cart-link", url: "cart" },
-        { id: "new", url: "new" },
-        { id: "bass", url: "bass" },
-        { id: "classic", url: "classic" },
-        { id: "accessories", url: "accessories" },
-      ];
-  
-      const handleNavigation = (item) => {
-        console.log("Clicked on", item.id);
-        window.location.href = item.url;
-        console.log(window.location.href);
-      };
-  
-      const handleCartPage = () => {
-        if (window.location.pathname.endsWith("cart")) {
-          updateCart();
-          updateUI();
-        }
-      };
-  
-      const handleSalePage = () => {
-        if (window.location.pathname.endsWith("sale")) {
-          renderSaleProducts();
-        }
-      };
-  
-      navigationItems.forEach((item) => {
-        const element = document.getElementById(item.id);
-        if (element) {
-          element.addEventListener("click", () => handleNavigation(item));
-        }
-      });
-      handleSalePage();
-      updateCartDisplay();
-      handleCartPage();
-    });
-  })();
-  
-  
-  const pageToProductType = {
-    "/new": "new",
-    "/bass": "bass",
-    "/classic": "classic",
-    "/accessories": "accessories",
-  };
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const page = window.location.pathname;
-    const productType = pageToProductType[page];
-  
-    if (productType) {
-      renderProducts(productType);
-    }
-  });
+
 
 
