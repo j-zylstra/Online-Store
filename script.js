@@ -66,33 +66,68 @@ const totalItemsInCart = document.querySelector(".quantity");
   
 
 
-
-function renderCartItems(cart) {
-
-    let newContent = ''; 
+  function renderCartItems(cart) {
+    let newContent = '';
 
     cart.forEach((product) => {
         newContent += `
             <div class="cart-item">
                 <div class="item-info">
                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
-                        <h4>${product.product.name}</h4>
-                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.product.id})" name="close-circle-outline"></ion-icon></span>
+                    <h4>${product.product.name}</h4>
+                    <span><ion-icon class="icon-close" data-id="${product.product.id}" name="close-circle-outline"></ion-icon></span>
                 </div>
                 <div class="unit-price">
                     <h2><small>$</small>${product.product.price}</h2>
                 </div>
                 <div class="units">
-                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
+                    <div class="btn minus" data-action="minus" data-id="${product.product.id}">-</div>
                     <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
+                    <div class="btn plus" data-action="plus" data-id="${product.product.id}">+</div>
                 </div>
             </div>`;
-                               
-        });
-            cartElement.innerHTML = newContent;
-                    
-};
+    });
+
+    cartElement.innerHTML = newContent;
+
+    // Add event listener to the cart element for click and touch events
+    cartElement.addEventListener('click', handleClick);
+    cartElement.addEventListener('touchstart', handleTouch);
+}
+
+function handleClick(event) {
+    const target = event.target.closest('.cart-item');
+    if (!target) return; // Exit if the clicked element is not a cart item
+    const iconClose = target.querySelector('.icon-close');
+    const btn = target.querySelector('.btn');
+
+    if (event.target === iconClose) {
+        const productId = iconClose.dataset.id;
+        removeItemFromCart(productId);
+    } else if (event.target === btn) {
+        const action = btn.dataset.action;
+        const productId = btn.dataset.id;
+        changeNumberOfUnits(action, productId);
+    }
+}
+
+function handleTouch(event) {
+    event.preventDefault(); // Prevent default touch behavior
+    const target = event.target.closest('.cart-item');
+    if (!target) return; // Exit if the touched element is not a cart item
+    const iconClose = target.querySelector('.icon-close');
+    const btn = target.querySelector('.btn');
+
+    if (iconClose && event.target === iconClose) {
+        const productId = iconClose.dataset.id;
+        removeItemFromCart(productId);
+    } else if (btn && event.target === btn) {
+        const action = btn.dataset.action;
+        const productId = btn.dataset.id;
+        changeNumberOfUnits(action, productId);
+    }
+}
+
 
 function addToCart(id) {
 
