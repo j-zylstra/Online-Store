@@ -71,7 +71,7 @@ const totalItemsInCart = document.querySelector(".quantity");
 
     cart.forEach((product) => {
         const productId = product.product.id; // Get product ID
-        
+
         newContent += `
             <div class="cart-item">
                 <div class="item-info">
@@ -92,20 +92,16 @@ const totalItemsInCart = document.querySelector(".quantity");
 
     cartElement.innerHTML = newContent;
 
-
-
     // Add event listeners for click and touch events to each individual element
     const iconCloseElements = document.querySelectorAll('.icon-close');
     iconCloseElements.forEach((element) => {
         const productId = element.dataset.id; // Get product ID
         element.addEventListener('click', () => {
             removeItemFromCart(productId);
-            console.log(productId);
         });
         element.addEventListener('touchstart', (event) => {
             event.preventDefault(); // Prevent default touch behavior
             removeItemFromCart(productId);
-            console.log(productId);
         });
     });
 
@@ -115,17 +111,19 @@ const totalItemsInCart = document.querySelector(".quantity");
         element.addEventListener('click', () => {
             const action = element.dataset.action;
             changeNumberOfUnits(action, productId);
-            console.log(action, productId); 
         });
         element.addEventListener('touchstart', (event) => {
             event.preventDefault(); // Prevent default touch behavior
             const action = element.dataset.action;
             changeNumberOfUnits(action, productId);
-            console.log(action, productId); 
         });
     });
-}
 
+    // Prevent touchmove event on the cart container to ensure touch events are triggered properly
+    cartElement.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+    });
+}
 
 function addToCart(id) {
 
