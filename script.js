@@ -105,32 +105,7 @@ function removeItemFromCart(id) {
 }
 
 function renderCartItems(cart) {
-    let newContent = '';
-
-    cart.forEach((product) => {
-        const productId = product.product.id; // Get product ID
-
-        newContent += `
-            <div class="cart-item">
-                <div class="item-info">
-                    <img src="${product.product.imgsrc}" alt="${product.product.name}">
-                    <h4>${product.product.name}</h4>
-                    <span><ion-icon class="icon-close" data-id="${productId}" name="close-circle-outline"></ion-icon></span>
-                </div>
-                <div class="unit-price">
-                    <h2><small>$</small>${product.product.price}</h2>
-                </div>
-                <div class="units">
-                    <div class="btn minus" data-action="minus" data-id="${productId}">-</div>
-                    <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus" data-action="plus" data-id="${productId}">+</div>
-                </div>
-            </div>`;
-    });
-
-    cartElement.innerHTML = newContent;
-
-    // Add event listeners for click and touch events to each individual element
+    // Add event listeners for click and touch events first
     const iconCloseElements = document.querySelectorAll('.icon-close');
     iconCloseElements.forEach((element) => {
         const productId = element.dataset.id; // Get product ID
@@ -161,10 +136,30 @@ function renderCartItems(cart) {
         });
     });
 
-    // Prevent touchmove event on the cart container to ensure touch events are triggered properly
-    cartElement.addEventListener('touchmove', (event) => {
-        event.preventDefault();
+    // Build the new content after declaring event listeners
+    let newContent = '';
+    cart.forEach((product) => {
+        const productId = product.product.id; // Get product ID
+
+        newContent += `
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="${product.product.imgsrc}" alt="${product.product.name}">
+                    <h4>${product.product.name}</h4>
+                    <span><ion-icon class="icon-close" data-id="${productId}" name="close-circle-outline"></ion-icon></span>
+                </div>
+                <div class="unit-price">
+                    <h2><small>$</small>${product.product.price}</h2>
+                </div>
+                <div class="units">
+                    <div class="btn minus" data-action="minus" data-id="${productId}">-</div>
+                    <div class="number">${product.numberOfUnits}</div>
+                    <div class="btn plus" data-action="plus" data-id="${productId}">+</div>
+                </div>
+            </div>`;
     });
+
+    cartElement.innerHTML = newContent;
 }
 
 function renderProducts(type) {
