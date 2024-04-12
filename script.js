@@ -3,8 +3,70 @@ const productsElement = document.querySelector(".products");
 const subtotalElement = document.querySelector(".subtotal");
 const totalItemsInCart = document.querySelector(".quantity");
 
-
+(() => {
+    document.addEventListener("DOMContentLoaded", function () {
+      const navigationItems = [
+        { id: "home", url: "/" },
+        { id: "sale", url: "sale" },
+        { id: "review", url: "reviews" },
+        { id: "cart-link", url: "cart" },
+        { id: "new", url: "new" },
+        { id: "bass", url: "bass" },
+        { id: "classic", url: "classic" },
+        { id: "accessories", url: "accessories" },
+      ];
   
+      const handleNavigation = (item) => {
+        console.log("Clicked on", item.id);
+        window.location.href = item.url;
+        console.log(window.location.href);
+      };
+  
+      const handleCartPage = () => {
+        if (window.location.pathname.endsWith("cart")) {
+          updateCart();
+          updateUI();
+        }
+      };
+  
+      const handleSalePage = () => {
+        if (window.location.pathname.endsWith("sale")) {
+          renderSaleProducts();
+        }
+      };
+  
+      navigationItems.forEach((item) => {
+        const element = document.getElementById(item.id);
+        if (element) {
+          element.addEventListener("click", () => handleNavigation(item));
+        }
+      });
+      handleSalePage();
+      updateCartDisplay();
+      handleCartPage();
+    });
+  })();
+  
+  
+  const pageToProductType = {
+    "/new": "new",
+    "/bass": "bass",
+    "/classic": "classic",
+    "/accessories": "accessories",
+  };
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const page = window.location.pathname;
+    const productType = pageToProductType[page];
+  
+    if (productType) {
+      renderProducts(productType);
+    }
+  });
+  
+
+
+
 function addToCart(id) {
 
     const storedCartData = localStorage.getItem('cart');
@@ -101,8 +163,6 @@ function removeItemFromCart(id) {
         
         // Update the UI
         updateUI();
-
-        renderCartItems(cart);
     }
 }
 
@@ -268,7 +328,7 @@ function updateCart() {
         cart = JSON.parse(storedCartData);
     }
             
-    
+    renderCartItems(cart);
     renderSubtotal();
     updateCartDisplay();
 
@@ -467,7 +527,5 @@ if (closeLoginButton) {
         }
     });
 };
-
-
 
 
