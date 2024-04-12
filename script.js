@@ -66,6 +66,7 @@ const totalItemsInCart = document.querySelector(".quantity");
   
 
 
+
   function renderCartItems(cart) {
     let newContent = '';
 
@@ -90,20 +91,29 @@ const totalItemsInCart = document.querySelector(".quantity");
 
     cartElement.innerHTML = newContent;
 
-    // Add event listeners for the click events
+    // Add event listeners for both click and touch events
     const iconCloseElements = document.querySelectorAll('.icon-close');
     iconCloseElements.forEach((element) => {
+        const productId = element.dataset.id; // Get product ID here
         element.addEventListener('click', () => {
-            const productId = element.dataset.product.id;
+            removeItemFromCart(productId);
+        });
+        element.addEventListener('touchstart', (event) => {
+            event.preventDefault(); // Prevent default touch behavior
             removeItemFromCart(productId);
         });
     });
 
     const btnElements = document.querySelectorAll('.btn');
     btnElements.forEach((element) => {
+        const productId = element.dataset.id; // Get product ID here
         element.addEventListener('click', () => {
             const action = element.dataset.action;
-            const productId = element.dataset.product.id;
+            changeNumberOfUnits(action, productId);
+        });
+        element.addEventListener('touchstart', (event) => {
+            event.preventDefault(); // Prevent default touch behavior
+            const action = element.dataset.action;
             changeNumberOfUnits(action, productId);
         });
     });
