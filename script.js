@@ -98,10 +98,12 @@ const totalItemsInCart = document.querySelector(".quantity");
         const productId = element.dataset.id; // Get product ID
         element.addEventListener('click', () => {
             removeItemFromCart(productId);
+            console.log('remove from cart clicked');
         });
         element.addEventListener('touchstart', (event) => {
             event.preventDefault(); // Prevent default touch behavior
             removeItemFromCart(productId);
+            console.log('remove from cart touched');
         });
     });
 
@@ -111,11 +113,13 @@ const totalItemsInCart = document.querySelector(".quantity");
         element.addEventListener('click', () => {
             const action = element.dataset.action;
             changeNumberOfUnits(action, productId);
+            console.log('change number of units clicked');
         });
         element.addEventListener('touchstart', (event) => {
             event.preventDefault(); // Prevent default touch behavior
             const action = element.dataset.action;
             changeNumberOfUnits(action, productId);
+            console.log('remove from cart touched');
         });
     });
 
