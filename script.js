@@ -144,28 +144,6 @@ function renderSubtotal(action, id) {
     totalItemsInCart.innerHTML = totalItems;
 };
 
-function removeItemFromCart(id) {
-    const storedCartData = localStorage.getItem('cart');
-    let cart = storedCartData ? JSON.parse(storedCartData) : [];
-    console.log('remove item triggered');
-    // Find the index of the item with the specified ID
-    const itemIndex = cart.findIndex(item => item.product.id === id);
-    console.log(itemIndex);
-    if (itemIndex !== -1) {
-        // Remove the item from the cart array
-        cart.splice(itemIndex, 1);
-
-        // Update localStorage with the modified cart array
-        localStorage.setItem('cart', JSON.stringify(cart));
-        
-        // Update the cart display
-        updateCart();
-        
-        // Update the UI
-        updateUI();
-    }
-}
-
 function renderCartItems(cart) {
     let newContent = '';
 
@@ -227,6 +205,28 @@ function renderCartItems(cart) {
     cartElement.addEventListener('touchmove', (event) => {
         event.preventDefault();
     });
+}
+
+function removeItemFromCart(id) {
+    const storedCartData = localStorage.getItem('cart');
+    let cart = storedCartData ? JSON.parse(storedCartData) : [];
+    console.log('remove item triggered');
+    // Find the index of the item with the specified ID
+    const itemIndex = cart.findIndex(item => item.product.id === id);
+    console.log(itemIndex);
+    if (itemIndex !== -1) {
+        // Remove the item from the cart array
+        cart.splice(itemIndex, 1);
+
+        // Update localStorage with the modified cart array
+        localStorage.setItem('cart', JSON.stringify(cart));
+        
+        // Update the cart display
+        updateCart();
+        
+        // Update the UI
+        updateUI();
+    }
 }
 
 function renderProducts(type) {
