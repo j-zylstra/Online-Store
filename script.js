@@ -150,13 +150,10 @@ function removeItemFromCart(id) {
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
     console.log('remove item triggered');
     // Find the index of the item with the specified ID
-    const itemIndex = cart.findIndex(item => item.product.id === id);
-    console.log(itemIndex);
-    updateCart();
-    if (itemIndex !== -1) {
-        // Remove the item from the cart array
-        cart.splice(itemIndex, 1);
-
+    cart = cart.filter(item => item.id !== id);
+    console.log('removed item with id: ${id}');
+    
+    
         // Update localStorage with the modified cart array
         localStorage.setItem('cart', JSON.stringify(cart));
         
@@ -166,7 +163,6 @@ function removeItemFromCart(id) {
         // Update the UI
         updateUI();
     }
-}
 
 function renderCartItems(cart) {
     let newContent = '';
