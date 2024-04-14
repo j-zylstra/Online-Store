@@ -150,8 +150,8 @@ function removeItemFromCart(id) {
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
     console.log('remove item triggered');
     // Find the index of the item with the specified ID
-    cart = cart.filter(item => item.id !== id);
-    console.log('removed item with id: ${id}');
+    cart = cart.filter(item => item.product.id !== id);
+    console.log(`removed item with id: ${id} from cart`);
     
     
         // Update localStorage with the modified cart array
