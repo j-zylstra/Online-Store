@@ -145,18 +145,26 @@ function renderSubtotal(action, id) {
     totalItemsInCart.innerHTML = totalItems;
 }
 function removeItemFromCart(id) {
-    console.log(`removing item from cart with the id of: ${id}`);
+    console.log(`Removing item from cart with ID: ${id}`);
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
+    // Filter out the item to be removed
     const updatedCart = cart.filter(item => item.product.id !== id);
 
+    // Log the updated cart
+    console.log('Updated cart:', updatedCart);
+
+    // Store the updated cart in local storage
     localStorage.setItem('cart', JSON.stringify(updatedCart));
 
+    // Update the cart UI
     updateCart();
     updateUI();
-    console.log("remove item from cart function triggered");
+
+    console.log("Remove item from cart function triggered");
 }
+
 
 cartElement.addEventListener('click', function(event) {
     // Check if the clicked element is the close icon
