@@ -145,6 +145,7 @@ function renderSubtotal(action, id) {
     totalItemsInCart.innerHTML = totalItems;
 }
 function removeItemFromCart(id) {
+    console.log(`removing item from cart with the id of: ${id}`);
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
