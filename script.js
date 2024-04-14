@@ -144,13 +144,17 @@ function renderSubtotal(action, id) {
     subtotalElement.innerHTML = `Subtotal (${totalItems} items): $${totalPrice.toFixed(2)}`;
     totalItemsInCart.innerHTML = totalItems;
 }
+
 function removeItemFromCart(id) {
     console.log(`Removing item from cart with ID: ${id}`);
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
+    // Convert id to string if necessary
+    id = id.toString();
+
     // Filter out the item to be removed
-    const updatedCart = cart.filter(item => item.product.id !== id);
+    const updatedCart = cart.filter(item => item.product.id.toString() !== id);
 
     // Log the updated cart
     console.log('Updated cart:', updatedCart);
@@ -164,6 +168,7 @@ function removeItemFromCart(id) {
 
     console.log("Remove item from cart function triggered");
 }
+
 
 
 cartElement.addEventListener('click', function(event) {
