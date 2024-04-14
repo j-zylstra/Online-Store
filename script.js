@@ -148,21 +148,26 @@ function renderSubtotal(action, id) {
 function removeItemFromCart(id) {
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
-    console.log('remove item triggered');
-    // Find the index of the item with the specified ID
-    cart = cart.filter(item => item.product.id !== id);
-    console.log(`removed item with id: ${id} from cart`);
+    console.log('Cart before removal:', cart);
+
+    // Filter out the item with the specified ID
+    cart = cart.filter(item => {
+        console.log('Item ID:', item.product.id);
+        console.log('Target ID:', id);
+        return item.product.id !== id;
+    });
+    console.log('Cart after removal:', cart);
+
+    // Update localStorage with the modified cart array
+    localStorage.setItem('cart', JSON.stringify(cart));
     
+    // Update the cart display
+    updateCart();
     
-        // Update localStorage with the modified cart array
-        localStorage.setItem('cart', JSON.stringify(cart));
-        
-        // Update the cart display
-        updateCart();
-        
-        // Update the UI
-        updateUI();
-    }
+    // Update the UI
+    updateUI();
+}
+
 
 function renderCartItems(cart) {
     let newContent = '';
