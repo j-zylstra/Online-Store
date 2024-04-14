@@ -161,6 +161,7 @@ cartElement.addEventListener('click', function(event) {
     if (event.target.classList.contains('icon-close')) {
         // Get the product id from the data attribute of the parent element
         const productId = event.target.closest('.cart-item').getAttribute('data-product-id');
+        console.log(productId); 
         removeItemFromCart(productId);
     }
 });
