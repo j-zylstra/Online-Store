@@ -143,54 +143,52 @@ function renderSubtotal(action, id) {
     })
     subtotalElement.innerHTML = `Subtotal (${totalItems} items): $${totalPrice.toFixed(2)}`;
     totalItemsInCart.innerHTML = totalItems;
-};
-
+}
 function removeItemFromCart(id) {
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
-   
-    const updatedCart = [];
-    for (const item of cart) {
-        if (item.product.id !== id) {
-            updatedCart.push(item);
-        }
-    }
+    const updatedCart = cart.filter(item => item.product.id !== id);
 
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-    
-    
+
     updateCart();
     updateUI();
 }
 
+cartElement.addEventListener('click', function(event) {
+    // Check if the clicked element is the close icon
+    if (event.target.classList.contains('icon-close')) {
+        // Get the product id from the data attribute of the parent element
+        const productId = event.target.closest('.cart-item').getAttribute('data-product-id');
+        removeItemFromCart(productId);
+    }
+});
 
 function renderCartItems(cart) {
-
     let newContent = ''; 
 
     cart.forEach((product) => {
         newContent += `
-            <div class="cart-item">
+            <div class="cart-item" data-product-id="${product.product.id}">
                 <div class="item-info">
                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
-                        <h4>${product.product.name}</h4>
-                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.product.id})" name="close-circle-outline"></ion-icon></span>
+                    <h4>${product.product.name}</h4>
+                    <span><ion-icon class="icon-close" name="close-circle-outline"></ion-icon></span>
                 </div>
                 <div class="unit-price">
                     <h2><small>$</small>${product.product.price}</h2>
                 </div>
                 <div class="units">
-                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
+                    <div class="btn minus">-</div>
                     <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
+                    <div class="btn plus">+</div>
                 </div>
             </div>`;
-                               
-        });
-            cartElement.innerHTML = newContent;
-                    
-};
+    });
+
+    cartItemsContainer.innerHTML = newContent;
+}
 
 function renderProducts(type) {
 
