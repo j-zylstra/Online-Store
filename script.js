@@ -154,6 +154,7 @@ function removeItemFromCart(id) {
 
     updateCart();
     updateUI();
+    console.log("remove item from cart function triggered");
 }
 
 cartElement.addEventListener('click', function(event) {
