@@ -106,7 +106,7 @@ function changeNumberOfUnits(action, id) {
         const storedCartData = localStorage.getItem('cart');
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
-        console.log('change units triggered');
+
         cart = cart.map((product) => {
             if (product.product.id === id) {
                 let numberOfUnits = product.numberOfUnits;
@@ -148,24 +148,19 @@ function renderSubtotal(action, id) {
 function removeItemFromCart(id) {
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
-    console.log('Cart before removal:', cart);
 
-    // Create a new array excluding the item with the specified ID
+   
     const updatedCart = [];
     for (const item of cart) {
         if (item.product.id !== id) {
             updatedCart.push(item);
         }
     }
-    console.log('Cart after removal:', updatedCart);
 
-    // Update localStorage with the modified cart array
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     
-    // Update the cart display
-    updateCart();
     
-    // Update the UI
+    updateCart();
     updateUI();
 }
 
