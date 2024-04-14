@@ -150,8 +150,8 @@ function removeItemFromCart(id) {
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
     console.log('Cart before removal:', cart);
 
-    // Filter out the item with the specified ID
-    cart = cart.filter(item => {
+    // Create a new array with filtered items
+    cart = cart.slice().filter(item => {
         console.log('Item ID:', item.product.id);
         console.log('Target ID:', id);
         return item.product.id !== id;
