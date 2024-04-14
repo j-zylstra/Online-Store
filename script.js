@@ -187,7 +187,7 @@ function renderCartItems(cart) {
             </div>`;
     });
 
-    cartItemsContainer.innerHTML = newContent;
+    cartElement.innerHTML = newContent;
 }
 
 function renderProducts(type) {
