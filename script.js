@@ -150,16 +150,17 @@ function removeItemFromCart(id) {
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
     console.log('Cart before removal:', cart);
 
-    // Create a new array with filtered items
-    cart = cart.slice().filter(item => {
-        console.log('Item ID:', item.product.id);
-        console.log('Target ID:', id);
-        return item.product.id !== id;
-    });
-    console.log('Cart after removal:', cart);
+    // Create a new array excluding the item with the specified ID
+    const updatedCart = [];
+    for (const item of cart) {
+        if (item.product.id !== id) {
+            updatedCart.push(item);
+        }
+    }
+    console.log('Cart after removal:', updatedCart);
 
     // Update localStorage with the modified cart array
-    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
     
     // Update the cart display
     updateCart();
@@ -167,6 +168,7 @@ function removeItemFromCart(id) {
     // Update the UI
     updateUI();
 }
+
 
 
 function renderCartItems(cart) {
