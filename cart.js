@@ -15,7 +15,7 @@ cartElement.addEventListener('click', function(event) {
     }
 });
 
-const plusButtons = document.querySelectorAll('.plus');
+const plusButtons = document.querySelectorAll('.btn plus');
 plusButtons.forEach(button => {
     button.addEventListener('click', () => {
         const productId = button.dataset.id;
@@ -23,7 +23,7 @@ plusButtons.forEach(button => {
     });
 });
 
-const minusButtons = document.querySelectorAll('.minus');
+const minusButtons = document.querySelectorAll('.btn minus');
 minusButtons.forEach(button => {
     button.addEventListener('click', () => {
         const productId = button.dataset.id;
