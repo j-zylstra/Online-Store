@@ -112,11 +112,11 @@ function changeNumberOfUnits(action, id) {
 
         cart = cart.map((item) => {
             console.log('item:' , item);
-            console.log('product:' , product);
+            
         
             if (item.product.id === id) {
                 console.log('found product');
-                let numberOfUnits = product.numberOfUnits;
+                let numberOfUnits = item.product.numberOfUnits;
     
                 if (action === "minus" && numberOfUnits > 1) {
                     console.log('minus action triggered');
@@ -128,12 +128,12 @@ function changeNumberOfUnits(action, id) {
 
     
                 return {
-                    ...item,
+                    ...item.product,
                     numberOfUnits,
                 };
             }
     
-            return item;
+            return item.product;
         });
     
         
