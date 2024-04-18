@@ -111,6 +111,9 @@ function changeNumberOfUnits(action, id) {
     
 
         cart = cart.map((item) => {
+            console.log('item:' , item);
+            console.log('product:' , product);
+        
             if (item.product.id === id) {
                 console.log('found product');
                 let numberOfUnits = product.numberOfUnits;
