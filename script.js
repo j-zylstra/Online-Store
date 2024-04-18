@@ -109,12 +109,13 @@ function changeNumberOfUnits(action, id) {
         const storedCartData = localStorage.getItem('cart');
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
+        id = id.toString();
 
         cart = cart.map((item) => {
-            console.log('item:' , item);
+           
             
         
-            if (item.product.id === id) {
+            if (item.product.id.toString() === id) {
                 console.log('found product');
                 let numberOfUnits = item.product.numberOfUnits;
     
