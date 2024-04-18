@@ -16,14 +16,22 @@ cartElement.addEventListener('click', function(event) {
 });
 
 const plusButtons = document.querySelectorAll('.btn plus');
-plusButtons.addEventListener('click', () => {
-        const productId = plusButtons.dataset.id;
+plusButtons.forEach(div => {
+    div.addEventListener('click', () => {
+      
+        const productId = div.dataset.id;
+        
         changeNumberOfUnits('plus', productId);
-    });
+    })
+});
 
 
 const minusButtons = document.querySelectorAll('.btn minus');
-minusButtons.addEventListener('click', () => {
-        const productId = minusButtons.dataset.id;
+minusButtons.forEach(div => {
+    div.addEventListener('click', () => {
+      
+        const productId = div.dataset.id;
+        
         changeNumberOfUnits('minus', productId);
-    });
+    })
+});
