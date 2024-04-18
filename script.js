@@ -110,8 +110,8 @@ function changeNumberOfUnits(action, id) {
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
 
-        cart = cart.map((product) => {
-            if (product.product.id === id) {
+        cart = cart.map((item) => {
+            if (item.product.id === id) {
                 console.log('found product');
                 let numberOfUnits = product.numberOfUnits;
     
