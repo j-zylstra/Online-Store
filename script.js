@@ -103,6 +103,9 @@ function addToCart(id) {
 
 function changeNumberOfUnits(action, id) {
         
+    console.log('change units triggered');
+    console.log('changing units for id:', id);  
+    HTMLFormControlsCollection.log('action:', action);  
         const storedCartData = localStorage.getItem('cart');
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
@@ -146,27 +149,22 @@ function renderSubtotal(action, id) {
 }
 
 function removeItemFromCart(id) {
-    console.log(`Removing item from cart with ID: ${id}`);
+    
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
-    // Convert id to string if necessary
+    
     id = id.toString();
 
-    // Filter out the item to be removed
+   
     const updatedCart = cart.filter(item => item.product.id.toString() !== id);
 
-    // Log the updated cart
-    console.log('Updated cart:', updatedCart);
 
-    // Store the updated cart in local storage
     localStorage.setItem('cart', JSON.stringify(updatedCart));
 
     // Update the cart UI
     updateCart();
     updateUI();
-
-    console.log("Remove item from cart function triggered");
 }
 
 
