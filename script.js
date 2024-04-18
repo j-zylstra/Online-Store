@@ -105,7 +105,7 @@ function changeNumberOfUnits(action, id) {
         
     console.log('change units triggered');
     console.log('changing units for id:', id);  
-    HTMLFormControlsCollection.log('action:', action);  
+    console.log('action:', action);  
         const storedCartData = localStorage.getItem('cart');
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
