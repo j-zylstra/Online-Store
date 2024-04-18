@@ -125,12 +125,12 @@ function changeNumberOfUnits(action, id) {
 
     
                 return {
-                    ...product,
+                    ...item,
                     numberOfUnits,
                 };
             }
     
-            return product;
+            return item;
         });
     
         
