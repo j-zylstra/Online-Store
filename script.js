@@ -191,6 +191,27 @@ function renderCartItems(cart) {
     });
 
     cartElement.innerHTML = newContent;
+
+    const plusButtons = document.querySelectorAll('.btn.plus');
+plusButtons.forEach(div => {
+    div.addEventListener('click', () => {
+      
+        const productId = div.dataset.id;
+        
+        changeNumberOfUnits('plus', productId);
+    })
+});
+
+
+const minusButtons = document.querySelectorAll('.btn.minus');
+minusButtons.forEach(div => {
+    div.addEventListener('click', () => {
+      
+        const productId = div.dataset.id;
+        
+        changeNumberOfUnits('minus', productId);
+    })
+});
 }
 
 function renderProducts(type) {
