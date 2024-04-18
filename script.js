@@ -185,9 +185,9 @@ function renderCartItems(cart) {
                     <h2><small>$</small>${product.product.price}</h2>
                 </div>
                 <div class="units">
-                    <div class="btn minus">-</div>
+                    <div class="btn minus" data-action="minus" data-id="${product.product.id}">-</div>
                     <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus">+</div>
+                    <div class="btn plus" data-action="plus" data-id="${product.product.id}">+</div>
                 </div>
             </div>`;
     });

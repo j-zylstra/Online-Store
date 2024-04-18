@@ -14,3 +14,19 @@ cartElement.addEventListener('click', function(event) {
         removeItemFromCart(productId);
     }
 });
+
+const plusButtons = document.querySelectorAll('.plus');
+plusButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const productId = button.dataset.id;
+        changeNumberOfUnits('plus', productId);
+    });
+});
+
+const minusButtons = document.querySelectorAll('.minus');
+minusButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const productId = button.dataset.id;
+        changeNumberOfUnits('minus', productId);
+    });
+});
