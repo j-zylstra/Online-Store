@@ -111,13 +111,13 @@ function changeNumberOfUnits(action, id) {
     
     
 
-        cart = cart.map((item) => {
+        cart = cart.map((product) => {
            
             
         
-            if (item.product.id === id) {
+            if (product.product.id === id) {
                 console.log('found product');
-                let numberOfUnits = item.product.numberOfUnits;
+                let numberOfUnits = product.product.numberOfUnits;
     
                 if (action === "minus" && numberOfUnits > 1) {
                     console.log('minus action triggered');
@@ -129,12 +129,12 @@ function changeNumberOfUnits(action, id) {
 
     
                 return {
-                    ...item.product,
+                    ...product,
                     numberOfUnits,
                 };
             }
     
-            return item.product;
+            return product;
         });
     
         
@@ -180,7 +180,7 @@ function renderCartItems(cart) {
 
     cart.forEach((product) => {
         newContent += `
-            <div class="cart-item" data-product-id="${item.product.id}">
+            <div class="cart-item" data-product-id="${product.product.id}">
                 <div class="item-info">
                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
                     <h4>${product.product.name}</h4>
