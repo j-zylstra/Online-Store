@@ -73,25 +73,24 @@ function renderCartItems(cart) {
 
     cart.forEach((product) => {
         newContent += `
-        <div class="cart-item">
-            <div class="item-info">
-                <img src="${product.product.imgsrc}" alt="${product.product.name}">
-                    <h4>${product.product.name}</h4>
-                    <span><ion-icon class="icon-close" data-id="${product.product.id}" name="close-circle-outline"></ion-icon></span>
-            </div>
-            <div class="unit-price">
-                <h2><small>$</small>${product.product.price}</h2>
-            </div>
-            <div class="units">
-                <div class="btn minus" data-action="minus" data-id="${product.product.id}">-</div>
-                <div class="number">${product.numberOfUnits}</div>
-                <div class="btn plus" data-action="plus" data-id="${product.product.id}">+</div>
-            </div>
-        </div>`;
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="${product.product.imgsrc}" alt="${product.product.name}">
+                        <h4>${product.product.name}</h4>
+                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.product.id})" name="close-circle-outline"></ion-icon></span>
+                </div>
+                <div class="unit-price">
+                    <h2><small>$</small>${product.product.price}</h2>
+                </div>
+                <div class="units">
+                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
+                    <div class="number">${product.numberOfUnits}</div>
+                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
+                </div>
+            </div>`;
                                
-    });
-
-    cartElement.innerHTML = newContent;
+        });
+            cartElement.innerHTML = newContent;
                     
 
 
@@ -146,29 +145,37 @@ function addToCart(id) {
 };
 
 function changeNumberOfUnits(action, id) {
-    let cart = getCartFromLocalStorage();
+        
+        const storedCartData = localStorage.getItem('cart');
+        let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
-    cart = cart.map((product) => {
-        if (product.product.id === id) {
-            let numberOfUnits = product.numberOfUnits;
+        
+        cart = cart.map((product) => {
+            if (product.product.id === id) {
+                let numberOfUnits = product.numberOfUnits;
+    
+                if (action === "minus" && numberOfUnits > 1) {
+                    numberOfUnits--;
+                } else if (action === "plus" && numberOfUnits < product.product.instock) {
+                    numberOfUnits++;
+                }
 
-            if (action === "minus" && numberOfUnits > 1) {
-                numberOfUnits--;
-            } else if (action === "plus" && numberOfUnits < product.product.instock) {
-                numberOfUnits++;
+    
+                return {
+                    ...product,
+                    numberOfUnits,
+                };
             }
-
-            return {
-                ...product,
-                numberOfUnits,
-            };
-        }
-
-        return product;
-    });
-
-    updateCart(cart); // Update cart directly after modifying it
-}
+    
+            return product;
+        });
+    
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+    
+       
+        updateCart();
+};
 
 function renderSubtotal(action, id) {
     let totalPrice = 0, totalItems = 0; 
@@ -182,21 +189,22 @@ function renderSubtotal(action, id) {
 };
 
 function removeItemFromCart(id) {
-    let cart = getCartFromLocalStorage();
-    const itemIndex = cart.findIndex(product => product.product.id === id);
-
-    if (itemIndex !== -1) {
-        cart.splice(itemIndex, 1);
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        updateCart(cart);
-    }
-}
-
-// Helper function to retrieve cart from local storage
-function getCartFromLocalStorage() {
+    
     const storedCartData = localStorage.getItem('cart');
-    return storedCartData ? JSON.parse(storedCartData) : [];
+    let cart = storedCartData ? JSON.parse(storedCartData) : [];
+
+     
+     const itemIndex = cart.findIndex(product => product.product.id === id);
+
+     if (itemIndex !== -1) {
+        
+         cart.splice(itemIndex, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    
+    updateCart();
+    updateUI();
+   };
 }
 
 function renderProducts(type) {
