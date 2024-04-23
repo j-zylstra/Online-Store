@@ -103,7 +103,7 @@ function addToCart(id) {
         .then(response => response.json())
         .then(product => { 
     
-           const existingCartItem = cart.find(item => item.product.id === id);
+           const existingCartItem = cart.find(item => item.id === id);
 
            if (existingCartItem) {
                 if (existingCartItem.numberOfUnits < product.instock) {
