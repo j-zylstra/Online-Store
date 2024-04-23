@@ -180,7 +180,7 @@ function renderCartItems(cart) {
 
     cart.forEach((product) => {
         newContent += `
-            <div class="cart-item" data-product-id="${product.product.id}">
+            <div class="cart-item" data-product-id="${item.product.id}">
                 <div class="item-info">
                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
                     <h4>${product.product.name}</h4>
