@@ -155,9 +155,9 @@ function changeNumberOfUnits(action, id) {
                 let numberOfUnits = product.numberOfUnits;
     
                 if (action === "minus" && numberOfUnits > 1) {
-                    numberOfUnits--;
+                    numberOfUnits--; console.log('less 1 for', id);
                 } else if (action === "plus" && numberOfUnits < product.product.instock) {
-                    numberOfUnits++;
+                    numberOfUnits++; console.log('plus 1 for', id);
                 }
 
     
@@ -168,6 +168,7 @@ function changeNumberOfUnits(action, id) {
             }
     
             return product;
+            
         });
     
         
@@ -201,7 +202,7 @@ function removeItemFromCart(id) {
          cart.splice(itemIndex, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    
+    console.log('remove item with id', id);
     updateCart();
     updateUI();
    };
