@@ -24,7 +24,6 @@ const totalItemsInCart = document.querySelector(".quantity");
   
       const handleCartPage = () => {
         if (window.location.pathname.endsWith("cart")) {
-          
           updateCart();
           updateUI();
         }
@@ -68,6 +67,33 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 
 
+function renderCartItems(cart) {
+
+    let newContent = ''; 
+
+    cart.forEach((product) => {
+        newContent += `
+            <div class="cart-item">
+                <div class="item-info">
+                    <img src="${product.product.imgsrc}" alt="${product.product.name}">
+                        <h4>${product.product.name}</h4>
+                        <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.id})" name="close-circle-outline"></ion-icon></span>
+                </div>
+                <div class="unit-price">
+                    <h2><small>$</small>${product.product.price}</h2>
+                </div>
+                <div class="units">
+                    <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
+                    <div class="number">${product.numberOfUnits}</div>
+                    <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
+                </div>
+            </div>`;
+                               
+        });
+            cartElement.innerHTML = newContent;
+                    
+};
+
 function addToCart(id) {
 
     const storedCartData = localStorage.getItem('cart');
@@ -103,27 +129,17 @@ function addToCart(id) {
 
 function changeNumberOfUnits(action, id) {
         
-    console.log('change units triggered');
-    console.log('changing units for id:', id);  
-    console.log('action:', action);  
         const storedCartData = localStorage.getItem('cart');
         let cart = storedCartData ? JSON.parse(storedCartData) : [];
     
-    
-
-        cart = cart.map((product) => {
-           
-            
         
+        cart = cart.map((product) => {
             if (product.product.id === id) {
-                console.log('found product');
-                let numberOfUnits = product.product.numberOfUnits;
+                let numberOfUnits = product.numberOfUnits;
     
                 if (action === "minus" && numberOfUnits > 1) {
-                    console.log('minus action triggered');
                     numberOfUnits--;
                 } else if (action === "plus" && numberOfUnits < product.product.instock) {
-                    console.log('plus action triggered');
                     numberOfUnits++;
                 }
 
@@ -153,72 +169,25 @@ function renderSubtotal(action, id) {
     })
     subtotalElement.innerHTML = `Subtotal (${totalItems} items): $${totalPrice.toFixed(2)}`;
     totalItemsInCart.innerHTML = totalItems;
-}
+};
 
 function removeItemFromCart(id) {
     
     const storedCartData = localStorage.getItem('cart');
     let cart = storedCartData ? JSON.parse(storedCartData) : [];
 
+     
+     const itemIndex = cart.findIndex(product => product.id === id);
+
+     if (itemIndex !== -1) {
+        
+         cart.splice(itemIndex);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
     
-    id = id.toString();
-
-   
-    const updatedCart = cart.filter(item => item.product.id.toString() !== id);
-
-
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-    // Update the cart UI
     updateCart();
     updateUI();
-}
-
-
-function renderCartItems(cart) {
-    let newContent = ''; 
-
-    cart.forEach((product) => {
-        newContent += `
-            <div class="cart-item" data-product-id="${product.product.id}">
-                <div class="item-info">
-                    <img src="${product.product.imgsrc}" alt="${product.product.name}">
-                    <h4>${product.product.name}</h4>
-                    <span><ion-icon class="icon-close" name="close-circle-outline"></ion-icon></span>
-                </div>
-                <div class="unit-price">
-                    <h2><small>$</small>${product.product.price}</h2>
-                </div>
-                <div class="units">
-                    <div class="btn minus" data-action="minus" data-id="${product.product.id}">-</div>
-                    <div class="number">${product.numberOfUnits}</div>
-                    <div class="btn plus" data-action="plus" data-id="${product.product.id}">+</div>
-                </div>
-            </div>`;
-    });
-
-    cartElement.innerHTML = newContent;
-
-    const plusButtons = document.querySelectorAll('.btn.plus');
-plusButtons.forEach(div => {
-    div.addEventListener('click', () => {
-      
-        const productId = div.dataset.id;
-        
-        changeNumberOfUnits('plus', productId);
-    })
-});
-
-
-const minusButtons = document.querySelectorAll('.btn.minus');
-minusButtons.forEach(div => {
-    div.addEventListener('click', () => {
-      
-        const productId = div.dataset.id;
-        
-        changeNumberOfUnits('minus', productId);
-    })
-});
+   };
 }
 
 function renderProducts(type) {
@@ -325,8 +294,6 @@ function updateCart() {
     updateCartDisplay();
 
 };
-
-
 
 document.addEventListener('DOMContentLoaded', async () => {
     const reviewForm = document.getElementById('reviewForm');
@@ -519,5 +486,3 @@ if (closeLoginButton) {
         }
     });
 };
-
-
