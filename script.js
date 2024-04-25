@@ -186,7 +186,6 @@ function removeItemFromCart(id) {
          cart.splice(itemIndex, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    console.log('remove item with id', id);
     updateCart();
     updateUI();
    };
