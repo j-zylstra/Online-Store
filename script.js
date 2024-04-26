@@ -189,6 +189,7 @@ function renderCartItems(cart) {
         const minusBtn = document.createElement('div');
         minusBtn.classList.add('btn', 'minus'); 
         minusBtn.textContent = '-';
+        minusBtn.dataset.action = 'minus';
         minusBtn.dataset.productId = product.product.id;
 
         const unitsNumber = document.createElement('div');
@@ -198,6 +199,7 @@ function renderCartItems(cart) {
         const plusBtn = document.createElement('div');
         plusBtn.classList.add('btn', 'plus'); 
         plusBtn.textContent = '+';
+        plusBtn.dataset.action = 'plus';
         plusBtn.dataset.productId = product.product.id;
 
         unitsDiv.appendChild(minusBtn);
@@ -214,31 +216,31 @@ function renderCartItems(cart) {
     // Loop through existing elements and attach listeners
     cartElement.querySelectorAll('.cart-item').forEach(item => {
         // Add click and touchstart listeners for remove button
-        item.querySelector('.remove-item').addEventListener('click', () => {
+        item.querySelector('.icon-close .remove-item').addEventListener('click', () => {
             const productId = item.querySelector('.remove-item').dataset.productId;
             removeItemFromCart(productId);
         });
-        item.querySelector('.remove-item').addEventListener('touchstart', () => {
+        item.querySelector('.icon-close .remove-item').addEventListener('touchstart', () => {
             const productId = item.querySelector('.remove-item').dataset.productId;
             removeItemFromCart(productId);
         });
 
         // Add click and touchstart listeners for minus button
-        item.querySelector('.minus').addEventListener('click', () => {
+        item.querySelector('.btn .minus').addEventListener('click', () => {
             const productId = item.querySelector('.minus').dataset.productId;
             changeNumberOfUnits('minus', productId);
         });
-        item.querySelector('.minus').addEventListener('touchstart', () => {
+        item.querySelector('.btn .minus').addEventListener('touchstart', () => {
             const productId = item.querySelector('.minus').dataset.productId;
             changeNumberOfUnits('minus', productId);
         });
 
         // Add click and touchstart listeners for plus button
-        item.querySelector('.plus').addEventListener('click', () => {
+        item.querySelector('.btn .plus').addEventListener('click', () => {
             const productId = item.querySelector('.plus').dataset.productId;
             changeNumberOfUnits('plus', productId);
         });
-        item.querySelector('.plus').addEventListener('touchstart', () => {
+        item.querySelector('.btn .plus').addEventListener('touchstart', () => {
             const productId = item.querySelector('.plus').dataset.productId;
             changeNumberOfUnits('plus', productId);
         });
