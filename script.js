@@ -149,7 +149,6 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 function renderCartItems(cart) {
     
-
     cartElement.innerHTML = '';
 
     cart.forEach((product) => {
@@ -214,49 +213,36 @@ function renderCartItems(cart) {
 
     // Loop through existing elements and attach listeners
     cartElement.querySelectorAll('.cart-item').forEach(item => {
-        // Add click listener for remove button
+        // Add click and touchstart listeners for remove button
         item.querySelector('.remove-item').addEventListener('click', () => {
             const productId = item.querySelector('.remove-item').dataset.productId;
             removeItemFromCart(productId);
-            })
         });
-
-    cartElement.querySelectorAll('.cart-item').forEach(item => {
-            // Add click listener for remove button
         item.querySelector('.remove-item').addEventListener('touchstart', () => {
             const productId = item.querySelector('.remove-item').dataset.productId;
-                removeItemFromCart(productId);
-            });
+            removeItemFromCart(productId);
         });
 
-        // Add touch event listener for minus button
-    cartElement.querySelectorAll('.cart-item').forEach(item => {
+        // Add click and touchstart listeners for minus button
         item.querySelector('.minus').addEventListener('click', () => {
             const productId = item.querySelector('.minus').dataset.productId;
             changeNumberOfUnits('minus', productId);
-            });
         });
-
-    cartElement.querySelectorAll('.cart-item').forEach(item => {
-        item.querySelector('.plus').addEventListener('click', () => {
-            const productId = item.querySelector('.plus').dataset.productId;
-            changeNumberOfUnits('plus', productId);
-            });
-    });
-
-    cartElement.querySelectorAll('.cart-item').forEach(item => {    
         item.querySelector('.minus').addEventListener('touchstart', () => {
             const productId = item.querySelector('.minus').dataset.productId;
             changeNumberOfUnits('minus', productId);
-            });
-    });
+        });
 
-    cartElement.querySelectorAll('.cart-item').forEach(item => {
+        // Add click and touchstart listeners for plus button
+        item.querySelector('.plus').addEventListener('click', () => {
+            const productId = item.querySelector('.plus').dataset.productId;
+            changeNumberOfUnits('plus', productId);
+        });
         item.querySelector('.plus').addEventListener('touchstart', () => {
             const productId = item.querySelector('.plus').dataset.productId;
             changeNumberOfUnits('plus', productId);
-            });
         });
+    });
 }
 
 
