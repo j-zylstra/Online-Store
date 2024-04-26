@@ -95,7 +95,7 @@ const totalItemsInCart = document.querySelector(".quantity");
 
 // }
 function renderCartItems(cart) {
-    const cartElement = document.getElementById('cart');
+    
     cartElement.innerHTML = '';
 
     cart.forEach((product) => {
