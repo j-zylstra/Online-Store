@@ -96,8 +96,6 @@ const totalItemsInCart = document.querySelector(".quantity");
 // }
 
 function renderCartItems(cart) {
-    // Get the container element where cart items will be appended
-    const cartElement = document.getElementById('cart');
 
     // Clear the existing content
     cartElement.innerHTML = '';
