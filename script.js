@@ -216,31 +216,31 @@ function renderCartItems(cart) {
     // Loop through existing elements and attach listeners
     cartElement.querySelectorAll('.cart-item').forEach(item => {
         // Add click and touchstart listeners for remove button
-        item.querySelector('.icon-close .remove-item').addEventListener('click', () => {
+        item.querySelector('.remove-item').addEventListener('click', () => {
             const productId = item.querySelector('.remove-item').dataset.productId;
             removeItemFromCart(productId);
         });
-        item.querySelector('.icon-close .remove-item').addEventListener('touchstart', () => {
+        item.querySelector('.remove-item').addEventListener('touchstart', () => {
             const productId = item.querySelector('.remove-item').dataset.productId;
             removeItemFromCart(productId);
         });
 
         // Add click and touchstart listeners for minus button
-        item.querySelector('.btn .minus').addEventListener('click', () => {
+        item.querySelector('.minus').addEventListener('click', () => {
             const productId = item.querySelector('.minus').dataset.productId;
             changeNumberOfUnits('minus', productId);
         });
-        item.querySelector('.btn .minus').addEventListener('touchstart', () => {
+        item.querySelector('.minus').addEventListener('touchstart', () => {
             const productId = item.querySelector('.minus').dataset.productId;
             changeNumberOfUnits('minus', productId);
         });
 
         // Add click and touchstart listeners for plus button
-        item.querySelector('.btn .plus').addEventListener('click', () => {
+        item.querySelector('.plus').addEventListener('click', () => {
             const productId = item.querySelector('.plus').dataset.productId;
             changeNumberOfUnits('plus', productId);
         });
-        item.querySelector('.btn .plus').addEventListener('touchstart', () => {
+        item.querySelector('.plus').addEventListener('touchstart', () => {
             const productId = item.querySelector('.plus').dataset.productId;
             changeNumberOfUnits('plus', productId);
         });
