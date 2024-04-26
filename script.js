@@ -65,116 +65,198 @@ const totalItemsInCart = document.querySelector(".quantity");
   });
   
 
-
-
 // function renderCartItems(cart) {
 
-//     let newContent = ''; 
+//     // Clear the existing content
+//     cartElement.innerHTML = '';
 
+//     // Loop through each product in the cart
 //     cart.forEach((product) => {
-//         newContent += `
-//             <div class="cart-item">
-//                 <div class="item-info">
-//                     <img src="${product.product.imgsrc}" alt="${product.product.name}">
-//                         <h4>${product.product.name}</h4>
-//                         <span><ion-icon class="icon-close" onclick="removeItemFromCart(${product.product.id})" name="close-circle-outline"></ion-icon></span>
-//                 </div>
-//                 <div class="unit-price">
-//                     <h2><small>$</small>${product.product.price}</h2>
-//                 </div>
-//                 <div class="units">
-//                     <div class="btn minus" onclick="changeNumberOfUnits('minus', ${product.product.id})">-</div>
-//                     <div class="number">${product.numberOfUnits}</div>
-//                     <div class="btn plus" onclick="changeNumberOfUnits('plus', ${product.product.id})">+</div>
-//                 </div>
-//             </div>`;
-                               
-//         });
-//             cartElement.innerHTML = newContent;
-                    
+//         // Create a container div for the cart item
+//         const cartItemDiv = document.createElement('div');
+//         cartItemDiv.classList.add('cart-item');
 
+//         // Create a div for item info
+//         const itemInfoDiv = document.createElement('div');
+//         itemInfoDiv.classList.add('item-info');
+
+//         // Create an image element
+//         const img = document.createElement('img');
+//         img.src = product.product.imgsrc;
+//         img.alt = product.product.name;
+
+//         // Create a heading for the product name
+//         const nameHeading = document.createElement('h4');
+//         nameHeading.textContent = product.product.name;
+
+//         // Create a span for the remove icon
+//         const removeIconSpan = document.createElement('span');
+//         const removeIcon = document.createElement('ion-icon');
+//         removeIcon.classList.add('icon-close');
+//         removeIcon.setAttribute('name', 'close-circle-outline');
+//         removeIcon.onclick = () => removeItemFromCart(product.product.id);
+//         removeIconSpan.appendChild(removeIcon);
+
+//         // Append image, name, and remove icon to item info div
+//         itemInfoDiv.appendChild(img);
+//         itemInfoDiv.appendChild(nameHeading);
+//         itemInfoDiv.appendChild(removeIconSpan);
+
+//         // Create a div for unit price
+//         const unitPriceDiv = document.createElement('div');
+//         unitPriceDiv.classList.add('unit-price');
+
+//         // Create a heading for the unit price
+//         const priceHeading = document.createElement('h2');
+//         priceHeading.innerHTML = `<small>$</small>${product.product.price}`;
+
+//         // Append price heading to unit price div
+//         unitPriceDiv.appendChild(priceHeading);
+
+//         // Create a div for units
+//         const unitsDiv = document.createElement('div');
+//         unitsDiv.classList.add('units');
+
+//         // Create buttons for minus and plus
+//         const minusBtn = document.createElement('div');
+//         minusBtn.classList.add('btn', 'minus');
+//         minusBtn.textContent = '-';
+//         minusBtn.onclick = () => changeNumberOfUnits('minus', product.product.id);
+
+//         const unitsNumber = document.createElement('div');
+//         unitsNumber.classList.add('number');
+//         unitsNumber.textContent = product.numberOfUnits;
+
+//         const plusBtn = document.createElement('div');
+//         plusBtn.classList.add('btn', 'plus');
+//         plusBtn.textContent = '+';
+//         plusBtn.onclick = () => changeNumberOfUnits('plus', product.product.id);
+
+//         // Append buttons and units number to units div
+//         unitsDiv.appendChild(minusBtn);
+//         unitsDiv.appendChild(unitsNumber);
+//         unitsDiv.appendChild(plusBtn);
+
+//         // Append item info, unit price, and units divs to cart item div
+//         cartItemDiv.appendChild(itemInfoDiv);
+//         cartItemDiv.appendChild(unitPriceDiv);
+//         cartItemDiv.appendChild(unitsDiv);
+
+//         // Append cart item div to cart container
+//         cartElement.appendChild(cartItemDiv);
+//     });
 // }
 
 function renderCartItems(cart) {
+    
 
-    // Clear the existing content
     cartElement.innerHTML = '';
 
-    // Loop through each product in the cart
     cart.forEach((product) => {
-        // Create a container div for the cart item
         const cartItemDiv = document.createElement('div');
         cartItemDiv.classList.add('cart-item');
 
-        // Create a div for item info
         const itemInfoDiv = document.createElement('div');
         itemInfoDiv.classList.add('item-info');
 
-        // Create an image element
         const img = document.createElement('img');
         img.src = product.product.imgsrc;
         img.alt = product.product.name;
 
-        // Create a heading for the product name
         const nameHeading = document.createElement('h4');
         nameHeading.textContent = product.product.name;
 
-        // Create a span for the remove icon
         const removeIconSpan = document.createElement('span');
         const removeIcon = document.createElement('ion-icon');
-        removeIcon.classList.add('icon-close');
+        removeIcon.classList.add('icon-close', 'remove-item'); // Added 'remove-item' class
         removeIcon.setAttribute('name', 'close-circle-outline');
-        removeIcon.onclick = () => removeItemFromCart(product.product.id);
+        removeIcon.dataset.productId = product.product.id;
         removeIconSpan.appendChild(removeIcon);
 
-        // Append image, name, and remove icon to item info div
         itemInfoDiv.appendChild(img);
         itemInfoDiv.appendChild(nameHeading);
         itemInfoDiv.appendChild(removeIconSpan);
 
-        // Create a div for unit price
         const unitPriceDiv = document.createElement('div');
         unitPriceDiv.classList.add('unit-price');
 
-        // Create a heading for the unit price
         const priceHeading = document.createElement('h2');
         priceHeading.innerHTML = `<small>$</small>${product.product.price}`;
-
-        // Append price heading to unit price div
         unitPriceDiv.appendChild(priceHeading);
 
-        // Create a div for units
         const unitsDiv = document.createElement('div');
         unitsDiv.classList.add('units');
 
-        // Create buttons for minus and plus
         const minusBtn = document.createElement('div');
-        minusBtn.classList.add('btn', 'minus');
+        minusBtn.classList.add('btn', 'minus'); 
         minusBtn.textContent = '-';
-        minusBtn.onclick = () => changeNumberOfUnits('minus', product.product.id);
+        minusBtn.dataset.productId = product.product.id;
 
         const unitsNumber = document.createElement('div');
         unitsNumber.classList.add('number');
         unitsNumber.textContent = product.numberOfUnits;
 
         const plusBtn = document.createElement('div');
-        plusBtn.classList.add('btn', 'plus');
+        plusBtn.classList.add('btn', 'plus'); 
         plusBtn.textContent = '+';
-        plusBtn.onclick = () => changeNumberOfUnits('plus', product.product.id);
+        plusBtn.dataset.productId = product.product.id;
 
-        // Append buttons and units number to units div
         unitsDiv.appendChild(minusBtn);
         unitsDiv.appendChild(unitsNumber);
         unitsDiv.appendChild(plusBtn);
 
-        // Append item info, unit price, and units divs to cart item div
         cartItemDiv.appendChild(itemInfoDiv);
         cartItemDiv.appendChild(unitPriceDiv);
         cartItemDiv.appendChild(unitsDiv);
 
-        // Append cart item div to cart container
         cartElement.appendChild(cartItemDiv);
     });
+
+    // Loop through existing elements and attach listeners
+    cartElement.querySelectorAll('.cart-item').forEach(item => {
+        // Add click listener for remove button
+        item.querySelector('.remove-item').addEventListener('click', () => {
+            const productId = item.querySelector('.remove-item').dataset.productId;
+            removeItemFromCart(productId);
+            })
+        });
+
+    cartElement.querySelectorAll('.cart-item').forEach(item => {
+            // Add click listener for remove button
+        item.querySelector('.remove-item').addEventListener('touchstart', () => {
+            const productId = item.querySelector('.remove-item').dataset.productId;
+                removeItemFromCart(productId);
+            });
+        });
+
+        // Add touch event listener for minus button
+    cartElement.querySelectorAll('.cart-item').forEach(item => {
+        item.querySelector('.minus').addEventListener('click', () => {
+            const productId = item.querySelector('.minus').dataset.productId;
+            changeNumberOfUnits('minus', productId);
+            });
+        });
+
+    cartElement.querySelectorAll('.cart-item').forEach(item => {
+        item.querySelector('.plus').addEventListener('click', () => {
+            const productId = item.querySelector('.plus').dataset.productId;
+            changeNumberOfUnits('plus', productId);
+            });
+    });
+
+    cartElement.querySelectorAll('.cart-item').forEach(item => {    
+        item.querySelector('.minus').addEventListener('touchstart', () => {
+            const productId = item.querySelector('.minus').dataset.productId;
+            changeNumberOfUnits('minus', productId);
+            });
+    });
+
+    cartElement.querySelectorAll('.cart-item').forEach(item => {
+        item.querySelector('.plus').addEventListener('touchstart', () => {
+            const productId = item.querySelector('.plus').dataset.productId;
+            changeNumberOfUnits('plus', productId);
+            });
+        });
 }
 
 
