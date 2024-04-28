@@ -431,7 +431,7 @@ p a {
         background-color: transparent;
         align-items: flex-start;
         flex-wrap: wrap;
-        height: 350px;
+        height: 300px;
         width: 100%;
     }
 
@@ -448,12 +448,12 @@ p a {
         text-align: left;
         padding-left: 0px;
         padding-right: 0px;
-        padding-top: 0px;
-        padding-bottom: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         margin: 0px;
         line-height: 2.5em;
         font-size: 20px;
-        height: 200px;
+        height: 180px;
         backdrop-filter: blur(30px);
         width: 50%;
         left: -100%;
@@ -474,10 +474,11 @@ p a {
 
     .cart {
         height: 38px;
+        display: none;
     }
 
     .quantity {
-        display: flex;
+        display: none;
         justify-content: center;
         align-items: center;
         top: 2px;
