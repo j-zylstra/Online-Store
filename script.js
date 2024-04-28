@@ -65,187 +65,88 @@ const totalItemsInCart = document.querySelector(".quantity");
   });
   
 
-// function renderCartItems(cart) {
-
-//     // Clear the existing content
-//     cartElement.innerHTML = '';
-
-//     // Loop through each product in the cart
-//     cart.forEach((product) => {
-//         // Create a container div for the cart item
-//         const cartItemDiv = document.createElement('div');
-//         cartItemDiv.classList.add('cart-item');
-
-//         // Create a div for item info
-//         const itemInfoDiv = document.createElement('div');
-//         itemInfoDiv.classList.add('item-info');
-
-//         // Create an image element
-//         const img = document.createElement('img');
-//         img.src = product.product.imgsrc;
-//         img.alt = product.product.name;
-
-//         // Create a heading for the product name
-//         const nameHeading = document.createElement('h4');
-//         nameHeading.textContent = product.product.name;
-
-//         // Create a span for the remove icon
-//         const removeIconSpan = document.createElement('span');
-//         const removeIcon = document.createElement('ion-icon');
-//         removeIcon.classList.add('icon-close');
-//         removeIcon.setAttribute('name', 'close-circle-outline');
-//         removeIcon.onclick = () => removeItemFromCart(product.product.id);
-//         removeIconSpan.appendChild(removeIcon);
-
-//         // Append image, name, and remove icon to item info div
-//         itemInfoDiv.appendChild(img);
-//         itemInfoDiv.appendChild(nameHeading);
-//         itemInfoDiv.appendChild(removeIconSpan);
-
-//         // Create a div for unit price
-//         const unitPriceDiv = document.createElement('div');
-//         unitPriceDiv.classList.add('unit-price');
-
-//         // Create a heading for the unit price
-//         const priceHeading = document.createElement('h2');
-//         priceHeading.innerHTML = `<small>$</small>${product.product.price}`;
-
-//         // Append price heading to unit price div
-//         unitPriceDiv.appendChild(priceHeading);
-
-//         // Create a div for units
-//         const unitsDiv = document.createElement('div');
-//         unitsDiv.classList.add('units');
-
-//         // Create buttons for minus and plus
-//         const minusBtn = document.createElement('div');
-//         minusBtn.classList.add('btn', 'minus');
-//         minusBtn.textContent = '-';
-//         minusBtn.onclick = () => changeNumberOfUnits('minus', product.product.id);
-
-//         const unitsNumber = document.createElement('div');
-//         unitsNumber.classList.add('number');
-//         unitsNumber.textContent = product.numberOfUnits;
-
-//         const plusBtn = document.createElement('div');
-//         plusBtn.classList.add('btn', 'plus');
-//         plusBtn.textContent = '+';
-//         plusBtn.onclick = () => changeNumberOfUnits('plus', product.product.id);
-
-//         // Append buttons and units number to units div
-//         unitsDiv.appendChild(minusBtn);
-//         unitsDiv.appendChild(unitsNumber);
-//         unitsDiv.appendChild(plusBtn);
-
-//         // Append item info, unit price, and units divs to cart item div
-//         cartItemDiv.appendChild(itemInfoDiv);
-//         cartItemDiv.appendChild(unitPriceDiv);
-//         cartItemDiv.appendChild(unitsDiv);
-
-//         // Append cart item div to cart container
-//         cartElement.appendChild(cartItemDiv);
-//     });
-// }
-
 function renderCartItems(cart) {
-    
+
+    // Clear the existing content
     cartElement.innerHTML = '';
 
+    // Loop through each product in the cart
     cart.forEach((product) => {
+        // Create a container div for the cart item
         const cartItemDiv = document.createElement('div');
         cartItemDiv.classList.add('cart-item');
 
+        // Create a div for item info
         const itemInfoDiv = document.createElement('div');
         itemInfoDiv.classList.add('item-info');
 
+        // Create an image element
         const img = document.createElement('img');
         img.src = product.product.imgsrc;
         img.alt = product.product.name;
 
+        // Create a heading for the product name
         const nameHeading = document.createElement('h4');
         nameHeading.textContent = product.product.name;
 
+        // Create a span for the remove icon
         const removeIconSpan = document.createElement('span');
         const removeIcon = document.createElement('ion-icon');
-        removeIcon.classList.add('icon-close', 'remove-item'); // Added 'remove-item' class
+        removeIcon.classList.add('icon-close');
         removeIcon.setAttribute('name', 'close-circle-outline');
-        removeIcon.dataset.productId = product.product.id;
+        removeIcon.onclick = () => removeItemFromCart(product.product.id);
         removeIconSpan.appendChild(removeIcon);
 
+        // Append image, name, and remove icon to item info div
         itemInfoDiv.appendChild(img);
         itemInfoDiv.appendChild(nameHeading);
         itemInfoDiv.appendChild(removeIconSpan);
 
+        // Create a div for unit price
         const unitPriceDiv = document.createElement('div');
         unitPriceDiv.classList.add('unit-price');
 
+        // Create a heading for the unit price
         const priceHeading = document.createElement('h2');
         priceHeading.innerHTML = `<small>$</small>${product.product.price}`;
+
+        // Append price heading to unit price div
         unitPriceDiv.appendChild(priceHeading);
 
+        // Create a div for units
         const unitsDiv = document.createElement('div');
         unitsDiv.classList.add('units');
 
+        // Create buttons for minus and plus
         const minusBtn = document.createElement('div');
-        minusBtn.classList.add('btn', 'minus'); 
+        minusBtn.classList.add('btn', 'minus');
         minusBtn.textContent = '-';
-        minusBtn.dataset.action = 'minus';
-        minusBtn.dataset.productId = product.product.id;
+        minusBtn.onclick = () => changeNumberOfUnits('minus', product.product.id);
 
         const unitsNumber = document.createElement('div');
         unitsNumber.classList.add('number');
         unitsNumber.textContent = product.numberOfUnits;
 
         const plusBtn = document.createElement('div');
-        plusBtn.classList.add('btn', 'plus'); 
+        plusBtn.classList.add('btn', 'plus');
         plusBtn.textContent = '+';
-        plusBtn.dataset.action = 'plus';
-        plusBtn.dataset.productId = product.product.id;
+        plusBtn.onclick = () => changeNumberOfUnits('plus', product.product.id);
 
+        // Append buttons and units number to units div
         unitsDiv.appendChild(minusBtn);
         unitsDiv.appendChild(unitsNumber);
         unitsDiv.appendChild(plusBtn);
 
+        // Append item info, unit price, and units divs to cart item div
         cartItemDiv.appendChild(itemInfoDiv);
         cartItemDiv.appendChild(unitPriceDiv);
         cartItemDiv.appendChild(unitsDiv);
 
+        // Append cart item div to cart container
         cartElement.appendChild(cartItemDiv);
     });
-
-    // Loop through existing elements and attach listeners
-    cartElement.querySelectorAll('.cart-item').forEach(item => {
-        // Add click and touchstart listeners for remove button
-        item.querySelector('.remove-item').addEventListener('click', () => {
-            const productId = item.querySelector('.remove-item').dataset.productId;
-            removeItemFromCart(productId);
-        });
-        item.querySelector('.remove-item').addEventListener('touchstart', () => {
-            const productId = item.querySelector('.remove-item').dataset.productId;
-            removeItemFromCart(productId);
-        });
-
-        // Add click and touchstart listeners for minus button
-        item.querySelector('.minus').addEventListener('click', () => {
-            const productId = item.querySelector('.minus').dataset.productId;
-            changeNumberOfUnits('minus', productId);
-        });
-        item.querySelector('.minus').addEventListener('touchstart', () => {
-            const productId = item.querySelector('.minus').dataset.productId;
-            changeNumberOfUnits('minus', productId);
-        });
-
-        // Add click and touchstart listeners for plus button
-        item.querySelector('.plus').addEventListener('click', () => {
-            const productId = item.querySelector('.plus').dataset.productId;
-            changeNumberOfUnits('plus', productId);
-        });
-        item.querySelector('.plus').addEventListener('touchstart', () => {
-            const productId = item.querySelector('.plus').dataset.productId;
-            changeNumberOfUnits('plus', productId);
-        });
-    });
 }
+
 
 
 function addToCart(id) {
