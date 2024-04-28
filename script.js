@@ -346,7 +346,7 @@ function updateCart() {
             
     renderCartItems(cart);
     renderSubtotal();
-    // updateCartDisplay();
+    updateCartDisplay();
 
 };
 
