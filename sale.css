@@ -269,7 +269,7 @@ button:active {
         margin: 0px;
         line-height: 2.5em;
         font-size: 20px;
-        height: 200px;
+        height: 180px;
         backdrop-filter: blur(30px);
         width: 50%;
         left: -100%;
